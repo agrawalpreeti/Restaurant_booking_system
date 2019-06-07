@@ -1,6 +1,10 @@
 import React from 'react';
 import Carousel from 'react-bootstrap/Carousel';
+<<<<<<< HEAD
 import SimpleCard from './SimpleCard.js';
+=======
+import './My.css'
+>>>>>>> d6484a007860539623f3211f8ee0d94c43a95925
 
 class ControlledCarousel extends React.Component {
     constructor(props, context) {
@@ -15,10 +19,19 @@ class ControlledCarousel extends React.Component {
     }
   
     handleSelect(selectedIndex, e) {
+      if(selectedIndex === 2 && e === 'prev'){
+        selectedIndex = 0;
+        e = "";
+      }
+      else if(selectedIndex === 0 && e === 'next'){
+        selectedIndex = 2;
+        e = "";
+      }
       this.setState({
         index: selectedIndex,
         direction: e.direction,
       });
+      // console.log(selectedIndex,e);
     }
   
     render() {
@@ -28,9 +41,14 @@ class ControlledCarousel extends React.Component {
         <Carousel
           activeIndex={index}
           direction={direction}
+          controls= {false}
+          interval={null}
+          // wrap = {false}
+          // indicators={this.props.indicators}
           onSelect={this.handleSelect}
         >
           <Carousel.Item>
+            {/* {console.log(this.props)}; */}
             <img
               className="d-block w-100"
               src="https://i.ytimg.com/vi/NShJwsoPTzU/maxresdefault.jpg"
