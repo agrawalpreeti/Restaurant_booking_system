@@ -1,5 +1,6 @@
 import React from 'react';
 import Carousel from 'react-bootstrap/Carousel';
+import SimpleCard from './SimpleCard.js';
 
 class ControlledCarousel extends React.Component {
     constructor(props, context) {
@@ -41,15 +42,41 @@ class ControlledCarousel extends React.Component {
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
-            <img
+          <img
               className="d-block w-100"
               src="https://i.ytimg.com/vi/NShJwsoPTzU/maxresdefault.jpg"
-              alt="Third slide"
+              alt="First slide"
             />
   
             <Carousel.Caption>
-              <h3>Second slide label</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+ <h3>Just Exploring</h3>
+ <p> Though we appreciate all the great blogging contributions to Zomato, not all blog posts are eligible for inclusion 
+      on the site. Below are a few types of posts which fall into this category.</p>
+<ul>
+<li>Posts without specific content about the restaurant(s), such as a list of places visited on vacation, without any
+details about the restaurants.</li>
+<li>Posts about a one-time or private event that won't be relevant to anyone beyond the date of the event itself.</li>
+<li>Posts not based on personal experience, such as links/summaries of newspaper articles or blog posts.</li>
+<li>Round-up posts that link to previous reviews, such as 'My Top Ten of 2015'.</li>
+<li>Posts with excessive Spoonbacks. Only one Spoonback can be added per blog post and linked back to a single
+ restaurant page. If you have mentioned multiple restaurants in your blog post, we would encourage you to write reviews
+  for the others.</li>
+           </ul>
+
+
+           <h3>Want To Book</h3>
+ <p> Though we appreciate all the great blogging contributions to Zomato, not all blog posts are eligible for inclusion 
+      on the site. Below are a few types of posts which fall into this category.</p>
+<ul>
+<li>Posts without specific content about the restaurant(s), such as a list of places visited on vacation, without any
+details about the restaurants.</li>
+<li>Posts about a one-time or private event that won't be relevant to anyone beyond the date of the event itself.</li>
+<li>Posts not based on personal experience, such as links/summaries of newspaper articles or blog posts.</li>
+<li>Round-up posts that link to previous reviews, such as 'My Top Ten of 2015'.</li>
+<li>Posts with excessive Spoonbacks. Only one Spoonback can be added per blog post and linked back to a single
+ restaurant page. If you have mentioned multiple restaurants in your blog post, we would encourage you to write reviews
+  for the others.</li>
+           </ul>
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
@@ -60,15 +87,12 @@ class ControlledCarousel extends React.Component {
             />
   
             <Carousel.Caption>
-              <h3>Third slide label</h3>
-              <p>
-                Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-              </p>
-            </Carousel.Caption>
+              <SimpleCard />
+     </Carousel.Caption>
           </Carousel.Item>
         </Carousel>
       );
     }
   }
-  
+    
   export default ControlledCarousel;
