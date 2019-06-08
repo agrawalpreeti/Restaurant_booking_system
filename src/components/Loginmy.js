@@ -1,7 +1,8 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
+import Button from 'react-bootstrap/Button.js';
+import ButtonToolbar from 'react-bootstrap/ButtonToolbar.js';
 //import Avatar from '@material-ui/core/Avatar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
@@ -29,10 +30,10 @@ const useStyles = makeStyles(theme => ({
       input: {
         display: 'none',
       },
-      avatar: {
-        margin: theme.spacing(1),
-        backgroundColor: theme.palette.secondary.main,
-      },
+      // avatar: {
+      //   margin: theme.spacing(1),
+      //   backgroundColor: theme.palette.secondary.main,
+      // },
       form: {
         width: '100%', // Fix IE 11 issue.
         marginTop: theme.spacing(1),
@@ -114,37 +115,23 @@ const useStyles = makeStyles(theme => ({
     const classes = useStyles();
   
     return (
-      <div className={classes.root}>
-        <Grid container spacing={3}>
-          <Grid item xs={3}></Grid>
-          <Grid item xs={3}></Grid>
-          <Grid item xs={3}></Grid>
-
-          <Grid item xs={3}>
+      <div>
           
-            <Button className={classes.button} onClick={console.log("okay")}>LogIn</Button>
-            <Button className={classes.button}>SignUp</Button>
-            <input
-        accept="image/*"
-        className={classes.input}
-        id="text-button-file"
-        multiple
-        type="file"
-      />
-      <label htmlFor="text-button-file">
-        <Button component="span" className={classes.button}>
-          Upload
-        </Button>
-      </label>
-
-    
-          </Grid>
-        </Grid>
+         <button type="button" className="btn btn-warning" onClick={SignIn }>LogIn</button>
+          
+         <button type="button" className="btn btn-info" >SignnUp</button>
+         
+          
+ 
+         
+       
+ 
       </div>
+      
     );
   
 
 
  
 
-  }
+    }

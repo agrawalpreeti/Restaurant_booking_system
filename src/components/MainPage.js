@@ -63,7 +63,7 @@ class ControlledCarousel extends React.Component {
               alt="First slide"
             />
             <Carousel.Caption>
-              <Loginmy Style={{marginTop:"0px",marginRight:"0px",}} />
+              <Loginmy />
             </Carousel.Caption>
             <Carousel.Caption>
               <h3>First slide label</h3>
