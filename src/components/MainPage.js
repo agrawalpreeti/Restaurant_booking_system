@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/Button.js';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar.js';
 import './My.css';
 import front_page from './Pics/front_page.jpg';
+import light_background from './Pics/light_background.jpg';
 
 
 class ControlledCarousel extends React.Component {
@@ -79,8 +80,8 @@ class ControlledCarousel extends React.Component {
           </Carousel.Item>
           <Carousel.Item>
           <img
-              className="d-block w-100"
-              src="https://i.ytimg.com/vi/NShJwsoPTzU/maxresdefault.jpg"
+              className="d-block main_page"
+              src={light_background}
               alt="First slide"
             />
   
@@ -117,8 +118,8 @@ details about the restaurants.</li>
           </Carousel.Item>
           <Carousel.Item>
             <img
-              className="d-block w-100"
-              src="https://i.ytimg.com/vi/NShJwsoPTzU/maxresdefault.jpg"
+              className="d-block main_page"
+              src={light_background}
               alt="Third slide"
             />
   
