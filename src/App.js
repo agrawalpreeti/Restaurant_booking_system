@@ -8,7 +8,7 @@ class Main extends React.Component{
 
   render(){
     return(
-      <ControlledCarousel controls="false" indicators="false"></ControlledCarousel>
+      <ControlledCarousel></ControlledCarousel>
     );
   }
 }

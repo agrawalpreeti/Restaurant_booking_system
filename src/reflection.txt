@@ -1,0 +1,49 @@
+Make the indicators circular insted of rectangular?
+    -change these files: bootstrap.css, bootstrap.css.map,
+        bootstrap.min.css, bootstrap.min.css.map, carousel.scss
+            ->  width: 10px;
+                height: 10px;
+                border-radius: 50%;   <-add these to .css 
+            ->  border-radius: $carousel-indicator-border-radius;
+                <-add this to scss
+        in carousel-indicators li class.
+
+Remove the circling of carousel slides?
+    -we can use wrap={false} as props in carousel tag. But, this somewhat
+     disturbes the animation of transit between the slides.
+    -so I have done it like this(this will retain the animations)
+        ->previous handel function:
+            handleSelect(selectedIndex, e) {
+                this.setState({
+                index: selectedIndex,
+                direction: e.direction,
+            });
+            }   <-
+        ->new handel function:
+            handleSelect(selectedIndex, e) {
+                if(selectedIndex === 2 && e === 'prev'){
+                  selectedIndex = 0;
+                  e = "";
+                }
+                else if(selectedIndex === 0 && e === 'next'){
+                  selectedIndex = 2;
+                  e = "";
+                }
+                this.setState({
+                  index: selectedIndex,
+                  direction: e.direction,
+                });
+                // console.log(selectedIndex,e);
+            }       <-
+
+The selectedIndex and e in handleSelect function?
+    -selectedIndex contains the index to which the slide is changed.
+    -e contains the method by which that slide is reached(i.e prev or next).
+
+Making the slides go in vertical direction?
+    -change bootstrap.css
+        ->the translateX property is one which makes the slides go in X-direction.
+          So changeing it to translateY for classes related to carousel will make it
+          go in Y-diretion insted i.e. vertical.  <-
+        ->for more reference https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/translateX  <-
+

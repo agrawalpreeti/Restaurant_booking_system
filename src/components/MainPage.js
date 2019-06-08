@@ -1,10 +1,10 @@
 import React from 'react';
 import Carousel from 'react-bootstrap/Carousel';
-<<<<<<< HEAD
+import Button from 'react-bootstrap/Button.js';
+import ButtonToolbar from 'react-bootstrap/ButtonToolbar.js';
 import SimpleCard from './SimpleCard.js';
-=======
-import './My.css'
->>>>>>> d6484a007860539623f3211f8ee0d94c43a95925
+import './My.css';
+import front_page from './Pics/front_page.jpg';
 
 class ControlledCarousel extends React.Component {
     constructor(props, context) {
@@ -43,20 +43,26 @@ class ControlledCarousel extends React.Component {
           direction={direction}
           controls= {false}
           interval={null}
+          // bsPrefix={'my'}
           // wrap = {false}
           // indicators={this.props.indicators}
           onSelect={this.handleSelect}
+
         >
           <Carousel.Item>
             {/* {console.log(this.props)}; */}
             <img
-              className="d-block w-100"
-              src="https://i.ytimg.com/vi/NShJwsoPTzU/maxresdefault.jpg"
+              className="d-block main_page"
+              src={front_page}
               alt="First slide"
             />
             <Carousel.Caption>
-              <h3>First slide label</h3>
-              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+              <h2>Plan Your Meal</h2>
+              <p>Book your table beforehand to avoid uneccecary wait.</p>
+              <ButtonToolbar>
+                <Button variant="primary">Explore</Button>
+                <Button variant="danger">Get Started</Button>
+              </ButtonToolbar>
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
