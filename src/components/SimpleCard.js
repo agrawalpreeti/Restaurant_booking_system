@@ -1,18 +1,17 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
+//import Card from '@material-ui/core/Card';
+//import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-import { Grid } from "@material-ui/core";
+import Grid from "@material-ui/core/Grid";
+import Avatar from '@material-ui/core/Avatar';
+import Paper from '@material-ui/core/Paper';
 
-const useStyles = makeStyles({
+
+
+const useStyles = makeStyles(theme => ({
   card: {
     minWidth: 275,
-  },
-  bullet: {
-    display: 'inline-block',
-    margin: '0 2px',
-    transform: 'scale(0.8)',
   },
   title: {
     fontSize: 14,
@@ -20,18 +19,37 @@ const useStyles = makeStyles({
   pos: {
     marginBottom: 12,
   },
-});
+  bigAvatar: {
+    margin: 10,
+    width: 60,
+    height: 60,
+    
+  },
+  root: {
+    flexGrow: 1,
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: 'center',
+    
+  },
+ 
+}));
 
 export default function SimpleCard() {
   const classes = useStyles();
-  const bull = <span className={classes.bullet}>•</span>;
-
-  return (<div style={{ marginTop: 20, marginRight: 40, padding: 30 }}>
-     <Grid container spacing= {120} justify="center">
-    <Card className={classes.card}>
-      <CardContent>
-        <Typography variant="h5" component="h2">
-          Preeti Agrawal
+ return ( <div className={classes.root}>
+<Grid container spacing={3}>
+<Grid item xs={3}>
+    
+        </Grid>
+   
+        <Grid item xs={3}>
+          <Paper className={classes.paper}>
+          <Grid container justify="center" alignItems="center">
+        <Avatar alt="Remy Sharp" src="https://i.ytimg.com/vi/NShJwsoPTzU/maxresdefault.jpg" alignItems="center" className={classes.bigAvatar} />
+        </Grid>
+     <Typography variant="h5" component="h2"> Preeti Agrawal
         </Typography>
         <Typography className={classes.pos} color="textSecondary">
           Student
@@ -39,14 +57,16 @@ export default function SimpleCard() {
         <Typography variant="body2" component="p">
           github
         </Typography>
-      </CardContent>
-    
-    </Card>
+    </Paper>
+        </Grid>
 
-
-<Card className={classes.card}>
-<CardContent>
-  <Typography variant="h5" component="h2">
+        <Grid item xs={3}>
+          <Paper className={classes.paper}>
+          
+          <Grid container justify="center" alignItems="center">
+ <Avatar alt="Remy Sharp" src="https://i.ytimg.com/vi/NShJwsoPTzU/maxresdefault.jpg" className={classes.bigAvatar} />
+ </Grid>
+ <Typography variant="h5" component="h2">
     Vibha Sharma
   </Typography>
   <Typography className={classes.pos} color="textSecondary">
@@ -55,10 +75,13 @@ export default function SimpleCard() {
   <Typography variant="body2" component="p">
     github
   </Typography>
-</CardContent>
+     </Paper>
+        </Grid>
 
-</Card>
-</Grid>
+        <Grid item xs={3}>
+          
+        </Grid>
+      </Grid>
 </div>
   );
 }

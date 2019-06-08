@@ -1,10 +1,7 @@
 import React from 'react';
 import Carousel from 'react-bootstrap/Carousel';
-<<<<<<< HEAD
 import SimpleCard from './SimpleCard.js';
-=======
-import './My.css'
->>>>>>> d6484a007860539623f3211f8ee0d94c43a95925
+import Loginmy from './Loginmy.js';
 
 class ControlledCarousel extends React.Component {
     constructor(props, context) {
@@ -38,6 +35,8 @@ class ControlledCarousel extends React.Component {
       const { index, direction } = this.state;
   
       return (
+        <div>
+    
         <Carousel
           activeIndex={index}
           direction={direction}
@@ -47,6 +46,8 @@ class ControlledCarousel extends React.Component {
           // indicators={this.props.indicators}
           onSelect={this.handleSelect}
         >
+        
+        
           <Carousel.Item>
             {/* {console.log(this.props)}; */}
             <img
@@ -55,9 +56,13 @@ class ControlledCarousel extends React.Component {
               alt="First slide"
             />
             <Carousel.Caption>
+              <Loginmy Style={{marginTop:"0px",marginRight:"0px",}} />
+            </Carousel.Caption>
+            <Carousel.Caption>
               <h3>First slide label</h3>
               <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
             </Carousel.Caption>
+           
           </Carousel.Item>
           <Carousel.Item>
           <img
@@ -109,6 +114,7 @@ details about the restaurants.</li>
      </Carousel.Caption>
           </Carousel.Item>
         </Carousel>
+        </div>
       );
     }
   }
