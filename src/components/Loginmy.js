@@ -37,15 +37,11 @@ const useStyles = makeStyles(theme => ({
       input: {
         display: 'none',
       },
-<<<<<<< HEAD
-       avatar: {
-         margin: theme.spacing(1),
-       backgroundColor: theme.palette.secondary.main,
-=======
+
       avatar: {
         margin: theme.spacing(1),
         backgroundColor: theme.palette.secondary.main,
->>>>>>> 5e80e6dfb5b2b7cda011368b81066d26c3c66ae2
+
       },
       form: {
         width: '100%', // Fix IE 11 issue.
@@ -54,7 +50,7 @@ const useStyles = makeStyles(theme => ({
       submit: {
         margin: theme.spacing(3, 0, 2),
       }
-  }))
+  }));
 
   function LogIn() {
     const classes = useStyles();
@@ -65,13 +61,10 @@ const useStyles = makeStyles(theme => ({
         <div className={classes.paper}>
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
-<<<<<<< HEAD
-          </Avatar> 
-=======
           </Avatar>
->>>>>>> 5e80e6dfb5b2b7cda011368b81066d26c3c66ae2
+
           <Typography component="h1" variant="h5">
-            Sign in
+            LogIn
           </Typography>
           <form className={classes.form} noValidate>
             <TextField
@@ -127,26 +120,6 @@ const useStyles = makeStyles(theme => ({
       </Container>
     );
   }
-<<<<<<< HEAD
-  
-  export default function Loginmy() {
-    const classes = useStyles();
-  
-    return (
-      <div>
-      
-                <Button variant="primary">SignUp</Button>
-                <Button variant="danger">LoginIn</Button>
-            
-          
-        </div>
-      
-    );
-  
-=======
- 
-
-
 
 
 
@@ -241,10 +214,5 @@ const useStyles = makeStyles(theme => ({
     </Container>
   );
 }
->>>>>>> 5e80e6dfb5b2b7cda011368b81066d26c3c66ae2
 
-
-
-  
-
-    export  {LogIn, SignUp};
+ export  {LogIn, SignUp};
