@@ -3,13 +3,13 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Button from 'react-bootstrap/Button.js';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar.js';
-//import Avatar from '@material-ui/core/Avatar';
+import Avatar from '@material-ui/core/Avatar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
-//import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 
@@ -30,10 +30,10 @@ const useStyles = makeStyles(theme => ({
       input: {
         display: 'none',
       },
-      // avatar: {
-      //   margin: theme.spacing(1),
-      //   backgroundColor: theme.palette.secondary.main,
-      // },
+       avatar: {
+         margin: theme.spacing(1),
+       backgroundColor: theme.palette.secondary.main,
+      },
       form: {
         width: '100%', // Fix IE 11 issue.
         marginTop: theme.spacing(1),
@@ -50,9 +50,9 @@ const useStyles = makeStyles(theme => ({
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={classes.paper}>
-          {/* <Avatar className={classes.avatar}>
+          <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
-          </Avatar> */}
+          </Avatar> 
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
@@ -116,17 +116,12 @@ const useStyles = makeStyles(theme => ({
   
     return (
       <div>
+      
+                <Button variant="primary">SignUp</Button>
+                <Button variant="danger">LoginIn</Button>
+            
           
-         <button type="button" className="btn btn-warning" onClick={SignIn }>LogIn</button>
-          
-         <button type="button" className="btn btn-info" >SignnUp</button>
-         
-          
- 
-         
-       
- 
-      </div>
+        </div>
       
     );
   

@@ -21,8 +21,8 @@ const useStyles = makeStyles(theme => ({
   },
   bigAvatar: {
     margin: 10,
-    width: 60,
-    height: 60,
+    width: 90,
+    height: 90,
     
   },
   root: {
