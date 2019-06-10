@@ -6,12 +6,15 @@ import Typography from '@material-ui/core/Typography';
 import Grid from "@material-ui/core/Grid";
 import Avatar from '@material-ui/core/Avatar';
 import Paper from '@material-ui/core/Paper';
+import preeti from './Pics/preeti.jpg';
+import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 
 
 
 const useStyles = makeStyles(theme => ({
   card: {
     minWidth: 275,
+    width: 275
   },
   title: {
     fontSize: 14,
@@ -21,8 +24,8 @@ const useStyles = makeStyles(theme => ({
   },
   bigAvatar: {
     margin: 10,
-    width: 90,
-    height: 90,
+    width: 120,
+    height: 120,
     
   },
   root: {
@@ -31,6 +34,7 @@ const useStyles = makeStyles(theme => ({
   paper: {
     padding: theme.spacing(2),
     textAlign: 'center',
+    width: 230,
     
   },
  
@@ -47,15 +51,18 @@ export default function SimpleCard() {
         <Grid item xs={3}>
           <Paper className={classes.paper}>
           <Grid container justify="center" alignItems="center">
-        <Avatar alt="Remy Sharp" src="https://i.ytimg.com/vi/NShJwsoPTzU/maxresdefault.jpg" alignItems="center" className={classes.bigAvatar} />
+        <Avatar alt="Pofile pic" src={preeti} className={classes.bigAvatar} />
         </Grid>
      <Typography variant="h5" component="h2"> Preeti Agrawal
         </Typography>
         <Typography className={classes.pos} color="textSecondary">
-          Student
+          Student at JECRC
         </Typography>
+        
         <Typography variant="body2" component="p">
-          github
+          Github: <Link to ="https://github.com/agrawalpreeti">Open this link</Link><br></br>
+          Linkedln: <Link to ="https://www.linkedin.com/in/preeti-agrawal-684619157/">Open this link</Link><br/>
+          Facebook: <Link to ="https://www.facebook.com/preeti.agrawal.5030">Open this link</Link>
         </Typography>
     </Paper>
         </Grid>
@@ -70,10 +77,12 @@ export default function SimpleCard() {
     Vibha Sharma
   </Typography>
   <Typography className={classes.pos} color="textSecondary">
-    Student
+  Student at JECRC
   </Typography>
-  <Typography variant="body2" component="p">
-    github
+    <Typography variant="body2" component="p">
+   Github: <Link to ="https://github.com/Vibs00">Open this link</Link><br></br>
+   Linkedln: <Link to ="https://www.linkedin.com/in/Vibha-sharma-b7b837144/">Open this link</Link><br></br>
+   Facebook: <Link to ="https://www.facebook.com/profile.php?id=100012430004801">Open this link</Link>
   </Typography>
      </Paper>
         </Grid>
@@ -82,6 +91,17 @@ export default function SimpleCard() {
           
         </Grid>
       </Grid>
+
+      <footer>
+    <ul type="none" className="ulfooter">
+      <li><a href="#">Privacy</a></li>
+      <li><a href="#">Terms</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+    <span>Copyright 2016, Original Trombones</span>
+  </footer>
+
+
 </div>
   );
 }
