@@ -17,9 +17,15 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import { yellow } from '@material-ui/core/colors';
 import LocatioOn from '@material-ui/icons/LocationOn';
+import Restaurant from '@material-ui/icons/Restaurant';
 import {Dropdown} from 'react-bootstrap';
 import Button from 'react-bootstrap/Button.js';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar.js';
+import Avatar from '@material-ui/core/Avatar';
+import Container from 'react-bootstrap/Container';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+
 
 
 const useStyles = makeStyles(theme => ({
@@ -84,6 +90,13 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.up('md')]: {
       display: 'none',
     },
+  },
+  bigAvatar: {
+    // margin: 10,
+    // width: 90,
+    // height: 90,
+    backgroundColor : 'black'
+    
   },
 }));
 
@@ -172,19 +185,16 @@ function MyNavBars() {
   return (
     <div className={classes.grow}>
       <AppBar position="static">
-        <Toolbar>
-          {/* <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="Open drawer"
-          >
-            <MenuIcon />
-          </IconButton> */}
-          <Typography className={classes.title} variant="h6" noWrap>
+      <Toolbar>
+      <Container>
+    <Row>
+      <Col md={{span:0.5}}> <Avatar className={classes.bigAvatar}><Restaurant></Restaurant></Avatar>
+      </Col>
+        <Col md={{span:3}}> <Typography className={classes.title} variant="h6" noWrap>
             Restaurant Booking
-          </Typography>
-          <Dropdown>
+        </Typography></Col>
+    <Col md={{span:0, offset:0}}>
+      <Dropdown>
             <Dropdown.Toggle variant="success" id="dropdown-basic">
               <LocatioOn></LocatioOn>City
             </Dropdown.Toggle>
@@ -194,8 +204,10 @@ function MyNavBars() {
               <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
               <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
             </Dropdown.Menu>
-          </Dropdown>
-          <div className={classes.search}>
+        </Dropdown>
+    </Col>
+    <Col md={{offset:0, span:4, offset:0}}>
+    <div className={classes.search}>
             <InputBase
               placeholder="Search…"
               classes={{
@@ -205,9 +217,20 @@ function MyNavBars() {
               inputProps={{ 'aria-label': 'Search' }}
             />
           </div>
-          <ButtonToolbar>
+    </Col>
+    
+    <Col md={{span:1}}>
+    <ButtonToolbar>
             <Button variant="primary">Search</Button>
           </ButtonToolbar>
+    </Col>
+  </Row>
+  </Container>
+        
+         
+          
+          
+         
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <IconButton aria-label="Show 4 new mails" color="inherit">

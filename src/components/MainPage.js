@@ -4,11 +4,15 @@ import SimpleCard from './SimpleCard.js';
  import { LogIn, SignUp} from './Loginmy.js';
 import Button from 'react-bootstrap/Button.js';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar.js';
-// import './My.css';
+import './Mycss.css';
 import front_page from './Pics/front_page.jpg';
 import light_background from './Pics/light_background.jpg';
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
-import Modal from 'react-bootstrap/Modal'
+import Modal from 'react-bootstrap/Modal';
+import Container from 'react-bootstrap/Container';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+
 class MyVerticallyCenteredModal extends React.Component {
   render() {
     return (
@@ -123,36 +127,55 @@ class ControlledCarousel extends React.Component {
               src={front_page}
               alt="First slide"
             />
+            {/* <div> */}
 
-            <Carousel.Caption>
-              <h2>Plan Your Meal</h2>
+            <Carousel.Caption className="centerAlign">
+             <h2>Plan Your Meal</h2>
               <p>Book your table beforehand to avoid uneccecary wait.</p>
               {/* <LogIn></LogIn> */}
             
-               <ButtonToolbar>
-              <Button variant="info" onClick={() => this.setState({ modalShowl: true })}>LogIn</Button>
+               
+              <ButtonToolbar>
+              <Container>
+                <Row>
+                  <Col md={{ offset: 4,  span: 2}}>
+                    <Link to="/home"><Button variant="primary">Explore</Button></Link>
+                  </Col>
+                  <Col md={{ span: 2}}>
+                  <Button variant="danger" onClick={() => this.setState({ modalShows: true })}>Get Started</Button>
+                    <MyVerticallyCenteredModal1
+                    show={this.state.modalShows}
+                    onHide={modalCloses}
+                  />
+                  </Col>
+                </Row>
+              </Container>
+                
+              </ButtonToolbar>
+            </Carousel.Caption>
+            <Carousel.Caption className="loginAlign">
+            <ButtonToolbar>
+            <Container>
+              <Row>
+                <Col md={{span: 4}}><Button variant="info" onClick={() => this.setState({ modalShowl: true })}>LogIn</Button>
               <MyVerticallyCenteredModal
                 show={this.state.modalShowl}
                 onHide={modalClosel}
-              />
-              {/* <Link to="/signup"><Button variant="info">SignUp</Button></Link> */}
-              <Button variant="info" onClick={() => this.setState({ modalShows: true })}>SignUp</Button>
+              /></Col>
+                <Col md={{ span: 4}}><Button variant="info" onClick={() => this.setState({ modalShows: true })}>SignUp</Button>
               <MyVerticallyCenteredModal1
                 show={this.state.modalShows}
                 onHide={modalCloses}
               />
+              </Col>
+              </Row>
+            </Container>
+              
+              {/* <Link to="/signup"><Button variant="info">SignUp</Button></Link> */}
                 
               </ButtonToolbar>
-              <ButtonToolbar>
-                <Link to="/home"><Button variant="primary">Explore</Button></Link>
-                <Button variant="danger" onClick={() => this.setState({ modalShows: true })}>Get Started</Button>
-                <MyVerticallyCenteredModal1
-                show={this.state.modalShows}
-                onHide={modalCloses}
-              />
-              </ButtonToolbar>
             </Carousel.Caption>
-           
+           {/* </div> */}
           </Carousel.Item>
           <Carousel.Item>
           <img
@@ -199,7 +222,7 @@ details about the restaurants.</li>
               alt="Third slide"
             />
   
-            <Carousel.Caption>
+            <Carousel.Caption className="centerAlign">
               <SimpleCard />
      </Carousel.Caption>
           </Carousel.Item>

@@ -4,23 +4,27 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
 import { fade } from '@material-ui/core/styles/colorManipulator';
-
+import './Mycss.css';
+import Container from 'react-bootstrap/Container';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+// import { yellow } from '@material-ui/core/colors';
 
 
 const useStyles = makeStyles(theme => ({
   root: {
     padding: theme.spacing(3, 2),
+    // color: yellow,
   },
-  ul:{
-       marginLeft: 0,
-  },
+
  
   paper: {
-    marginTop: theme.spacing(8),
+    marginTop: theme.spacing(2),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     textAlign: 'center',
+    // backgroundColor: fade(theme.palette.common.black, 0.15),
   },
   search: {
     position: 'relative',
@@ -36,7 +40,11 @@ export default function PaperSheet() {
   const classes = useStyles();
 
   return (
-    <div className={classes.paper}>
+    // <Container>
+    // <Row>
+    // <Col md={{ offset: 9, span: 3, offset: 0 }}>
+    <div className={classes.paper}>  
+          <Paper className="sidePaper">
       <Paper className={classes.root}>
         <Typography variant="h5" component="h3">
           Cuisine
@@ -51,7 +59,7 @@ export default function PaperSheet() {
               inputProps={{ 'aria-label': 'Search' }}
             />
           </div>
-          <ul type='none'className={classes.ul}  > 
+          <ul type='none' className="sidePannelul" > 
           {/*  For loop by api calling */}
               <li><a href="#">Chinese</a></li>
               <li><a href="#">South Indian</a></li>
@@ -72,7 +80,7 @@ export default function PaperSheet() {
               inputProps={{ 'aria-label': 'Search' }}
             />
           </div>
-          <ul type='none'>   {/*  For loop by api calling */}
+          <ul type='none' className="sidePannelul" >   {/*  For loop by api calling */}
                  <li> <input type="checkbox" value="AC"/>AC</li>
                   <li><input type="checkbox" value="AC"/>Non AC</li>
                  <li> <input type="checkbox" value="AC"/>Parking</li>
@@ -93,13 +101,18 @@ export default function PaperSheet() {
               inputProps={{ 'aria-label': 'Search' }}
             />
           </div>
-          <ul type='none' textAlign='left'> 
+          <ul type='none' className="sidePannelul" > 
        
               <li><a href="#">Top 10</a></li>
               <li><a href="#">Top 20</a></li>
               <li><a href="#">Top 30</a></li>
           </ul>
       </Paper>
+      </Paper>
+
     </div>
+    // </Col>
+    //     </Row>
+    //     </Container>
   );
 }
