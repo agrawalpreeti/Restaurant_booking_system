@@ -4,6 +4,13 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import ButtonBase from '@material-ui/core/ButtonBase';
+import demo from './Pics/demo.jpg';
+import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+
+
+
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -12,7 +19,8 @@ const useStyles = makeStyles(theme => ({
   paper: {
     padding: theme.spacing(2),
     margin: 'auto',
-    maxWidth: 500,
+    maxWidth: 800,
+    width: '800px',
   },
   image: {
     width: 128,
@@ -24,18 +32,28 @@ const useStyles = makeStyles(theme => ({
     maxWidth: '100%',
     maxHeight: '100%',
   },
+  card: {
+    padding: theme.spacing(2),
+    margin: 'auto',
+    maxWidth: 800,
+    width: '800px',
+    textDecoration: 'none',
+  },
 }));
 
 function ComplexGrid() {
   const classes = useStyles();
 
   return (
+    <Link to="/login">
     <div className={classes.root}>
-      <Paper className={classes.paper}>
+      {/* <Paper className={classes.paper}> */}
+        <Card className={classes.card}>
+          <CardActionArea>
         <Grid container spacing={2}>
           <Grid item>
             <ButtonBase className={classes.image}>
-              <img className={classes.img} alt="complex" src="/static/images/grid/complex.jpg" />
+              <img className={classes.img} alt="complex" src={demo} />
             </ButtonBase>
           </Grid>
           <Grid item xs={12} sm container>
@@ -62,8 +80,11 @@ function ComplexGrid() {
             </Grid>
           </Grid>
         </Grid>
-      </Paper>
+        </CardActionArea>
+        </Card>
+      {/* </Paper> */}
     </div>
+    </Link>
   );
 }
 

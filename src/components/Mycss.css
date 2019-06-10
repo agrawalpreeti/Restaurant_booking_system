@@ -13,3 +13,21 @@
     right: 0% !important;
     left: 85% !important;
 }
+
+.sidePannelul{
+    text-align: left;
+  }
+
+.sidePaper{
+    color: yellow !important;
+}
+
+.templateCard{
+    margin-top: 3% !important;
+}
+
+.dropShift{
+    left: 159%;
+    margin-bottom: 2% !important;
+
+}
