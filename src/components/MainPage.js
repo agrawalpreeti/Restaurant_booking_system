@@ -222,7 +222,7 @@ details about the restaurants.</li>
               alt="Third slide"
             />
   
-            <Carousel.Caption>
+            <Carousel.Caption className="centerAlign">
               <SimpleCard />
      </Carousel.Caption>
           </Carousel.Item>
