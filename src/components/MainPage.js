@@ -1,25 +1,74 @@
 import React from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import SimpleCard from './SimpleCard.js';
-import { MyModal, SignUp} from './Loginmy.js';
+ import { LogIn, SignUp} from './Loginmy.js';
 import Button from 'react-bootstrap/Button.js';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar.js';
 // import './My.css';
 import front_page from './Pics/front_page.jpg';
 import light_background from './Pics/light_background.jpg';
+import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
+import Modal from 'react-bootstrap/Modal'
+class MyVerticallyCenteredModal extends React.Component {
+  render() {
+    return (
+      <Modal
+        {...this.props}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        
+        <Modal.Body>
+          <LogIn></LogIn>
+                  </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={this.props.onHide}>Close</Button>
+        </Modal.Footer>
+      </Modal>
+    );
+  }
+}
+
+
+class MyVerticallyCenteredModal1 extends React.Component {
+  render() {
+    return (
+      <Modal
+        {...this.props}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        
+        <Modal.Body>
+          <SignUp></SignUp>
+                  </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={this.props.onHide}>Close</Button>
+        </Modal.Footer>
+      </Modal>
+    );
+  }
+}
+
+
 
 
 class ControlledCarousel extends React.Component {
-    constructor(props, context) {
-      super(props, context);
+    constructor(props, context,...args) {
+      super(props, context,...args);
 
 
       this.handleSelect = this.handleSelect.bind(this);
-  
+      
       this.state = {
         index: 0,
         direction: null,
-        modalShow: false
+        modalShowl: false,
+        modalShows: false,
+        login: false, 
+
       };
     }
   
@@ -40,13 +89,16 @@ class ControlledCarousel extends React.Component {
     }
 
     // login = () =>{
-    //   return <MyModal></MyModal>;
+    //   this.setState({
+    //     login: true
+    //   })
+    //   return <LogIn></LogIn>;
     // }
   
     render() {
       const { index, direction } = this.state;
-      let modalClose = () => this.setState({ modalShow: false });
-
+      let modalClosel = () => this.setState({ modalShowl: false });
+      let modalCloses = () => this.setState({ modalShows: false });
   
       return (
         <div>
@@ -75,16 +127,29 @@ class ControlledCarousel extends React.Component {
             <Carousel.Caption>
               <h2>Plan Your Meal</h2>
               <p>Book your table beforehand to avoid uneccecary wait.</p>
-              <MyModal></MyModal>
-
-              <ButtonToolbar>
-                {/* <Button variant="info"
-               onClick={()=>this.login}>LogIn</Button> */}
-                <Button variant="info" onClick={()=><SignUp/>}>SignUp</Button>
+              {/* <LogIn></LogIn> */}
+            
+               <ButtonToolbar>
+              <Button variant="info" onClick={() => this.setState({ modalShowl: true })}>LogIn</Button>
+              <MyVerticallyCenteredModal
+                show={this.state.modalShowl}
+                onHide={modalClosel}
+              />
+              {/* <Link to="/signup"><Button variant="info">SignUp</Button></Link> */}
+              <Button variant="info" onClick={() => this.setState({ modalShows: true })}>SignUp</Button>
+              <MyVerticallyCenteredModal1
+                show={this.state.modalShows}
+                onHide={modalCloses}
+              />
+                
               </ButtonToolbar>
               <ButtonToolbar>
-                <Button variant="primary">Explore</Button>
-                <Button variant="danger">Get Started</Button>
+                <Link to="/home"><Button variant="primary">Explore</Button></Link>
+                <Button variant="danger" onClick={() => this.setState({ modalShows: true })}>Get Started</Button>
+                <MyVerticallyCenteredModal1
+                show={this.state.modalShows}
+                onHide={modalCloses}
+              />
               </ButtonToolbar>
             </Carousel.Caption>
            

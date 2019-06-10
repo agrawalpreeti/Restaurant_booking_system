@@ -87,7 +87,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function PrimarySearchAppBar() {
+function MyNavBars() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -250,4 +250,4 @@ function PrimarySearchAppBar() {
   );
 }
 
-export default PrimarySearchAppBar;
+export default MyNavBars;

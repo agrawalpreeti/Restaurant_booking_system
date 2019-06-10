@@ -12,7 +12,7 @@ import Link from '@material-ui/core/Link';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import Modal from '@material-ui/core/Modal'
+import Modal from '@material-ui/core/Modal';
 
 const useStyles = makeStyles(theme => ({
 
@@ -91,13 +91,13 @@ const useStyles = makeStyles(theme => ({
               autoComplete="current-password"
             />
             <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
+              control={<Checkbox value="remember" color="primary"/>}
               label="Remember me"
             />
             <Button
               type="submit"
               fullWidth
-              variant="contained"
+              // variant="contained"
               color="primary"
               className={classes.submit}
             >
@@ -110,7 +110,7 @@ const useStyles = makeStyles(theme => ({
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="/signup" variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
@@ -197,7 +197,7 @@ const useStyles = makeStyles(theme => ({
           <Button
             type="submit"
             fullWidth
-            variant="contained"
+            // variant="contained"
             color="primary"
             className={classes.submit}
           >
@@ -205,8 +205,8 @@ const useStyles = makeStyles(theme => ({
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
-              <Link href="#" variant="body2">
-                Already have an account? Sign in
+              <Link href="/login" variant="body2">
+                Already have an account? Log in
               </Link>
             </Grid>
           </Grid>
@@ -220,65 +220,8 @@ const useStyles = makeStyles(theme => ({
 
 
 
-class MyVerticallyCenteredModal extends React.Component {
-  constructor(props){
-    super(props);
-  }
-  render() {
-    return (
-      <Modal
-        {...this.props}
-        size="lg"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-      >
-        <Modal.Header closeButton>
-        </Modal.Header>
-        <Modal.Body>
-          <LogIn></LogIn>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={this.props.onHide}>Close</Button>
-        </Modal.Footer>
-      </Modal>
-    );
-  }
-}
-
-class MyModal extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = { modalShow: false };
-  }
-
-  render() {
-    let modalClose = () => this.setState({ modalShow: false });
-
-    return (
-      <ButtonToolbar>
-        <Button
-          variant="primary"
-          onClick={() => this.setState({ modalShow: true })}
-        >
-          Launch vertically centered modal
-        </Button>
-
-        <MyVerticallyCenteredModal
-          show={this.state.modalShow}
-          onHide={modalClose}
-        />
-      </ButtonToolbar>
-    );
-  }
-}
-
-// render(<App />);
 
 
 
 
-
-
-
- export  { MyModal, SignUp};
+ export  { LogIn, SignUp};

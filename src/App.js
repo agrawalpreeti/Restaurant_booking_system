@@ -4,6 +4,7 @@ import ControlledCarousel from './components/MainPage.js'
 class Main extends React.Component{
   constructor(props){
     super(props);
+
   }
 
   render(){
