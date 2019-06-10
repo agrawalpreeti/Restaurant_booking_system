@@ -64,7 +64,7 @@ export default function SimpleCard() {
           <Paper className={classes.paper}>
           
           <Grid container justify="center" alignItems="center">
- <Avatar alt="Remy Sharp" src="https://i.ytimg.com/vi/NShJwsoPTzU/maxresdefault.jpg" className={classes.bigAvatar} />
+ <Avatar alt="Remy Sharp" src="https://media.licdn.com/dms/image/C5103AQGM_1_ZsEYYUw/profile-displayphoto-shrink_200_200/0?e=1565827200&v=beta&t=L5_IlJ-JpCKd3n9bdyUD2drAmJVsF3h28JqTMzOnEKM" className={classes.bigAvatar} />
  </Grid>
  <Typography variant="h5" component="h2">
     Vibha Sharma
