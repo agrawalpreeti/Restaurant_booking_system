@@ -35,6 +35,9 @@ const useStyles = makeStyles(theme => ({
   grow: {
     flexGrow: 1,
   },
+  colr: {
+    backgroundColor: '#1A535C'
+  },
   menuButton: {
     marginRight: theme.spacing(2),
   },
@@ -184,7 +187,7 @@ function MyNavBars() {
 
   return (
     <div className={classes.grow}>
-      <AppBar position="static">
+      <AppBar className={classes.colr}position="static">
       <Toolbar>
       <Container>
     <Row>

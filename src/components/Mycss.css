@@ -7,6 +7,15 @@
 
 }
 
+.cardCenterAlign{
+    /* display: -webkit-flex; Safari */
+  -webkit-align-items: center; /* Safari 7.0+ */
+  /* display: flex; */
+  align-items: center;
+  bottom: 30% !important;
+
+}
+
 
 .loginAlign{
     top: 0%;
@@ -30,4 +39,8 @@
     left: 159%;
     margin-bottom: 2% !important;
 
+}
+
+.myBackground{
+  background-color: #EAECEE;
 }

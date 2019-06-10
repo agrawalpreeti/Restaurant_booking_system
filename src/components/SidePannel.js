@@ -8,13 +8,17 @@ import './Mycss.css';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
+import { CardActionArea } from '@material-ui/core';
+import Card from '@material-ui/core/Card';
 // import { yellow } from '@material-ui/core/colors';
 
 
 const useStyles = makeStyles(theme => ({
   root: {
     padding: theme.spacing(3, 2),
-    // color: yellow,
+    backgroundColor: '#EAECEE',
+    // filter: 'brightness(85%)'
+    // color: '#F1C40F'
   },
 
  
