@@ -16,6 +16,11 @@ import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import { yellow } from '@material-ui/core/colors';
+import LocatioOn from '@material-ui/icons/LocationOn';
+import {Dropdown} from 'react-bootstrap';
+import Button from 'react-bootstrap/Button.js';
+import ButtonToolbar from 'react-bootstrap/ButtonToolbar.js';
+
 
 const useStyles = makeStyles(theme => ({
   AppBar:{
@@ -168,21 +173,29 @@ function PrimarySearchAppBar() {
     <div className={classes.grow}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton
+          {/* <IconButton
             edge="start"
             className={classes.menuButton}
             color="inherit"
             aria-label="Open drawer"
           >
             <MenuIcon />
-          </IconButton>
+          </IconButton> */}
           <Typography className={classes.title} variant="h6" noWrap>
             Restaurant Booking
           </Typography>
+          <Dropdown>
+            <Dropdown.Toggle variant="success" id="dropdown-basic">
+              <LocatioOn></LocatioOn>City
+            </Dropdown.Toggle>
+
+            <Dropdown.Menu>
+              <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+              <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+              <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
           <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
             <InputBase
               placeholder="Search…"
               classes={{
@@ -192,6 +205,9 @@ function PrimarySearchAppBar() {
               inputProps={{ 'aria-label': 'Search' }}
             />
           </div>
+          <ButtonToolbar>
+            <Button variant="primary">Search</Button>
+          </ButtonToolbar>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <IconButton aria-label="Show 4 new mails" color="inherit">

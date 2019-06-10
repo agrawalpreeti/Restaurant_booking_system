@@ -1,7 +1,7 @@
 import React from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import SimpleCard from './SimpleCard.js';
-import {LogIn, SignUp} from './Loginmy.js';
+import { MyModal, SignUp} from './Loginmy.js';
 import Button from 'react-bootstrap/Button.js';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar.js';
 // import './My.css';
@@ -12,12 +12,14 @@ import light_background from './Pics/light_background.jpg';
 class ControlledCarousel extends React.Component {
     constructor(props, context) {
       super(props, context);
-  
+
+
       this.handleSelect = this.handleSelect.bind(this);
   
       this.state = {
         index: 0,
         direction: null,
+        modalShow: false
       };
     }
   
@@ -36,9 +38,15 @@ class ControlledCarousel extends React.Component {
       });
       // console.log(selectedIndex,e);
     }
+
+    // login = () =>{
+    //   return <MyModal></MyModal>;
+    // }
   
     render() {
       const { index, direction } = this.state;
+      let modalClose = () => this.setState({ modalShow: false });
+
   
       return (
         <div>
@@ -67,8 +75,11 @@ class ControlledCarousel extends React.Component {
             <Carousel.Caption>
               <h2>Plan Your Meal</h2>
               <p>Book your table beforehand to avoid uneccecary wait.</p>
+              <MyModal></MyModal>
+
               <ButtonToolbar>
-                <Button variant="info" onClick={()=><LogIn/>}>LogIn</Button>
+                {/* <Button variant="info"
+               onClick={()=>this.login}>LogIn</Button> */}
                 <Button variant="info" onClick={()=><SignUp/>}>SignUp</Button>
               </ButtonToolbar>
               <ButtonToolbar>
