@@ -17,6 +17,9 @@ import demo from './Pics/demo.jpg';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
+import Button from 'react-bootstrap/Button.js';
+import ButtonToolbar from 'react-bootstrap/ButtonToolbar.js';
+
 
 
 const useStyles = makeStyles(theme => ({
@@ -42,6 +45,9 @@ const useStyles = makeStyles(theme => ({
   avatar: {
     backgroundColor: red[500],
   },
+  buttonShift: {
+    paddingLeft: '10%', // 16:9
+  }
 }));
 
 function InnerCard() {
@@ -69,9 +75,17 @@ function InnerCard() {
       </Col>
     <Col md={{ span: 7 }}>
         <Typography variant="body2" color="textSecondary" component="p">
-          This impressive paella is a perfect party dish and a fun meal to cook together with your
-          guests. Add 1 cup of frozen peas along with the mussels, if you like.
-        </Typography></Col>
+          <ul type="none">
+            <li>address(pincode, city, state, ...)</li>
+            <li>phone number</li>
+            <li>rating</li>
+            <li>image</li>
+          </ul>
+        </Typography>
+        <ButtonToolbar className={classes.buttonShift}>
+          <Button variant="warning">Primary</Button>
+        </ButtonToolbar>
+      </Col>
   </Row>
   </Container>
       
