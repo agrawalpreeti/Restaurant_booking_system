@@ -5,16 +5,11 @@ import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import './Mycss.css';
-import Container from 'react-bootstrap/Container';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-// import { yellow } from '@material-ui/core/colors';
 
 
 const useStyles = makeStyles(theme => ({
   root: {
     padding: theme.spacing(3, 2),
-    // color: yellow,
   },
 
  
@@ -24,7 +19,6 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     alignItems: 'center',
     textAlign: 'center',
-    // backgroundColor: fade(theme.palette.common.black, 0.15),
   },
   search: {
     position: 'relative',
@@ -40,9 +34,6 @@ export default function PaperSheet() {
   const classes = useStyles();
 
   return (
-    // <Container>
-    // <Row>
-    // <Col md={{ offset: 9, span: 3, offset: 0 }}>
     <div className={classes.paper}>  
           <Paper className="sidePaper">
       <Paper className={classes.root}>
@@ -111,8 +102,5 @@ export default function PaperSheet() {
       </Paper>
 
     </div>
-    // </Col>
-    //     </Row>
-    //     </Container>
   );
 }

@@ -1,13 +1,13 @@
 import React from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import SimpleCard from './SimpleCard.js';
- import { LogIn, SignUp} from './Loginmy.js';
+import { LogIn, SignUp} from './Loginmy.js';
 import Button from 'react-bootstrap/Button.js';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar.js';
 import './Mycss.css';
 import front_page from './Pics/front_page.jpg';
 import light_background from './Pics/light_background.jpg';
-import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import Modal from 'react-bootstrap/Modal';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
@@ -89,15 +89,8 @@ class ControlledCarousel extends React.Component {
         index: selectedIndex,
         direction: e.direction,
       });
-      // console.log(selectedIndex,e);
     }
 
-    // login = () =>{
-    //   this.setState({
-    //     login: true
-    //   })
-    //   return <LogIn></LogIn>;
-    // }
   
     render() {
       const { index, direction } = this.state;
@@ -112,27 +105,21 @@ class ControlledCarousel extends React.Component {
           direction={direction}
           controls= {false}
           interval={null}
-          // bsPrefix={'my'}
-          // wrap = {false}
-          // indicators={this.props.indicators}
           onSelect={this.handleSelect}
 
         >
         
         
           <Carousel.Item>
-            {/* {console.log(this.props)}; */}
             <img
               className="d-block main_page"
               src={front_page}
               alt="First slide"
             />
-            {/* <div> */}
 
             <Carousel.Caption className="centerAlign">
              <h2>Plan Your Meal</h2>
               <p>Book your table beforehand to avoid uneccecary wait.</p>
-              {/* <LogIn></LogIn> */}
             
                
               <ButtonToolbar>
@@ -171,11 +158,9 @@ class ControlledCarousel extends React.Component {
               </Row>
             </Container>
               
-              {/* <Link to="/signup"><Button variant="info">SignUp</Button></Link> */}
                 
               </ButtonToolbar>
             </Carousel.Caption>
-           {/* </div> */}
           </Carousel.Item>
           <Carousel.Item>
           <img
@@ -222,9 +207,17 @@ details about the restaurants.</li>
               alt="Third slide"
             />
   
-            <Carousel.Caption className="centerAlign">
+            <Carousel.Caption className="cardCenterAlign">
               <SimpleCard />
-     </Carousel.Caption>
+            </Carousel.Caption>
+            <Carousel.Caption>
+            <footer>
+                <a href="#" className="footerLinkColor">Privacy</a>
+                <a href="#" className="footerLinkColor">Terms</a>
+                <a href="#" className="footerLinkColor">Contact</a><br></br>
+               <span>Copyright 2016, Original Trombones</span>
+              </footer>
+            </Carousel.Caption>
           </Carousel.Item>
         </Carousel>
         </div>

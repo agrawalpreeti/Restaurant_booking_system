@@ -1,12 +1,12 @@
 import React from 'react';
-import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 import MyNavBars from './MyNavBar';
 import PaperSheet from './SidePannel';
-import ComplexGrid from './Cardmy';
+import Cardmy from './Cardmy';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import {Dropdown} from 'react-bootstrap';
+import './Mycss.css'
 
 
 
@@ -17,7 +17,7 @@ class Home extends React.Component{
     }
     render(){
         return(
-            <div>
+            <div className="myBackground">
             <MyNavBars></MyNavBars>
             <Container>
                 <Row>
@@ -34,7 +34,7 @@ class Home extends React.Component{
                         <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
-                        <ComplexGrid></ComplexGrid>
+                        <Cardmy></Cardmy>
                     </Col>
                 </Row>
             </Container>

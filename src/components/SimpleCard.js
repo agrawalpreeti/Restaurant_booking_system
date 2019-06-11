@@ -1,13 +1,10 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-//import Card from '@material-ui/core/Card';
-//import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Grid from "@material-ui/core/Grid";
 import Avatar from '@material-ui/core/Avatar';
 import Paper from '@material-ui/core/Paper';
 import preeti from './Pics/preeti.jpg';
-import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 
 
 
@@ -60,9 +57,9 @@ export default function SimpleCard() {
         </Typography>
         
         <Typography variant="body2" component="p">
-          Github: <Link to ="https://github.com/agrawalpreeti">Open this link</Link><br></br>
-          Linkedln: <Link to ="https://www.linkedin.com/in/preeti-agrawal-684619157/">Open this link</Link><br/>
-          Facebook: <Link to ="https://www.facebook.com/preeti.agrawal.5030">Open this link</Link>
+          Github: <a href="https://github.com/agrawalpreeti" target="blank">Open this link</a><br></br>
+          Linkedln: <a href="https://www.linkedin.com/in/preeti-agrawal-684619157/" target="blank">Open this link</a><br/>
+          Facebook: <a href="https://www.facebook.com/preeti.agrawal.5030" target="blank">Open this link</a>
         </Typography>
     </Paper>
         </Grid>
@@ -80,9 +77,9 @@ export default function SimpleCard() {
   Student at JECRC
   </Typography>
     <Typography variant="body2" component="p">
-   Github: <Link to ="https://github.com/Vibs00">Open this link</Link><br></br>
-   Linkedln: <Link to ="https://www.linkedin.com/in/Vibha-sharma-b7b837144/">Open this link</Link><br></br>
-   Facebook: <Link to ="https://www.facebook.com/profile.php?id=100012430004801">Open this link</Link>
+   Github: <a href="https://github.com/Vibs00" target="blank">Open this link</a><br></br>
+   Linkedln: <a href="https://www.linkedin.com/in/Vibha-sharma-b7b837144/" target="blank">Open this link</a><br></br>
+   Facebook: <a href="https://www.facebook.com/profile.php?id=100012430004801" target="blank">Open this link</a>
   </Typography>
      </Paper>
         </Grid>
@@ -92,14 +89,7 @@ export default function SimpleCard() {
         </Grid>
       </Grid>
 
-      <footer>
-    <ul type="none" className="ulfooter">
-      <li><a href="#">Privacy</a></li>
-      <li><a href="#">Terms</a></li>
-      <li><a href="#">Contact</a></li>
-    </ul>
-    <span>Copyright 2016, Original Trombones</span>
-  </footer>
+    
 
 
 </div>
