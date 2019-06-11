@@ -9,8 +9,6 @@ import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import { fade } from '@material-ui/core/styles/colorManipulator';
-import MenuIcon from '@material-ui/icons/Menu';
-import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
@@ -35,9 +33,7 @@ const useStyles = makeStyles(theme => ({
   grow: {
     flexGrow: 1,
   },
-  colr: {
-    backgroundColor: '#1A535C'
-  },
+
   menuButton: {
     marginRight: theme.spacing(2),
   },
@@ -95,9 +91,6 @@ const useStyles = makeStyles(theme => ({
     },
   },
   bigAvatar: {
-    // margin: 10,
-    // width: 90,
-    // height: 90,
     backgroundColor : 'black'
     
   },

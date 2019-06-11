@@ -2,7 +2,6 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Button from 'react-bootstrap/Button.js';
-import ButtonToolbar from 'react-bootstrap/ButtonToolbar.js';
 import Avatar from '@material-ui/core/Avatar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
@@ -12,15 +11,8 @@ import Link from '@material-ui/core/Link';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import Modal from '@material-ui/core/Modal';
 
 const useStyles = makeStyles(theme => ({
-
-  // '@global': {
-  //   body: {
-  //     backgroundColor: theme.palette.common.white,
-  //   },
-  // },
 
     root: {
       flexGrow: 1,
@@ -45,7 +37,7 @@ const useStyles = makeStyles(theme => ({
 
       },
       form: {
-        width: '100%', // Fix IE 11 issue.
+        width: '100%', 
         marginTop: theme.spacing(1),
       },
       submit: {
@@ -97,7 +89,6 @@ const useStyles = makeStyles(theme => ({
             <Button
               type="submit"
               fullWidth
-              // variant="contained"
               color="primary"
               className={classes.submit}
             >

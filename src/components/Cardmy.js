@@ -1,13 +1,16 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import demo from './Pics/demo.jpg';
-import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import ShareIcon from '@material-ui/icons/Share';
+import IconButton from '@material-ui/core/IconButton';
 
 
 
@@ -41,14 +44,13 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function ComplexGrid() {
+function Cardmy() {
   const classes = useStyles();
 
   return (
-    <Link to="/login">
+    <Card  className={classes.card}>
+    <Link to="/home/card">
     <div className={classes.root}>
-      {/* <Paper className={classes.paper}> */}
-        <Card className={classes.card}>
           <CardActionArea>
         <Grid container spacing={2}>
           <Grid item>
@@ -81,12 +83,20 @@ function ComplexGrid() {
           </Grid>
         </Grid>
         </CardActionArea>
-        </Card>
-      {/* </Paper> */}
     </div>
     </Link>
+     <CardActions disableSpacing>
+     <IconButton aria-label="Add to favorites">
+       <FavoriteIcon />
+     </IconButton>
+     <IconButton aria-label="Share">
+       <ShareIcon />
+     </IconButton>
+     </CardActions>
+     </Card>
+
   );
 }
 
-export default ComplexGrid;
+export default Cardmy;
 
