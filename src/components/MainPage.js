@@ -5,7 +5,7 @@ import { LogIn, SignUp} from './Loginmy.js';
 import Button from 'react-bootstrap/Button.js';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar.js';
 import './Mycss.css';
-import front_page from './Pics/front_page.jpg';
+import front_page1 from './Pics/front_page.jpg';
 import light_background from './Pics/light_background.jpg';
 import {Link} from 'react-router-dom';
 import Modal from 'react-bootstrap/Modal';
@@ -113,10 +113,9 @@ class ControlledCarousel extends React.Component {
           <Carousel.Item>
             <img
               className="d-block main_page"
-              src={front_page}
+              src={front_page1}
               alt="First slide"
             />
-
             <Carousel.Caption className="centerAlign">
              <h2>Plan Your Meal</h2>
               <p>Book your table beforehand to avoid uneccecary wait.</p>
@@ -165,11 +164,11 @@ class ControlledCarousel extends React.Component {
           <Carousel.Item>
           <img
               className="d-block main_page"
-              src={light_background}
+              src={front_page1}
               alt="First slide"
             />
   
-            <Carousel.Caption>
+            <Carousel.Caption className="centerAlign2">
  <h3>Just Exploring</h3>
  <p> Though we appreciate all the great blogging contributions to Zomato, not all blog posts are eligible for inclusion 
       on the site. Below are a few types of posts which fall into this category.</p>
@@ -203,14 +202,14 @@ details about the restaurants.</li>
           <Carousel.Item>
             <img
               className="d-block main_page"
-              src={light_background}
+              src={front_page1}
               alt="Third slide"
             />
   
             <Carousel.Caption className="cardCenterAlign">
               <SimpleCard />
             </Carousel.Caption>
-            <Carousel.Caption>
+            <Carousel.Caption className="centerAlign3">
             <footer>
                 <a href="#" className="footerLinkColor">Privacy</a>
                 <a href="#" className="footerLinkColor">Terms</a>
