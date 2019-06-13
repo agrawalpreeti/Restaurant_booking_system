@@ -7,26 +7,26 @@ import {LogIn, SignUp} from './components/Loginmy.js';
 import Home from './components/MyHome';
 import CardContent from './components/CardContent';
 
- const routing = (
-     <Router>
-       <div>
-           <Link to="/"></Link>
-           <Link to="/login"></Link>
-           <Link to="/signup"></Link>
-          <Link to="/home"></Link>
-           <Link to="/home/card"></Link>
+//  const routing = (
+//      <Router>
+//        <div>
+//            <Link to="/"></Link>
+//            <Link to="/login"></Link>
+//            <Link to="/signup"></Link>
+//           <Link to="/home"></Link>
+//            <Link to="/home/card"></Link>
 
           
-         <Route exact path="/" component={Main} />
-        <Route path="/login" component={LogIn} />
-         <Route path="/signup" component={SignUp} />
-         <Route exact path="/home" component={Home} /> 
-         <Route exact path="/home/card" component={CardContent} />        
+//          <Route exact path="/" component={Main} />
+//         <Route path="/login" component={LogIn} />
+//          <Route path="/signup" component={SignUp} />
+//          <Route exact path="/home" component={Home} /> 
+//          <Route exact path="/home/card" component={CardContent} />        
 
-       </div>
-     </Router>
- )
+//        </div>
+//      </Router>
+//  )
 
 
 
- ReactDOM.render(routing, document.getElementById('root'));
+ ReactDOM.render(<Main/>, document.getElementById('root'));

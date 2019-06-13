@@ -110,4 +110,30 @@
 
 .loginAlign{
   margin-right: 5% !important;
+<<<<<<< HEAD
 }
+=======
+}
+
+/* .outerBorder{
+   position: relative; 
+  overflow: hidden;
+}
+
+.innerBorder{
+   position: absolute; 
+  overflow-x: hidden;
+  overflow-y: hidden;
+
+}
+
+.content, .outerBorder{
+  width: auto;
+  
+} */
+
+/* .scroll{
+  overflow-x: hidden;
+  overflow: scroll;
+} */
+>>>>>>> d67208c5a7e09cb1181f9dfda2fd0c2946ac120f
