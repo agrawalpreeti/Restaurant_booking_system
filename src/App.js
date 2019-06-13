@@ -31,7 +31,7 @@ class Main extends React.Component{
     .then((res)=>{
       let db = this.state.db;
       db.name = res.data;
-      console.log(res.data);
+      console.log(res);
       this.setState({
         db : db,
       });
