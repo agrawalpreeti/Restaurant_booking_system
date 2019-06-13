@@ -6360,11 +6360,11 @@ a.close.disabled {
 }
 
 .carousel-indicators {
-  position: absolute;
+  position: fixed;
   /* right: 0; */
   /* top: 0; */
   /* bottom: 0; */
-  bottom: 15%;
+  bottom: 50%;
   /* float: left; */
   right: 2%;
   z-index: 15;
