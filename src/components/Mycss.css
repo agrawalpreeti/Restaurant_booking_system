@@ -3,14 +3,15 @@
   align-items: center; */
   /* top: 50% !important; */
   position: relative !important;
-  margin-top: 15%;
+  margin-top: 9%;
   left: 0% !important;
+  background-color: transparent;
 }
 
 .centerAlign2{
   /* -webkit-align-items: center; 
   align-items: center; */
-  top: 20% !important;
+  /* top: 20% !important; */
   position: relative !important;
   margin-top: 5%;
   left: 0% !important;
@@ -37,10 +38,10 @@
 }
 
 
-.loginAlign{
-     top: 0%;
-    /* right: 0% !important;
-    left: 85% !important;  */
+.loginSignupAlign{
+    margin-top: 2%;
+    /* right: 0% !important; */
+    left: 60% !important; 
     position: relative !important;
 
 }
@@ -104,5 +105,32 @@
   position: fixed;
   top: 0;
   left: 0;
+
+}
+
+.loginAlign{
+  margin-right: 5% !important;
+}
+
+/* .outerBorder{
+   position: relative; 
+  overflow: hidden;
+}
+
+.innerBorder{
+   position: absolute; 
+  overflow-x: hidden;
+  overflow-y: hidden;
+
+}
+
+.content, .outerBorder{
+  width: auto;
+  
+} */
+
+.scroll{
+  overflow-x: hidden;
+  overflow: scroll;
 
 }

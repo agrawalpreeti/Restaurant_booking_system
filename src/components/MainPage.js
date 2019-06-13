@@ -77,14 +77,14 @@ class ControlledCarousel extends React.Component {
     }
   
     handleSelect(selectedIndex, e) {
-      if(selectedIndex === 2 && e === 'prev'){
-        selectedIndex = 0;
-        e = "";
-      }
-      else if(selectedIndex === 0 && e === 'next'){
-        selectedIndex = 2;
-        e = "";
-      }
+      // if(selectedIndex === 2 && e === 'prev'){
+      //   selectedIndex = 0;
+      //   e = "";
+      // }
+      // else if(selectedIndex === 0 && e === 'next'){
+      //   selectedIndex = 2;
+      //   e = "";
+      // }
       this.setState({
         index: selectedIndex,
         direction: e.direction,
@@ -106,7 +106,8 @@ class ControlledCarousel extends React.Component {
           controls= {false}
           interval={null}
           onSelect={this.handleSelect}
-
+          wrap={false}
+          className="scroll"
         >
         
         
@@ -116,6 +117,25 @@ class ControlledCarousel extends React.Component {
               src={front_page1}
               alt="First slide"
             />
+            <Carousel.Caption className="loginSignupAlign">
+                <Container>
+                  <Row>
+                    {/* <Col md={4}></Col>
+                    <Col md={4}></Col>          */}
+                    <Col md={{offset:3, span: 5, offset:0}}><Button variant="info" onClick={() => this.setState({ modalShowl: true })} className="loginAlign">Log in</Button>
+                  <MyVerticallyCenteredModal
+                    show={this.state.modalShowl}
+                    onHide={modalClosel}
+                  />
+                    <Button variant="info" onClick={() => this.setState({ modalShows: true })}>Sign Up</Button>
+                  <MyVerticallyCenteredModal1
+                    show={this.state.modalShows}
+                    onHide={modalCloses}
+                  />
+                  </Col>
+                  </Row>
+                </Container>  
+            </Carousel.Caption>
             <Carousel.Caption className="centerAlign">
              <h2>Plan Your Meal</h2>
               <p>Book your table beforehand to avoid uneccecary wait.</p>
@@ -139,36 +159,15 @@ class ControlledCarousel extends React.Component {
                 
               </ButtonToolbar>
             </Carousel.Caption>
-            <Carousel.Caption className="loginAlign">
-            <ButtonToolbar>
-            <Container>
-              <Row>
-                <Col md={{span: 4}}><Button variant="info" onClick={() => this.setState({ modalShowl: true })}>LogIn</Button>
-              <MyVerticallyCenteredModal
-                show={this.state.modalShowl}
-                onHide={modalClosel}
-              /></Col>
-                <Col md={{ span: 4}}><Button variant="info" onClick={() => this.setState({ modalShows: true })}>SignUp</Button>
-              <MyVerticallyCenteredModal1
-                show={this.state.modalShows}
-                onHide={modalCloses}
-              />
-              </Col>
-              </Row>
-            </Container>
-              
-                
-              </ButtonToolbar>
-            </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
           <img
               className="d-block main_page"
               src={front_page1}
-              alt="First slide"
+              alt="Second slide"
             />
   
-            <Carousel.Caption className="centerAlign2">
+            <Carousel.Caption className="centerAlign">
  <h3>Just Exploring</h3>
  <p> Though we appreciate all the great blogging contributions to Zomato, not all blog posts are eligible for inclusion 
       on the site. Below are a few types of posts which fall into this category.</p>
@@ -206,10 +205,10 @@ details about the restaurants.</li>
               alt="Third slide"
             />
   
-            <Carousel.Caption className="cardCenterAlign">
+            <Carousel.Caption className="centerAlign">
               <SimpleCard />
             </Carousel.Caption>
-            <Carousel.Caption className="centerAlign3">
+            <Carousel.Caption className="centerAlign">
             <footer>
                 <a href="#" className="footerLinkColor">Privacy</a>
                 <a href="#" className="footerLinkColor">Terms</a>

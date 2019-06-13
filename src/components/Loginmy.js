@@ -57,7 +57,7 @@ const useStyles = makeStyles(theme => ({
           </Avatar>
 
           <Typography component="h1" variant="h5">
-            LogIn
+            Log in
           </Typography>
           <form className={classes.form} noValidate>
             <TextField
@@ -92,7 +92,7 @@ const useStyles = makeStyles(theme => ({
               color="primary"
               className={classes.submit}
             >
-              Sign In
+              Log in
             </Button>
             <Grid container>
               <Grid item xs>
@@ -128,7 +128,7 @@ const useStyles = makeStyles(theme => ({
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign up
+          Sign Up
         </Typography>
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
