@@ -47,3 +47,13 @@ Making the slides go in vertical direction?
           go in Y-diretion insted i.e. vertical.  <-
         ->for more reference https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/translateX  <-
 
+Non compatibility between react-bootstrap's ButtonToolbar,CardContent and MaterialUI's
+calander?
+    -Apparently there are some conflicts between ButtonToolbar and Material's calander.
+     This might be a wrong speculation but as we included calander in our project, we 
+     first added it in a card and CardContent. This made our website hang, also when I
+     tried to add ButtonToolbar in Button(Book a Table), this made npm start(basically npm)
+     non auto reloadable. After ButtonToolbar tag was removed everything was back to
+     normal. Also our website's load time has increased after inclusion of calander. Mybe
+     it is because other ButtonToolbar or CardContent tags in code. After everything is set
+     we will remove them and see the result.

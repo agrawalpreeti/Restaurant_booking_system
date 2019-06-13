@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
     // maxWidth: 550,
     width: '90%',
     marginTop: theme.spacing(10),
-    marginLeft: theme.spacing(1),
+    marginBottom: theme.spacing(3),
   },
   media: {
     paddingTop: '56.25%', // 16:9
@@ -50,7 +50,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function InnerCard() {
+function InnerCard(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -82,9 +82,6 @@ function InnerCard() {
             <li>image</li>
           </ul>
         </Typography>
-        <ButtonToolbar className={classes.buttonShift}>
-          <Button variant="warning">Primary</Button>
-        </ButtonToolbar>
       </Col>
   </Row>
   </Container>
