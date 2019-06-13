@@ -103,6 +103,11 @@ class ControlledCarousel extends React.Component {
         
         
         <div>
+          <img
+              className="d-block main_page"
+              src={front_page1}
+              alt="First slide"
+            />
     
         <Carousel
           activeIndex={index}
@@ -116,11 +121,11 @@ class ControlledCarousel extends React.Component {
         
         
           <Carousel.Item>
-            <img
+            {/* <img
               className="d-block main_page"
               src={front_page1}
               alt="First slide"
-            />
+            /> */}
             <Carousel.Caption className="loginSignupAlign">
                 <Container>
                   <Row>
@@ -165,11 +170,11 @@ class ControlledCarousel extends React.Component {
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
-          <img
+          {/* <img
               className="d-block main_page"
               src={front_page1}
               alt="Second slide"
-            />
+            /> */}
   
             <Carousel.Caption className="centerAlign">
  <h3>Just Exploring</h3>
@@ -203,12 +208,12 @@ details about the restaurants.</li>
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
-            <img
+            {/* <img
               className="d-block main_page"
               src={front_page1}
               alt="Third slide"
             />
-  
+   */}
             <Carousel.Caption className="centerAlign">
               <SimpleCard />
             </Carousel.Caption>
