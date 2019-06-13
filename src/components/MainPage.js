@@ -111,7 +111,7 @@ class ControlledCarousel extends React.Component {
           interval={null}
           onSelect={this.handleSelect}
           wrap={false}
-          className="scroll"
+
         >
         
         
