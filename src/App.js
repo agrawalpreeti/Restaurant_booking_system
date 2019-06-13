@@ -7,6 +7,10 @@ class Main extends React.Component{
 
   }
 
+  // async componentDidMount() {
+  //   const url=''
+  // }
+
   render(){
     return(
       <ControlledCarousel></ControlledCarousel>

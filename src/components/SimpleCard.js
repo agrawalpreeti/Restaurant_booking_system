@@ -57,9 +57,9 @@ export default function SimpleCard() {
         </Typography>
         
         <Typography variant="body2" component="p">
-          Github: <a href="https://github.com/agrawalpreeti" target="blank">Open this link</a><br></br>
-          Linkedln: <a href="https://www.linkedin.com/in/preeti-agrawal-684619157/" target="blank">Open this link</a><br/>
-          Facebook: <a href="https://www.facebook.com/preeti.agrawal.5030" target="blank">Open this link</a>
+          <a href="https://github.com/agrawalpreeti" target="blank">Github</a><br></br>
+          <a href="https://www.linkedin.com/in/preeti-agrawal-684619157/" target="blank">Linkedln</a><br/>
+          <a href="https://www.facebook.com/preeti.agrawal.5030" target="blank">Facebook</a>
         </Typography>
     </Paper>
         </Grid>
@@ -77,9 +77,9 @@ export default function SimpleCard() {
   Student at JECRC
   </Typography>
     <Typography variant="body2" component="p">
-   Github: <a href="https://github.com/Vibs00" target="blank">Open this link</a><br></br>
-   Linkedln: <a href="https://www.linkedin.com/in/Vibha-sharma-b7b837144/" target="blank">Open this link</a><br></br>
-   Facebook: <a href="https://www.facebook.com/profile.php?id=100012430004801" target="blank">Open this link</a>
+   <a href="https://github.com/Vibs00" target="blank">Github</a><br></br>
+   <a href="https://www.linkedin.com/in/Vibha-sharma-b7b837144/" target="blank">Linkedln</a><br></br>
+   <a href="https://www.facebook.com/profile.php?id=100012430004801" target="blank">Facebook</a>
   </Typography>
      </Paper>
         </Grid>
