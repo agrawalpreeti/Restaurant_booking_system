@@ -93,6 +93,19 @@ class ControlledCarousel extends React.Component {
       });
     }
 
+    handleScroll = (e) => {
+      console.log("yes")
+      console.log(e.detail);
+    }
+
+  //   componentDidMount() {
+  //     window.addEventListener('scroll', this.handleScroll,true);
+  // }
+  
+  // componentWillUnmount() {
+  //     window.removeEventListener('scroll', this.handleScroll,true);
+  // }
+
   
     render() {
       const { index, direction } = this.state;
@@ -108,7 +121,7 @@ class ControlledCarousel extends React.Component {
               src={front_page1}
               alt="First slide"
             />
-    
+      
         <Carousel
           activeIndex={index}
           direction={direction}
@@ -116,7 +129,7 @@ class ControlledCarousel extends React.Component {
           interval={null}
           onSelect={this.handleSelect}
           wrap={false}
-
+          onScroll={(e)=>this.handleScroll(e)}
         >
         
         

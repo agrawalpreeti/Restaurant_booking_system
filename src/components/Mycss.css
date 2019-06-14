@@ -129,7 +129,16 @@
   
 } */
 
-/* .scroll{
-  overflow-x: hidden;
+.scroll{
+  width: 200px;
+  height: 100px;
   overflow: scroll;
+}
+/* 
+html {
+  overflow-y: scroll;
 } */
+
+.cardLinkHover:hover{
+  zoom: 10;
+}

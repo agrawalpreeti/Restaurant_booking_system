@@ -4,7 +4,6 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import demo from './Pics/demo.jpg';
-import { Link} from 'react-router-dom';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
@@ -42,6 +41,9 @@ const useStyles = makeStyles(theme => ({
     width: '800px',
     textDecoration: 'none',
   },
+  // card.hover: {
+  //   zoom : 10,
+  // }
 }));
 
 function Cardmy() {
@@ -49,7 +51,6 @@ function Cardmy() {
 
   return (
     <Card  className={classes.card}>
-    <Link to="/home/card">
     <div className={classes.root}>
           <CardActionArea>
         <Grid container spacing={2}>
@@ -84,7 +85,6 @@ function Cardmy() {
         </Grid>
         </CardActionArea>
     </div>
-    </Link>
      <CardActions disableSpacing>
      <IconButton aria-label="Add to favorites">
        <FavoriteIcon />
