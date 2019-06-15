@@ -66,11 +66,11 @@ class Home extends React.Component{
     }
     render(){
         return(
-            <div className="myBackground">
+            <div style={{position: 'fixed'}}>
             <MyNavBars></MyNavBars>
             <Container>
                 <Row>
-                    <Col md={{offset:0, span: 3, offset: 0 }}>
+                    <Col md={{span: 3, offset: 1 }}>
                         <PaperSheet></PaperSheet>
                     </Col>
                     <Col md={{ span: 5}} className="templateCard">

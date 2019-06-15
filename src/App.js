@@ -20,7 +20,7 @@ class Main extends React.Component{
 
 
   componentDidMount() {
-    let url = "https://developers.zomato.com/api/v2.1/search?entity_id=1&entity_type=city&start=20&count=20";
+    let url = "https://developers.zomato.com/api/v2.1/";
     axios.get(url,
     {
       headers:{

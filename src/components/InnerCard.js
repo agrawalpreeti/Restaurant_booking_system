@@ -74,7 +74,7 @@ function InnerCard(props) {
       />
       </Col>
     <Col md={{ span: 7 }}>
-        <Typography variant="body2" color="textSecondary" component="p">
+        <Typography variant="body2" color="textSecondary">
           <ul type="none">
             <li>address(pincode, city, state, ...)</li>
             <li>phone number</li>
