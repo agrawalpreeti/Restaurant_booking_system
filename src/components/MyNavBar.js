@@ -32,6 +32,7 @@ const useStyles = makeStyles(theme => ({
   },
   grow: {
     flexGrow: 1,
+    width: '130%'
   },
 
   menuButton: {
@@ -50,13 +51,15 @@ const useStyles = makeStyles(theme => ({
     '&:hover': {
       backgroundColor: fade(theme.palette.common.white, 0.25),
     },
-    marginRight: theme.spacing(2),
-    marginLeft: 0,
-    width: '100%',
+    marginRight: theme.spacing(0),
+    marginLeft: 5,
+    width: '130%',
     [theme.breakpoints.up('sm')]: {
       marginLeft: theme.spacing(3),
       width: 'auto',
     },
+    marginRight : '0%'
+
   },
   searchIcon: {
     width: theme.spacing(7),
@@ -94,6 +97,9 @@ const useStyles = makeStyles(theme => ({
     backgroundColor : 'black'
     
   },
+  dropdown: {
+    marginRight : '0%'
+  }
 }));
 
 function MyNavBars() {
@@ -151,7 +157,7 @@ function MyNavBars() {
       <MenuItem>
         <IconButton aria-label="Show 4 new mails" color="inherit">
           <Badge badgeContent={4} color="secondary">
-            <MailIcon />
+            <MailIcon/>
           </Badge>
         </IconButton>
         <p>Messages</p>
@@ -180,17 +186,17 @@ function MyNavBars() {
 
   return (
     <div className={classes.grow}>
-      <AppBar className={classes.colr}position="static">
+      <AppBar position="static">
       <Toolbar>
       <Container>
     <Row>
       <Col md={{span:0.5}}> <Avatar className={classes.bigAvatar}><Restaurant></Restaurant></Avatar>
       </Col>
-        <Col md={{span:3}}> <Typography className={classes.title} variant="h6" noWrap>
+        <Col md={{span:5}}> <Typography className={classes.title} variant="h6" noWrap>
             Restaurant Booking
         </Typography></Col>
     <Col md={{span:0, offset:0}}>
-      <Dropdown>
+      <Dropdown className={classes.dropdown}>
             <Dropdown.Toggle variant="success" id="dropdown-basic">
               <LocatioOn></LocatioOn>City
             </Dropdown.Toggle>
@@ -202,7 +208,7 @@ function MyNavBars() {
             </Dropdown.Menu>
         </Dropdown>
     </Col>
-    <Col md={{offset:0, span:4, offset:0}}>
+    <Col md={{offset:0, span:5, offset:0}}>
     <div className={classes.search}>
             <InputBase
               placeholder="Search…"
@@ -215,7 +221,7 @@ function MyNavBars() {
           </div>
     </Col>
     
-    <Col md={{span:1}}>
+    <Col md={{span:0}}>
     <ButtonToolbar>
             <Button variant="primary">Search</Button>
           </ButtonToolbar>

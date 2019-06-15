@@ -41,7 +41,7 @@
 .loginSignupAlign{
     margin-top: 2%;
     /* right: 0% !important; */
-    left: 60% !important; 
+    left: 35% !important; 
     position: relative !important;
 
 }
@@ -130,17 +130,17 @@
   
 } */
 
-.scroll{
+/* .scroll{
   width: 200px;
   height: 100px;
   overflow: scroll;
-}
+} */
 /* 
 html {
   overflow-y: scroll;
 } */
 
-.cardLinkHover:hover{
+/* .cardLinkHover:hover{
   zoom: 10;
-}
+} */
 

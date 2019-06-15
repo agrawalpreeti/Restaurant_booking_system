@@ -6,7 +6,6 @@ import Button from 'react-bootstrap/Button.js';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar.js';
 import './Mycss.css';
 import front_page1 from './Pics/front_page.jpg';
-import light_background from './Pics/light_background.jpg';
 import {Link} from 'react-router-dom';
 import Modal from 'react-bootstrap/Modal';
 import Container from 'react-bootstrap/Container';
@@ -16,8 +15,13 @@ import Row from 'react-bootstrap/Row';
 
 
 class MyVerticallyCenteredModal extends React.Component {
-  render() {
-    return (
+  constructor(props){
+    super(props);
+  }
+
+  login_or_signup = (login, signup) =>{
+    if((this.props.login == true) && (this.props.signup == false)){
+      return (
       <Modal
         {...this.props}
         size="lg"
@@ -27,34 +31,36 @@ class MyVerticallyCenteredModal extends React.Component {
         
         <Modal.Body>
           <LogIn></LogIn>
-                  </Modal.Body>
+        </Modal.Body>
         <Modal.Footer>
           <Button onClick={this.props.onHide}>Close</Button>
         </Modal.Footer>
-      </Modal>
-    );
-  }
-}
-
-
-class MyVerticallyCenteredModal1 extends React.Component {
-  render() {
-    return (
+      </Modal>);
+    }
+    else if((this.props.signup == true) && (this.props.login == false)){
+      return (
       <Modal
         {...this.props}
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         centered
-      >
-        
+      >  
         <Modal.Body>
           <SignUp></SignUp>
-                  </Modal.Body>
+        </Modal.Body>
         <Modal.Footer>
           <Button onClick={this.props.onHide}>Close</Button>
         </Modal.Footer>
       </Modal>
-    );
+      );
+    }
+  }
+
+  render() {
+    return (
+      <div>
+      {this.login_or_signup()}
+      </div>)
   }
 }
 
@@ -71,10 +77,10 @@ class ControlledCarousel extends React.Component {
       this.state = {
         index: 0,
         direction: null,
-        modalShowl: false,
-        modalShows: false,
+        modalShow: false,
+        modalShow: false,
         login: false, 
-
+        signup : false
       };
     }
   
@@ -93,10 +99,10 @@ class ControlledCarousel extends React.Component {
       });
     }
 
-    handleScroll = (e) => {
-      console.log("yes")
-      console.log(e.detail);
-    }
+    // handleScroll = (e) => {
+    //   console.log("yes")
+    //   console.log(e.detail);
+    // }
 
   //   componentDidMount() {
   //     window.addEventListener('scroll', this.handleScroll,true);
@@ -109,9 +115,7 @@ class ControlledCarousel extends React.Component {
   
     render() {
       const { index, direction } = this.state;
-      let modalClosel = () => this.setState({ modalShowl: false });
-      let modalCloses = () => this.setState({ modalShows: false });
-  
+      let modalClose = () => this.setState({ modalShow: false });  
       return (
         
         
@@ -129,7 +133,7 @@ class ControlledCarousel extends React.Component {
           interval={null}
           onSelect={this.handleSelect}
           wrap={false}
-          onScroll={(e)=>this.handleScroll(e)}
+          // onScroll={(e)=>this.handleScroll(e)}
         >
         
         
@@ -140,23 +144,14 @@ class ControlledCarousel extends React.Component {
               alt="First slide"
             /> */}
             <Carousel.Caption className="loginSignupAlign">
-                <Container>
-                  <Row>
-                    {/* <Col md={4}></Col>
-                    <Col md={4}></Col>          */}
-                    <Col md={{offset:3, span: 5, offset:0}}><Button variant="info" onClick={() => this.setState({ modalShowl: true })} className="loginAlign">Log in</Button>
+                   <Button variant="info" onClick={() => this.setState({ modalShow: true, login: true, signup: false })} className="loginAlign">Log in</Button>
+                    <Button variant="info" onClick={() => this.setState({ modalShow: true, login: false, signup: true })}>Sign Up</Button>
                   <MyVerticallyCenteredModal
-                    show={this.state.modalShowl}
-                    onHide={modalClosel}
+                    show={this.state.modalShow}
+                    onHide={modalClose}
+                    login={this.state.login}
+                    signup={this.state.signup}
                   />
-                    <Button variant="info" onClick={() => this.setState({ modalShows: true })}>Sign Up</Button>
-                  <MyVerticallyCenteredModal1
-                    show={this.state.modalShows}
-                    onHide={modalCloses}
-                  />
-                  </Col>
-                  </Row>
-                </Container>  
             </Carousel.Caption>
             <Carousel.Caption className="centerAlign">
              <h2>Plan Your Meal</h2>
@@ -170,10 +165,12 @@ class ControlledCarousel extends React.Component {
                     <Link to="/home"><Button variant="primary">Explore</Button></Link>
                   </Col>
                   <Col md={{ span: 2}}>
-                  <Button variant="danger" onClick={() => this.setState({ modalShows: true })}>Get Started</Button>
-                    <MyVerticallyCenteredModal1
-                    show={this.state.modalShows}
-                    onHide={modalCloses}
+                  <Button variant="danger" onClick={() => this.setState({ modalShow: true, login: false, signup: true })}>Get Started</Button>
+                    <MyVerticallyCenteredModal
+                    show={this.state.modalShow}
+                    onHide={modalClose}
+                    login={this.state.login}
+                    signup={this.state.signup}
                   />
                   </Col>
                 </Row>

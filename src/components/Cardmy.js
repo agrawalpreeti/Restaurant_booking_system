@@ -39,7 +39,8 @@ const useStyles = makeStyles(theme => ({
     margin: 'auto',
     maxWidth: 800,
     width: '800px',
-    textDecoration: 'none',
+    // textDecoration: 'none',
+    // color: 'yellow'
   },
   // card.hover: {
   //   zoom : 10,
