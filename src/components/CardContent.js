@@ -14,6 +14,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import clsx from 'clsx';
+import axios from 'axios';
+
 
 
 
@@ -104,46 +106,74 @@ class CardContent extends React.Component{
     constructor(...args){
         super(...args);
         this.state = { modalShow: false };
+        this.state.db = {
+          restaurantContent : {
+            url: "restaurant?res_id=",
+            content: {}
+          }
+        }
     }
+
+    componentWillMount() {
+      let url = "https://developers.zomato.com/api/v2.1/";
+      //id calculater
+      axios.get(url + this.state.db.restaurantContent.url 
+        + this.props.restId,
+      {
+        headers:{
+          "Accept": "application/json",
+          "user-key": "0c87f14b32add1de8469c4d4cdb376a0 ",
+        }
+      })
+      .then((res)=>{
+        let db = this.state.db;
+        db.restaurantContent.content = res.data
+        this.setState({
+          db : db,
+        });
+        console.log(this.state.db);
+      })
+    }
+
     render(){
         let modalClose = () => this.setState({ modalShow: false });
 
         return(
             <div>
-                <MyNavBar></MyNavBar>
+                <MyNavBar city={this.props.city}></MyNavBar>
                 <Container>
                     <Row>
-                        <Col md={{span:9}}>     
-                            <InnerCard></InnerCard>
+                        <Col md={{span:8, offset:1}}>     
+                            <InnerCard style={{position: 'relative'}}></InnerCard>
                             </Col>
                         <Col md={{ span:3, offset:0}}>
-                        <Container>
-                          <Col>
-                          <Row md={{span:12}}> 
-                            <MyCalendar></MyCalendar>
-                          <Row> 
-                          <Col md={{offset:6, span:12}}>
-                            <Button  className="bookMargin"
-                            variant="warning"
-                            onClick={() => this.setState({ modalShow: true })}
-                            >
-                            Book a Table
-                            </Button>
+                          <Container>
+                            <Col>
+                            <Row md={{span:12}}> 
+                              <MyCalendar style={{position: 'relative'}}></MyCalendar>
+                            <Row> 
+                            <Col md={{offset:6, span:12}}>
+                              <Button  className="bookMargin"
+                              variant="warning"
+                              onClick={() => this.setState({ modalShow: true })}
+                              style={{position: 'relative'}}
+                              >
+                              Book a Table
+                              </Button>
 
-                            <MyVerticallyCenteredModal
-                            show={this.state.modalShow}
-                            onHide={modalClose}
-                            />
-                            </Col>
-                            </Row>
-                            </Row>
-                            </Col>
-                            </Container>
-
-                        </Col>
+                              <MyVerticallyCenteredModal
+                              show={this.state.modalShow}
+                              onHide={modalClose}
+                              />
+                              </Col>
+                              </Row>
+                              </Row>
+                              </Col>
+                              </Container>
+                          </Col>
                     </Row>
                     <Row>
-                    <Col md={{offset:0.1, span:8}}>     
+                    <Col style={{position: 'relative'}} md={{offset:0.1, span:8}}>     
                         <Description></Description>
                       </Col>
                     </Row>

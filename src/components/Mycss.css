@@ -130,11 +130,19 @@
   
 } */
 
-/* .scroll{
+.scroll{
   width: 200px;
-  height: 100px;
-  overflow: scroll;
-} */
+  height: 400px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.scrollCard{
+  width: 900px;
+  height: 700px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
 /* 
 html {
   overflow-y: scroll;
@@ -144,3 +152,41 @@ html {
   zoom: 10;
 } */
 
+
+.rating1 {
+  unicode-bidi: bidi-override;
+  direction: rtl;
+  zoom : 2;
+  color: yellow;
+}
+.rating1 > span {
+  display: inline-block;
+  position: relative;
+  width: 1.1em;
+}
+.rating1 > span:before,
+.rating1 > span ~ span:before {
+   content: "\2605";
+   position: absolute;
+   color: yellow;
+}
+
+
+
+
+/* .rating2 {
+  unicode-bidi: bidi-override;
+  direction: rtl;
+  zoom : 2;
+}
+.rating2 > span {
+  display: inline-block;
+  position: relative;
+  width: 1.1em;
+}
+.rating2 > span:hover:before,
+.rating2 > span:hover ~ span:before {
+   content: "\2605";
+   position: absolute;
+   color: yellow;
+} */

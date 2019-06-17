@@ -23,6 +23,10 @@ import Avatar from '@material-ui/core/Avatar';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
+import './Mycss.css';
+import { Link} from 'react-router-dom';
+
+
 
 
 
@@ -32,14 +36,14 @@ const useStyles = makeStyles(theme => ({
   },
   grow: {
     flexGrow: 1,
-    width: '130%'
+    width: '100%'
   },
 
   menuButton: {
     marginRight: theme.spacing(2),
   },
   title: {
-    display: 'none',
+    display: 'flex',
     [theme.breakpoints.up('sm')]: {
       display: 'block',
     },
@@ -53,7 +57,7 @@ const useStyles = makeStyles(theme => ({
     },
     marginRight: theme.spacing(0),
     marginLeft: 5,
-    width: '130%',
+    // width: '130%',
     [theme.breakpoints.up('sm')]: {
       marginLeft: theme.spacing(3),
       width: 'auto',
@@ -98,11 +102,20 @@ const useStyles = makeStyles(theme => ({
     
   },
   dropdown: {
-    marginRight : '0%'
+    marginRight : '0%',
+    backgroundColor: 'white',
+    borderRadius: '8px',
+    height: '40px !important'
+    // color: 'white'
+  },
+  cityColor: {
+    backgroundColor: 'white',
+    // marginBottom: '60px',
+    height: '35px !important',
   }
 }));
 
-function MyNavBars() {
+function MyNavBars(props) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -184,31 +197,47 @@ function MyNavBars() {
     </Menu>
   );
 
+    let cityValueShow = "";
+
+
+
   return (
     <div className={classes.grow}>
       <AppBar position="static">
       <Toolbar>
       <Container>
     <Row>
-      <Col md={{span:0.5}}> <Avatar className={classes.bigAvatar}><Restaurant></Restaurant></Avatar>
-      </Col>
-        <Col md={{span:5}}> <Typography className={classes.title} variant="h6" noWrap>
+      {/* <Col md={{span:0.5}}> */}
+      <Link to="/"><Avatar className={classes.bigAvatar}><Restaurant></Restaurant></Avatar></Link>
+      {/* </Col> */}
+        <Col md={{span:10}}>
+        <Link to="/"><Typography className={classes.title} variant="h6" noWrap>
             Restaurant Booking
-        </Typography></Col>
-    <Col md={{span:0, offset:0}}>
+        </Typography></Link>
+        </Col>
+        </Row>
+        </Container>
+    {/* <Col md={{span:0, offset:0}}> */}
       <Dropdown className={classes.dropdown}>
-            <Dropdown.Toggle variant="success" id="dropdown-basic">
-              <LocatioOn></LocatioOn>City
-            </Dropdown.Toggle>
-
-            <Dropdown.Menu>
-              <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-              <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-              <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+            <Dropdown.Toggle variant={classes.cityColor} id="dropdown-basic">
+              <LocatioOn></LocatioOn>
+              <input
+              style = {{border: "none", width: "140px"}}
+              autoComplete="off"
+              autoCorrect="off"
+              placeholder="Search City"
+              type="text"
+              value={cityValueShow}
+              />
+              {/* <AutoComplete></AutoComplete> */}
+            <Dropdown.Menu className="scroll">
+              <DropdownCity city={props.city}/>
             </Dropdown.Menu>
+            </Dropdown.Toggle>
         </Dropdown>
-    </Col>
-    <Col md={{offset:0, span:5, offset:0}}>
+
+    {/* </Col> */}
+    {/* <Col md={{offset:0, span:5, offset:0}}> */}
     <div className={classes.search}>
             <InputBase
               placeholder="Search…"
@@ -219,15 +248,15 @@ function MyNavBars() {
               inputProps={{ 'aria-label': 'Search' }}
             />
           </div>
-    </Col>
+    {/* </Col> */}
     
-    <Col md={{span:0}}>
+    {/* <Col md={{span:0}}> */}
     <ButtonToolbar>
             <Button variant="primary">Search</Button>
           </ButtonToolbar>
-    </Col>
+    {/* </Col>
   </Row>
-  </Container>
+  </Container> */}
         
          
           
@@ -273,6 +302,22 @@ function MyNavBars() {
       {renderMenu}
     </div>
   );
+}
+
+
+
+function DropdownCity (props){
+  let city = [];
+  city = props.city.map((value, index) => 
+    <Dropdown.Item href={"#/" + value} onSelect={()=>
+      // props.cityNameSelected = value;
+      // props.cityNameSelected = value;
+      // props.cityIdCalculate(props.cityNameSelected)}}>
+    value}>
+      {value}
+      </Dropdown.Item>
+   );
+   return city;
 }
 
 export default MyNavBars;

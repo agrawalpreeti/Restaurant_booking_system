@@ -10,7 +10,7 @@ import CardActions from '@material-ui/core/CardActions';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import IconButton from '@material-ui/core/IconButton';
-
+import './Mycss.css';
 
 
 
@@ -47,7 +47,7 @@ const useStyles = makeStyles(theme => ({
   // }
 }));
 
-function Cardmy() {
+function Cardmy(props) {
   const classes = useStyles();
 
   return (
@@ -57,30 +57,39 @@ function Cardmy() {
         <Grid container spacing={2}>
           <Grid item>
             <ButtonBase className={classes.image}>
-              <img className={classes.img} alt="complex" src={demo} />
+              <img className={classes.img} alt="complex" src={props.restaurants[props.index].restaurant.featured_image} />
             </ButtonBase>
           </Grid>
           <Grid item xs={12} sm container>
             <Grid item xs container direction="column" spacing={2}>
               <Grid item xs>
                 <Typography gutterBottom variant="subtitle1">
-                  Standard license
+                  {props.restaurants[props.index].restaurant.name}
                 </Typography>
                 <Typography variant="body2" gutterBottom>
-                  Full resolution 1920x1080 • JPEG
+                  {props.restaurants[props.index].restaurant.location.address}
                 </Typography>
                 <Typography variant="body2" color="textSecondary">
-                  ID: 1030114
+                  {"Cuisine: "}
+                  {props.restaurants[props.index].restaurant.cuisines}<br></br>
+                  {"₹"}
+                  {props.restaurants[props.index].restaurant.average_cost_for_two}
+                  {" for 2(approx)"}
                 </Typography>
               </Grid>
               <Grid item>
                 <Typography variant="body2" style={{ cursor: 'pointer' }}>
-                  Remove
+                {props.restaurants[props.index].restaurant.timings}<br></br>
                 </Typography>
               </Grid>
             </Grid>
             <Grid item>
-              <Typography variant="subtitle1">$19.00</Typography>
+              <Typography variant="subtitle1">
+              {"(" + props.restaurants[props.index].restaurant.user_rating.aggregate_rating + ")"}
+              <div class="rating1">
+                <span>☆</span>
+              </div>
+              </Typography>
             </Grid>
           </Grid>
         </Grid>
@@ -101,3 +110,4 @@ function Cardmy() {
 
 export default Cardmy;
 
+//                <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
