@@ -6,6 +6,9 @@ import {LogIn, SignUp} from './components/Loginmy.js';
 import Home from './components/MyHome';
 import CardContent from './components/CardContent';
 import axios from 'axios';
+import {Dropdown} from 'react-bootstrap';
+
+
 
 
 
@@ -15,7 +18,7 @@ class Main extends React.Component{
     this.state = {};
     this.state.db = {
       name: [],
-      city: [ "AGARTALA","AGRA","AHMEDABAD","AIZWAL","AJMER","ALLAHABAD","ALLEPPEY","ALIBAUG","ALMORA","ALSISAR","ALWAR",
+      cities: [ "AGARTALA","AGRA","AHMEDABAD","AIZWAL","AJMER","ALLAHABAD","ALLEPPEY","ALIBAUG","ALMORA","ALSISAR","ALWAR",
         "AMBALA","AMLA","AMRITSAR","ANAND",
            "ANKLESHWAR","ASHTAMUDI","AULI","AURANGABAD","BADDI","BADRINATH","BALASINOR","BALRAMPUR", "BAMBORA","BANDHAVGARH",	
                 "BANDIPUR","BANGALORE", "BARBIL"	,  "BAREILLY", "BEHROR"	,
@@ -124,6 +127,20 @@ class Main extends React.Component{
     
   }
 
+  citySelectedColorChange = () =>{
+    let dropdownList = [];
+    dropdownList = this.state.db.cities.map((value)=>
+      <Dropdown.Item href={"/home#/" + value} value={value} onSelect={()=>this.cityNameSelected(value)}>
+      {value}
+      </Dropdown.Item>);
+    return dropdownList;
+  }
+  
+  cityNameSelected = (value) =>{
+    let ind = this.state.db.cities.indexOf(value);
+    console.log(value, ind);
+  }
+
   // componentDidMount(){
   //   let url = "https://developers.zomato.com/api/v2.1/";
 
@@ -171,7 +188,13 @@ class Main extends React.Component{
             <Route exact path="/" render={()=><ControlledCarousel/>}/>
             <Route path="/login" render={()=><LogIn/>} />
             <Route path="/signup" render={()=><SignUp/>} />
-            <Route exact path="/home" render={()=><Home city={this.state.db.city} restaurants={this.state.db.restaurantSearch.restaurants} restId={()=>this.restId()}/>} /> 
+            <Route exact path="/home" render={()=><Home citySelectedColorChange={()=>this.citySelectedColorChange()} restaurants={this.state.db.restaurantSearch.restaurants} restId={()=>this.restId()}/>} />
+
+            {/* <Route exact path="/home" render={()=>
+            this.state.db.cities.map((value)=>{
+              return <CityDropdown city={value} cityNameSelected={this.cityNameSelected(value)}/>
+            })}>
+            </Route> */}
             <Route exact path={"/home/card/res_id:" + this.props.restId} render={()=><CardContent city={this.state.db.city} restId={this.props.restId}/>} />        
       </Router>     
       );

@@ -231,7 +231,7 @@ function MyNavBars(props) {
               />
               {/* <AutoComplete></AutoComplete> */}
             <Dropdown.Menu className="scroll">
-              <DropdownCity city={props.city}/>
+              {props.citySelectedColorChange()}
             </Dropdown.Menu>
             </Dropdown.Toggle>
         </Dropdown>
@@ -306,18 +306,10 @@ function MyNavBars(props) {
 
 
 
-function DropdownCity (props){
-  let city = [];
-  city = props.city.map((value, index) => 
-    <Dropdown.Item href={"#/" + value} onSelect={()=>
-      // props.cityNameSelected = value;
-      // props.cityNameSelected = value;
-      // props.cityIdCalculate(props.cityNameSelected)}}>
-    value}>
-      {value}
-      </Dropdown.Item>
-   );
-   return city;
-}
+// function DropdownCity (props){
+//   let city = "";
+//   city = 
+//    return city;
+// }
 
 export default MyNavBars;

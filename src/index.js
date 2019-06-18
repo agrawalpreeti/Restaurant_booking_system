@@ -2,10 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Main from './App';
 import 'bootstrap/dist/css/bootstrap.css';
-import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
-import {LogIn, SignUp} from './components/Loginmy.js';
-import Home from './components/MyHome';
-import CardContent from './components/CardContent';
+// import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
+// import {LogIn, SignUp} from './components/Loginmy.js';
+// import Home from './components/MyHome';
+// import CardContent from './components/CardContent';
 
 //  const routing = (
 //      <Router>
