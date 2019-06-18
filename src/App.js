@@ -17,7 +17,6 @@ class Main extends React.Component{
     super(props);
     this.state = {};
     this.state.db = {
-      name: [],
       cities: [ "AGARTALA","AGRA","AHMEDABAD","AIZWAL","AJMER","ALLAHABAD","ALLEPPEY","ALIBAUG","ALMORA","ALSISAR","ALWAR",
         "AMBALA","AMLA","AMRITSAR","ANAND",
            "ANKLESHWAR","ASHTAMUDI","AULI","AURANGABAD","BADDI","BADRINATH","BALASINOR","BALRAMPUR", "BAMBORA","BANDHAVGARH",	
@@ -60,16 +59,12 @@ class Main extends React.Component{
                 "THRISSUR","UDAIPUR","UDHAMPUR","UDUPI","UJJAIN","UTTARKASHI","VADODARA","VAGAMON"	,"VARKALA"	,"VAPI","VARANASI",
                 "VELANKANNI","VELLORE"	,"VERAVAL","VIJAYAWADA","VIKRAMGADH","VISHAKAPATNAM","WAYANAD"	,"WANKANER",	"YAMUNOTR", "YERCAUD","YUKSOM"	
                  ],
-      cityValueShow: {},
       cityName: {
-        name: "Jaipur",
-        url: "cities?q=Jaipur",
+        name: "",
         id: ""
       },
+      
       restaurantSearch: {
-        url1: "search?entity_id=",
-        url2: "&entity_type=city&q=",
-        url3: "&count=20",
         restaurants: [{restaurant:
                            {
                              name: "",
@@ -80,7 +75,6 @@ class Main extends React.Component{
                       }]
       }
     }
-    // this.state.cityNameSelected = "Jaipur";
   }
 
 
@@ -88,7 +82,7 @@ class Main extends React.Component{
   componentWillMount() {
     let url = "https://developers.zomato.com/api/v2.1/";
     //id calculater
-    axios.get(url + this.state.db.cityName.url,
+    axios.get(url + "cities?q=" + this.state.db.cityName.name,
     {
       headers:{
         "Accept": "application/json",
@@ -105,8 +99,7 @@ class Main extends React.Component{
     })
     .then((res)=>{
 
-    axios.get(url + this.state.db.restaurantSearch.url1 + this.state.db.cityName.id +
-      this.state.db.restaurantSearch.url2 + this.state.db.cityName.name + this.state.db.restaurantSearch.url3,
+    axios.get(url + "search?entity_id=" + this.state.db.cityName.id + "&entity_type=city&q=" + this.state.db.cityName.name + "&count=20",
      {
        headers:{
          "Accept": "application/json",
@@ -137,8 +130,14 @@ class Main extends React.Component{
   }
   
   cityNameSelected = (value) =>{
-    let ind = this.state.db.cities.indexOf(value);
-    console.log(value, ind);
+    // let ind = this.state.db.cities.indexOf(value);
+    // console.log(value, ind);
+    let db = this.state.db;
+    db.cityName.name = value;
+    this.setState({
+      db : db
+    });
+    console.log(this.state.db)
   }
 
   // componentDidMount(){
