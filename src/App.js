@@ -60,7 +60,7 @@ class Main extends React.Component{
                 "VELANKANNI","VELLORE"	,"VERAVAL","VIJAYAWADA","VIKRAMGADH","VISHAKAPATNAM","WAYANAD"	,"WANKANER",	"YAMUNOTR", "YERCAUD","YUKSOM"	
                  ],
       cityName: {
-        name: "",
+        name: "Delhi",
         id: ""
       },
       
@@ -92,7 +92,7 @@ class Main extends React.Component{
     .then((res)=>{
       let db = this.state.db;
       db.cityName.id = res.data.location_suggestions[0].id;
-      db.cityValueShow = this.props.restId
+      // db.cityValueShow = this.props.restId
       this.setState({
         db : db,
       });
@@ -115,7 +115,7 @@ class Main extends React.Component{
          db : db,
        });
      });
-  //  console.log(this.state.db);
+   console.log(this.state.db);
   });
     
   }
@@ -137,7 +137,7 @@ class Main extends React.Component{
     this.setState({
       db : db
     });
-    console.log(this.state.db)
+    // console.log(this.state.db)
   }
 
   // componentDidMount(){
@@ -163,12 +163,12 @@ class Main extends React.Component{
   //   console.log(this.state.db);
   // }
 
-  cityIdCalculate = (name) =>{
-    console.log(name);
-    this.setState({
-      cityNameSelected: name
-    })
-  }
+  // cityIdCalculate = (name) =>{
+  //   console.log(name);
+  //   this.setState({
+  //     cityNameSelected: name
+  //   })
+  // }
 
   // restId = (value)=>{
   //   console.log(value);
@@ -194,7 +194,7 @@ class Main extends React.Component{
               return <CityDropdown city={value} cityNameSelected={this.cityNameSelected(value)}/>
             })}>
             </Route> */}
-            <Route exact path={"/home/card/res_id:" + this.props.restId} render={()=><CardContent city={this.state.db.city} restId={this.props.restId}/>} />        
+            <Route exact path={"/home/card/res_id:" + this.state.db.cityName.id} render={()=><CardContent cityId={this.state.db.cityName.id} restId={this.props.restId}/>} />        
       </Router>     
       );
   }
