@@ -115,17 +115,18 @@ class Main extends React.Component{
          db : db,
        });
      });
-   console.log(this.state.db);
+  //  console.log(this.state.db);
   });
     
   }
 
   citySelectedColorChange = () =>{
     let dropdownList = [];
-    dropdownList = this.state.db.cities.map((value)=>
-      <Dropdown.Item href={"/home#/" + value} value={value} onSelect={()=>this.cityNameSelected(value)}>
+    dropdownList = this.state.db.cities.map((value)=>{
+      return <Dropdown.Item href={"#/" + value} value={value} onSelect={()=>this.cityNameSelected(value)}>
       {value}
-      </Dropdown.Item>);
+    </Dropdown.Item>});
+    // {console.log(dropdownList)}
     return dropdownList;
   }
   
@@ -175,7 +176,7 @@ class Main extends React.Component{
   // }
 
   render(){
-    console.log(this.props.restId);
+    // console.log(this.props.restId);
     return(
       <Router>
            {/* <Link to="/"></Link>
