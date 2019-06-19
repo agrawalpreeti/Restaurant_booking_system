@@ -69,7 +69,8 @@ class Main extends React.Component{
                              name: "",
                              location: {address: ""},
                              user_rating: {aggregate_rating: ""},
-                             R: {res_id: ""}
+                             R: {res_id: ""},
+                             featured_image: ""
                             }
                       }]
       }
