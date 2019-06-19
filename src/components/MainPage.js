@@ -15,12 +15,9 @@ import Row from 'react-bootstrap/Row';
 
 
 class MyVerticallyCenteredModal extends React.Component {
-  constructor(props){
-    super(props);
-  }
 
   login_or_signup = (login, signup) =>{
-    if((this.props.login == true) && (this.props.signup == false)){
+    if((this.props.login === true) && (this.props.signup === false)){
       return (
       <Modal
         {...this.props}
@@ -37,7 +34,7 @@ class MyVerticallyCenteredModal extends React.Component {
         </Modal.Footer>
       </Modal>);
     }
-    else if((this.props.signup == true) && (this.props.login == false)){
+    else if((this.props.signup === true) && (this.props.login === false)){
       return (
       <Modal
         {...this.props}
@@ -77,7 +74,6 @@ class ControlledCarousel extends React.Component {
       this.state = {
         index: 0,
         direction: null,
-        modalShow: false,
         modalShow: false,
         login: false, 
         signup : false
@@ -233,6 +229,8 @@ details about the restaurants.</li>
                 <a href="#" className="footerLinkColor">Terms</a>
                 <a href="#" className="footerLinkColor">Contact</a><br></br>
                <span>Copyright 2016, Original Trombones</span>
+               <p>For website code visite</p>
+               <a href="" className="footerLinkColor">code</a>
               </footer>
             </Carousel.Caption>
           </Carousel.Item>

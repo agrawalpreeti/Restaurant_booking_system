@@ -8,26 +8,10 @@ import Row from 'react-bootstrap/Row';
 import {Dropdown} from 'react-bootstrap';
 import './Mycss.css';
 import { Link} from 'react-router-dom';
-import Main from './../App';
 
 
 
 class Home extends React.Component{
-    constructor(props){
-        super(props);
-        // this.state= {};
-        // this.state.city = [];
-    }
-
-    // componentWillMount(){
-    //     let cities = this.props.city.map((value, index) => 
-    //     value
-    //      );
-    //      this.setState({
-    //          city: cities,
-    //      })
-    //      return this.state.city;
-    //   }
 
     cardPrint = () =>{
         let cards = [];
@@ -39,39 +23,41 @@ class Home extends React.Component{
         return cards;
     }
 
-    // restId = (value) =>{
-    //     // console.log(value.restaurant.R.res_id)
-    //     return value.restaurant.R.res_id;
-    // }
 
     
     render(){
         return(
             <div>
-                {/* {console.log(this.props.city)} */}
             <MyNavBars citySelectedColorChange={()=>this.props.citySelectedColorChange()}></MyNavBars>
             <Container>
                 <Row>
-                    <Col md={{span: 3, offset: 0 }}>
+                    <Col md={{span:3, offset:0}}>
                         <PaperSheet></PaperSheet>
                     </Col>
-                    <Col md={{ span: 5}} className="templateCard">
-                        <Dropdown className="dropShift">
-                            <Dropdown.Toggle variant="primary" id="dropdown-basic">
-                            Sort By
-                            </Dropdown.Toggle>
+                    <Col md={{ span:9, offset:0}} className="templateCard">
+                    <Container>
+                        <Row style={{marginRight:'0%'}}>
+                            <Col md={{span:2, offset:10}}>
+                                <Dropdown className="dropShift">
+                                    <Dropdown.Toggle variant="primary" id="dropdown-basic">
+                                    Sort By
+                                    </Dropdown.Toggle>
 
-                            <Dropdown.Menu>
-                            
-                                <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                            
-                            </Dropdown.Menu>
-                        </Dropdown>
-                            {this.cardPrint()}
+                                    <Dropdown.Menu>
+                                    
+                                        <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                                    
+                                    </Dropdown.Menu>
+                                </Dropdown>
+                            </Col>
+                            <Row style={{marginTop:'2%'}}>
+                                {this.cardPrint()}
+                            </Row>
+                        </Row>
+                    </Container>
                     </Col>
                 </Row>
             </Container>
-            {/* <Main restId={this.restId()}></Main> */}
         </div>
         );
     }

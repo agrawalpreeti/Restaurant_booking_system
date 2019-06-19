@@ -88,7 +88,7 @@ const useStyles = makeStyles(theme => ({
             />
             <Button
               type="submit"
-              fullWidth
+              fullwidth="true"
               color="primary"
               className={classes.submit}
             >

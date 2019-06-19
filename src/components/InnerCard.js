@@ -17,8 +17,6 @@ import demo from './Pics/demo.jpg';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import Button from 'react-bootstrap/Button.js';
-import ButtonToolbar from 'react-bootstrap/ButtonToolbar.js';
 
 
 

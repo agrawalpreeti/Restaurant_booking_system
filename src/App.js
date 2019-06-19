@@ -1,7 +1,6 @@
 import React from 'react';
 import ControlledCarousel from './components/MainPage.js';
-import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
-import {browserHistory} from 'react-router';
+import { Route, BrowserRouter as Router } from 'react-router-dom';
 import {LogIn, SignUp} from './components/Loginmy.js';
 import Home from './components/MyHome';
 import CardContent from './components/CardContent';

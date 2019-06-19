@@ -5,6 +5,7 @@ import Grid from "@material-ui/core/Grid";
 import Avatar from '@material-ui/core/Avatar';
 import Paper from '@material-ui/core/Paper';
 import preeti from './Pics/preeti.jpg';
+import './Mycss.css';
 
 
 
@@ -57,9 +58,9 @@ export default function SimpleCard() {
         </Typography>
         
         <Typography variant="body2" component="p">
-          <a href="https://github.com/agrawalpreeti" target="blank">Github</a><br></br>
-          <a href="https://www.linkedin.com/in/preeti-agrawal-684619157/" target="blank">Linkedln</a><br/>
-          <a href="https://www.facebook.com/preeti.agrawal.5030" target="blank">Facebook</a>
+          <a href="https://github.com/agrawalpreeti" target="blank" className="footerLinkColor">Github</a><br></br>
+          <a href="https://www.linkedin.com/in/preeti-agrawal-684619157/" target="blank" className="footerLinkColor">Linkedln</a><br/>
+          <a href="https://www.facebook.com/preeti.agrawal.5030" target="blank" className="footerLinkColor">Facebook</a>
         </Typography>
     </Paper>
         </Grid>
@@ -77,9 +78,9 @@ export default function SimpleCard() {
   Student at JECRC
   </Typography>
     <Typography variant="body2" component="p">
-   <a href="https://github.com/Vibs00" target="blank">Github</a><br></br>
-   <a href="https://www.linkedin.com/in/Vibha-sharma-b7b837144/" target="blank">Linkedln</a><br></br>
-   <a href="https://www.facebook.com/profile.php?id=100012430004801" target="blank">Facebook</a>
+   <a href="https://github.com/Vibs00" target="blank" className="footerLinkColor">Github</a><br></br>
+   <a href="https://www.linkedin.com/in/Vibha-sharma-b7b837144/" target="blank" className="footerLinkColor">Linkedln</a><br></br>
+   <a href="https://www.facebook.com/profile.php?id=100012430004801" target="blank" className="footerLinkColor">Facebook</a>
   </Typography>
      </Paper>
         </Grid>

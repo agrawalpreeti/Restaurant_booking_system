@@ -62,7 +62,6 @@ const useStyles = makeStyles(theme => ({
       marginLeft: theme.spacing(3),
       width: 'auto',
     },
-    marginRight : '0%'
 
   },
   searchIcon: {
@@ -231,7 +230,7 @@ function MyNavBars(props) {
               />
               {/* <AutoComplete></AutoComplete> */}
             <Dropdown.Menu className="scroll">
-              {props.citySelectedColorChange()}
+              {()=>props.citySelectedColorChange()}
             </Dropdown.Menu>
             </Dropdown.Toggle>
         </Dropdown>
