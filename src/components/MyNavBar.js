@@ -32,7 +32,7 @@ import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
   AppBar: {
-    color: yellow,
+    // color: 'pink',
   },
   grow: {
     flexGrow: 1,
@@ -97,11 +97,14 @@ const useStyles = makeStyles(theme => ({
     },
   },
   bigAvatar: {
+    // display: 'inline !important',
+    marginLeft: '37%',
     backgroundColor: 'black',
     // padding: '10%'
   },
   dropdown: {
-    marginRight: '0%',
+    // marginRight: '0%',
+    marginLeft: '5%',
     backgroundColor: 'white',
     borderRadius: '8px',
     height: '40px !important'
@@ -204,12 +207,12 @@ function MyNavBars(props) {
     <div>
      {/* <Container style={{ margin: '0%' }}>
       <Row className={classes.grow}> */}
-        <AppBar position="static">
+        <AppBar className={classes.AppBar} position="static">
           <Toolbar>
-            <Link to="/" >
+            <Link to="/" style={{color: 'white', textDecoration: 'none'}}>
               {/* <Col md={{span:4}}> style={{ display:'inline' }}*/}
                 <Typography className={classes.title} variant="h6" noWrap>
-                <Avatar  className={classes.bigAvatar}><Restaurant></Restaurant></Avatar>
+                <Avatar className={classes.bigAvatar}><Restaurant></Restaurant></Avatar>
                   Restaurant Booking
               </Typography>
               {/* </Col> */}
