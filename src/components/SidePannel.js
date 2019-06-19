@@ -19,6 +19,8 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     alignItems: 'center',
     textAlign: 'center',
+    position: 'sticky',
+    top: 2 /*position sticky needs a coordinate to stick to*/
   },
   search: {
     position: 'relative',
