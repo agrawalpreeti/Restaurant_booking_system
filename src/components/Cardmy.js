@@ -5,10 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
-import IconButton from '@material-ui/core/IconButton';
+
 import './Mycss.css';
 
 
@@ -38,6 +35,7 @@ const useStyles = makeStyles(theme => ({
     margin: 'auto',
     maxWidth: 800,
     width: '800px',
+    height: '150px'
     // textDecoration: 'none',
     // color: 'yellow'
   },
@@ -94,14 +92,7 @@ function Cardmy(props) {
         </Grid>
         </CardActionArea>
     </div>
-     <CardActions disableSpacing>
-     <IconButton aria-label="Add to favorites">
-       <FavoriteIcon />
-     </IconButton>
-     <IconButton aria-label="Share">
-       <ShareIcon />
-     </IconButton>
-     </CardActions>
+    
      </Card>
 
   );
