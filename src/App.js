@@ -196,7 +196,7 @@ class Main extends React.Component{
               return <CityDropdown city={value} cityNameSelected={this.cityNameSelected(value)}/>
             })}>
             </Route> */}
-            <Route exact path={"/home/card/res_id:" + this.state.db.cityName.id} render={()=><CardContent cityId={this.state.db.cityName.id} restId={this.props.restId}/>} />        
+            <Route exact path={"/home/card/res_id:" + this.state.db.cityName.id} render={()=> <CardContent cityId={this.state.db.cityName.id} restId={this.props.restId} />} />        
       </Router>     
       );
   }

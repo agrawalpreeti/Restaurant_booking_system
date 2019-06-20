@@ -225,12 +225,12 @@ details about the restaurants.</li>
             </Carousel.Caption>
             <Carousel.Caption className="centerAlign">
             <footer>
-                <a href="#" className="footerLinkColor">Privacy</a>
-                <a href="#" className="footerLinkColor">Terms</a>
-                <a href="#" className="footerLinkColor">Contact</a><br></br>
+                <a href="#" className="footerLinkColor">Privacy</a><br></br>
+                <a href="#" className="footerLinkColor">Terms</a><br></br>
+                <a href="#" className="footerLinkColor">Contact</a><br></br><br></br>
                <span>Copyright 2016, Original Trombones</span>
-               <p>For website code visite</p>
-               <a href="" className="footerLinkColor">code</a>
+              
+              
               </footer>
             </Carousel.Caption>
           </Carousel.Item>

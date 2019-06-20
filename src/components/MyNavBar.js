@@ -13,7 +13,6 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
-import { yellow } from '@material-ui/core/colors';
 import LocatioOn from '@material-ui/icons/LocationOn';
 import Restaurant from '@material-ui/icons/Restaurant';
 import { Dropdown } from 'react-bootstrap';
