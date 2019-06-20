@@ -29,6 +29,7 @@ import { Link } from 'react-router-dom';
 
 
 
+
 const useStyles = makeStyles(theme => ({
   AppBar: {
     // color: 'pink',
@@ -226,10 +227,10 @@ function MyNavBars(props) {
                     autoCorrect="off"
                     placeholder="Search City"
                     type="text"
-                    value={cityValueShow}
+                    // value={cityValueShow}
                   />
                   <Dropdown.Menu className="scroll">
-                    {() => props.citySelectedColorChange()}
+                    {props.citySelectedColorChange()}
                   </Dropdown.Menu>
                 </Dropdown.Toggle>
               </Dropdown>

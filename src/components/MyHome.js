@@ -29,6 +29,7 @@ class Home extends React.Component{
         return(
             <div>
             <MyNavBars citySelectedColorChange={()=>this.props.citySelectedColorChange()}></MyNavBars>
+            {/* {console.log(this.props.citySelectedColorChange())} */}
             <Container>
                 <Row>
                     <Col md={{span:3, offset:0}}>
