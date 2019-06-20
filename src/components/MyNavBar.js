@@ -230,7 +230,7 @@ function MyNavBars(props) {
                     // value={cityValueShow}
                   />
                   <Dropdown.Menu className="scroll">
-                    {props.citySelectedColorChange()}
+                    {props.citySelectedColorChange}
                   </Dropdown.Menu>
                 </Dropdown.Toggle>
               </Dropdown>

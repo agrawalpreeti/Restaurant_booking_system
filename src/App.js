@@ -189,12 +189,12 @@ class Main extends React.Component{
             <Route path="/login" render={()=><LogIn/>} />
             <Route path="/signup" render={()=><SignUp/>} />
             <Route exact path="/home" render={()=><Home citySelectedColorChange={()=>this.citySelectedColorChange()} restaurants={this.state.db.restaurantSearch.restaurants} restId={()=>this.restId()}/>} />
-
-            {/* <Route exact path="/home" render={()=>
+{/* 
+             <Route exact path="/home" render={()=>
             this.state.db.cities.map((value)=>{
               return <CityDropdown city={value} cityNameSelected={this.cityNameSelected(value)}/>
             })}>
-            </Route> */}
+            </Route>  */}
             <Route exact path={"/home/card/res_id:" + this.state.db.cityName.id} render={()=> <CardContent cityId={this.state.db.cityName.id} restId={this.props.restId} />} />        
       </Router>     
       );

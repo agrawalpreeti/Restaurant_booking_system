@@ -16,7 +16,7 @@ class Home extends React.Component{
     cardPrint = () =>{
         let cards = [];
         cards = this.props.restaurants.map((value, index)=>
-            <Link to={"/home/card/res_id:" + value.restaurant.R.res_id}   style={{ textDecoration: 'none' }}>
+            <Link to={"/home/card/res_id:" + value.restaurant.R.res_id} style={{ textDecoration: 'none' }}>
                 <Cardmy index={index} restaurants={this.props.restaurants}></Cardmy>
             </Link>
         );
@@ -26,8 +26,10 @@ class Home extends React.Component{
 
     
     render(){
+      
         return(
             <div>
+                  
             <MyNavBars citySelectedColorChange={()=>this.props.citySelectedColorChange()}></MyNavBars>
             {/* {console.log(this.props.citySelectedColorChange())} */}
             <Container>
