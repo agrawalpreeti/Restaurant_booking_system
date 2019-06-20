@@ -105,7 +105,7 @@ const useStyles = makeStyles(theme => ({
   },
   dropdown: {
     // marginRight: '0%',
-    marginLeft: '5%',
+    marginLeft: '8%',
     backgroundColor: 'white',
     borderRadius: '8px',
     height: '40px !important'
@@ -237,7 +237,7 @@ function MyNavBars(props) {
               </Dropdown>
             {/* </Col> */}
             {/* <Col> */}
-              <div className={classes.search}>
+              {/* <div className={classes.search}>
                 <InputBase
                   placeholder="Search…"
                   classes={{
@@ -249,7 +249,7 @@ function MyNavBars(props) {
               </div>
               <ButtonToolbar>
                 <Button variant="primary">Search</Button>
-              </ButtonToolbar>
+              </ButtonToolbar> */}
             {/* </Col>
             <Col> */}
               <div className={classes.grow} />

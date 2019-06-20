@@ -138,6 +138,7 @@ class Main extends React.Component{
     this.setState({
       db : db
     });
+    this.componentWillMount();
     // console.log(this.state.db)
   }
 
