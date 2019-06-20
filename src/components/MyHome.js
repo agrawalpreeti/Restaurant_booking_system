@@ -20,7 +20,7 @@ class Home extends React.Component {
     cardPrint = () => {
         let cards = [];
         cards = this.props.restaurants.map((value, index) =>
-            <Link to={"/home/card/res_id:" + value.restaurant.R.res_id} style={{ textDecoration: 'none' }}>
+            <Link to={"/home/card/res_id:" + value.restaurant.R.res_id} style={{ textDecoration: 'none', marginBottom: '2%'}}>
                 <Cardmy index={index} restaurants={this.props.restaurants}></Cardmy>
             </Link>
         );
@@ -76,7 +76,7 @@ class Home extends React.Component {
                                             </Dropdown.Menu>
                                         </Dropdown>
                                     </Col>
-                                    <Row style={{ marginTop: '2%' }}>
+                                    <Row style={{ marginTop: '2%'}}>
                                         {this.cardPrint()}
                                     </Row>
                                 </Row>
