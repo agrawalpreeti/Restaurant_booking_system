@@ -110,37 +110,37 @@ class CardContent extends React.Component{
         }
     }
 
-    componentWillMount() {
-      let url = "https://developers.zomato.com/api/v2.1/";
-      //id calculater
-      axios.get(url + this.state.db.restaurantContent.url 
-        + this.props.restId,
-      {
-        headers:{
-          "Accept": "application/json",
-          "user-key": "0c87f14b32add1de8469c4d4cdb376a0 ",
-        }
-      })
-      .then((res)=>{
-        let db = this.state.db;
-        db.restaurantContent.content = res.data
-        this.setState({
-          db : db,
-        });
-        console.log(this.state.db);
-      })
-    }
+    // componentWillMount() {
+    //   let url = "https://developers.zomato.com/api/v2.1/";
+    //   //id calculater
+    //   axios.get(url + this.state.db.restaurantContent.url 
+    //     + this.props.restId,
+    //   {
+    //     headers:{
+    //       "Accept": "application/json",
+    //       "user-key": "0c87f14b32add1de8469c4d4cdb376a0 ",
+    //     }
+    //   })
+    //   .then((res)=>{
+    //     let db = this.state.db;
+    //     db.restaurantContent.content = res.data
+    //     this.setState({
+    //       db : db,
+    //     });
+    //     console.log(this.state.db);
+    //   })
+    // }
 
     render(){
         let modalClose = () => this.setState({ modalShow: false });
 
         return(
             <div>
-                <MyNavBar city={this.props.city}></MyNavBar>
+                <MyNavBar citySelectedColorChange={() => this.props.citySelectedColorChange()}></MyNavBar>
                 <Container>
                     <Row>
                         <Col md={{span:8, offset:1}}>     
-                            <InnerCard style={{position: 'relative'}}></InnerCard>
+                            <InnerCard restaurantInfo={this.props.restaurantInfo} style={{position: 'relative'}}></InnerCard>
                             </Col>
                         <Col md={{ span:3, offset:0}}>
                           <Container>

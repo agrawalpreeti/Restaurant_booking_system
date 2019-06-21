@@ -11,21 +11,55 @@ import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button.js';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar.js';
 import InputBase from '@material-ui/core/InputBase';
+import axios from 'axios';
+import { Route, BrowserRouter as Router } from 'react-router-dom';
+import CardContent from './CardContent';
+
 
 
 
 
 class Home extends React.Component {
-
-    cardPrint = () => {
-        let cards = [];
-        cards = this.props.restaurants.map((value, index) =>
-            <Link to={"/home/card/res_id:" + value.restaurant.R.res_id} style={{ textDecoration: 'none', marginBottom: '2%'}}>
-                <Cardmy index={index} restaurants={this.props.restaurants}></Cardmy>
-            </Link>
-        );
-        return cards;
+    constructor(props){
+        super(props);
+        
     }
+
+    // cardPrint = () => {
+    //     let cards = [];
+    //     cards = this.props.restaurants.map((value, index) =>
+    //         <Link to={"/home/res_id:" + value.restaurant.R.res_id} style={{ textDecoration: 'none', marginBottom: '2%'}}>
+    //             <Cardmy index={index} restaurants={this.props.restaurants} onClick={()=>this.cardClick(value.restaurant.R.res_id)}></Cardmy>
+    //         </Link>
+    //     );
+    //     return cards;
+    // }
+
+    // cardClick = (value) =>{
+    //     this.setState({
+    //         id: value
+    //     });
+    //     let url = "https://developers.zomato.com/api/v2.1/";
+    //     //id calculater
+    //     axios.get(url + "restaurant?res_id=" + this.state.db.id,
+    //     {
+    //       headers:{
+    //         "Accept": "application/json",
+    //         "user-key": "0c87f14b32add1de8469c4d4cdb376a0 ",
+    //       }
+    //     })
+    //     .then((res)=>{
+    //         // <CardContent resData = {res.data}/>
+    //           this.setState({
+    //               db: res.data
+    //           })        
+    //     });
+    // }
+
+
+    componentWillMount() {
+             
+        }
 
 
 
@@ -77,13 +111,16 @@ class Home extends React.Component {
                                         </Dropdown>
                                     </Col>
                                     <Row style={{ marginTop: '2%'}}>
-                                        {this.cardPrint()}
+                                        {this.props.cardPrint()}
                                     </Row>
                                 </Row>
                             </Container>
                         </Col>
                     </Row>
                 </Container>
+                {/* <Router>
+                    <Route exact path={"/home/res_id:" + this.state.id} render={()=> <CardContent resData={this.state.db} citySelectedColorChange={() => this.props.citySelectedColorChange()} />} />        
+                </Router>  */}
             </div>
         );
     }

@@ -1,12 +1,12 @@
 import React from 'react';
 import ControlledCarousel from './components/MainPage.js';
-import { Route, BrowserRouter as Router } from 'react-router-dom';
+import {Link, Route, BrowserRouter as Router } from 'react-router-dom';
 import {LogIn, SignUp} from './components/Loginmy.js';
 import Home from './components/MyHome';
 import CardContent from './components/CardContent';
 import axios from 'axios';
 import {Dropdown} from 'react-bootstrap';
-
+import Cardmy from './components/Cardmy';
 
 
 
@@ -73,7 +73,9 @@ class Main extends React.Component{
                              featured_image: ""
                             }
                       }]
-      }
+      },
+      restaurantInfo: {},
+      resid: ""
     }
   }
 
@@ -117,7 +119,8 @@ class Main extends React.Component{
      });
   //  console.log(this.state.db);
   });
-    
+  // this.cardClick();
+  
   }
 
   citySelectedColorChange = () =>{
@@ -141,6 +144,39 @@ class Main extends React.Component{
     this.componentWillMount();
     // console.log(this.state.db)
   }
+
+  cardPrint = () => {
+    let cards = [];
+    cards = this.state.db.restaurantSearch.restaurants.map((value, index) =>
+        <Link to={"/home/res_id:" + value.restaurant.R.res_id} onClick={()=>this.cardClick(value.restaurant.R.res_id)} style={{ textDecoration: 'none', marginBottom: '2%'}}>
+            <Cardmy index={index} restaurants={this.state.db.restaurantSearch.restaurants} onLoad={()=>this.cardClick(value.restaurant.R.res_id)}></Cardmy>
+        </Link>
+    );
+    return cards;
+  }
+
+  cardClick = (value) =>{
+    let url = "https://developers.zomato.com/api/v2.1/";
+    //id calculater
+    axios.get(url + "restaurant?res_id=" + value,
+    {
+      headers:{
+        "Accept": "application/json",
+        "user-key": "0c87f14b32add1de8469c4d4cdb376a0 ",
+      }
+    })
+    .then((res)=>{
+      let db = this.state.db;
+      db.restaurantInfo = res.data;
+      db.resid = value;
+        // <CardContent resData = {res.data}/>
+          this.setState({
+              db: db
+          })        
+    });
+}
+
+
 
   // componentDidMount(){
   //   let url = "https://developers.zomato.com/api/v2.1/";
@@ -189,14 +225,14 @@ class Main extends React.Component{
             <Route exact path="/" render={()=><ControlledCarousel/>}/>
             <Route path="/login" render={()=><LogIn/>} />
             <Route path="/signup" render={()=><SignUp/>} />
-            <Route exact path="/home" render={()=><Home citySelectedColorChange={()=>this.citySelectedColorChange()} restaurants={this.state.db.restaurantSearch.restaurants} restId={()=>this.restId()}/>} />
+            <Route exact path="/home" render={()=><Home citySelectedColorChange={()=>this.citySelectedColorChange()} cardPrint={()=>this.cardPrint()} restaurants={this.state.db.restaurantSearch.restaurants} restId={()=>this.restId()}/>} />
 
             {/* <Route exact path="/home" render={()=>
             this.state.db.cities.map((value)=>{
               return <CityDropdown city={value} cityNameSelected={this.cityNameSelected(value)}/>
             })}>
             </Route> */}
-            <Route exact path={"/home/card/res_id:" + this.state.db.cityName.id} render={()=> <CardContent cityId={this.state.db.cityName.id} restId={this.props.restId} />} />        
+            <Route exact path={"/home/res_id:" + this.state.db.resid } render={()=> <CardContent citySelectedColorChange={() => this.citySelectedColorChange()} restaurantInfo={this.state.db.restaurantInfo}/>} />        
       </Router>     
       );
   }

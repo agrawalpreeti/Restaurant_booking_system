@@ -52,14 +52,14 @@ function InnerCard(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
-  function handleExpandClick() {
+  function handleExpandClick(props) {
     setExpanded(!expanded);
   }
 
   return (
     <Card className={classes.card}>
       <CardHeader
-        title="Kake Di Hatti"
+        title={props.restaurantInfo.name}
       />
       <CardContent>
       <Container>
@@ -67,7 +67,7 @@ function InnerCard(props) {
     <Col md={{span: 5}}>
         <CardMedia
         className={classes.media}
-        image={demo}
+        image={props.restaurantInfo.thumb}
         title="Paella dish"
       />
       </Col>

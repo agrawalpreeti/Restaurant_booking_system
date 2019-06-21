@@ -54,7 +54,7 @@ function Cardmy(props) {
         <Grid container spacing={2}>
           <Grid item>
             <ButtonBase className={classes.image}>
-              <img className={classes.img} alt="complex" src={props.restaurants[props.index].restaurant.featured_image} />
+              <img className={classes.img} alt="Restaurant Image" src={props.restaurants[props.index].restaurant.featured_image} />
             </ButtonBase>
           </Grid>
           <Grid item xs={12} sm container>
