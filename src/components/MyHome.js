@@ -14,46 +14,20 @@ import InputBase from '@material-ui/core/InputBase';
 
 
 
-
 class Home extends React.Component {
 
     cardPrint = () => {
         let cards = [];
-<<<<<<< HEAD
-        cards = this.props.restaurants.map((value, index)=>
-=======
         cards = this.props.restaurants.map((value, index) =>
->>>>>>> 8ba12376a324de537d172f865114a5e0e486f558
-            <Link to={"/home/card/res_id:" + value.restaurant.R.res_id} style={{ textDecoration: 'none' }}>
-                <Cardmy index={index} restaurants={this.props.restaurants}></Cardmy>
+            <Link to={"/home/card/res_id:" + value.restaurant.R.res_id} style={{ textDecoration: 'none', marginBottom: '2%'}}>
+                <Cardmy index={index} restaurants={this.props.restaurants} onClick={()=>this.cardClick()}></Cardmy>
             </Link>
         );
         return cards;
     }
 
 
-<<<<<<< HEAD
-    
-    render(){
-      
-        return(
-            <div>
-                  
-            <MyNavBars citySelectedColorChange={()=>this.props.citySelectedColorChange()}></MyNavBars>
-            {/* {console.log(this.props.citySelectedColorChange())} */}
-            <Container>
-                <Row>
-                    <Col md={{span:3, offset:0}}>
-                        <PaperSheet></PaperSheet>
-                    </Col>
-                    <Col md={{ span:9, offset:0}} className="templateCard">
-                    <Container>
-                        <Row style={{marginRight:'0%'}}>
-                            <Col md={{span:2, offset:10}}>
-                                <Dropdown className="dropShift">
-                                    <Dropdown.Toggle variant="primary" id="dropdown-basic">
-                                    Sort By
-=======
+
 
     render() {
         return (
@@ -93,7 +67,6 @@ class Home extends React.Component {
                                         <Dropdown className="dropShift">
                                             <Dropdown.Toggle variant="primary" id="dropdown-basic">
                                                 Sort By
->>>>>>> 8ba12376a324de537d172f865114a5e0e486f558
                                     </Dropdown.Toggle>
 
                                             <Dropdown.Menu>
@@ -103,7 +76,7 @@ class Home extends React.Component {
                                             </Dropdown.Menu>
                                         </Dropdown>
                                     </Col>
-                                    <Row style={{ marginTop: '2%' }}>
+                                    <Row style={{ marginTop: '2%'}}>
                                         {this.cardPrint()}
                                     </Row>
                                 </Row>

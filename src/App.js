@@ -115,7 +115,7 @@ class Main extends React.Component{
          db : db,
        });
      });
-  //  console.log(this.state.db);
+  console.log(this.state.db);
   });
     
   }
@@ -139,7 +139,7 @@ class Main extends React.Component{
       db : db
     });
     this.componentWillMount();
-    // console.log(this.state.db)
+     console.log(this.state.db)
   }
 
   // componentDidMount(){
