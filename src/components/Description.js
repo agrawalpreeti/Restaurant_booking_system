@@ -20,8 +20,8 @@ class Description extends React.Component {
           activeKey={this.state.key}
           onSelect={key => this.setState({ key })}
         >
-          <Tab eventKey="home" title="Home">
-              This is BTS
+          <Tab eventKey="review" title="Review"> 
+        
           </Tab>
           <Tab eventKey="profile" title="Profile">
           </Tab>

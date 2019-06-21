@@ -13,30 +13,18 @@ import ButtonToolbar from 'react-bootstrap/ButtonToolbar.js';
 import InputBase from '@material-ui/core/InputBase';
 import axios from 'axios';
 import { Route, BrowserRouter as Router } from 'react-router-dom';
-import CardContent from './CardContent';
 
 
 
-<<<<<<< HEAD
 
+
+       
 
 class Home extends React.Component {
-    constructor(props){
-        super(props);
-        
-=======
-class Home extends React.Component {
 
-    cardPrint = () => {
-        let cards = [];
-        cards = this.props.restaurants.map((value, index) =>
-            <Link to={"/home/card/res_id:" + value.restaurant.R.res_id} style={{ textDecoration: 'none', marginBottom: '2%'}}>
-                <Cardmy index={index} restaurants={this.props.restaurants} onClick={()=>this.cardClick()}></Cardmy>
-            </Link>
-        );
-        return cards;
->>>>>>> 7c23cea6898c7fe2f85ee1716ce9c54e17c5c2a2
-    }
+  
+
+    
 
     // cardPrint = () => {
     //     let cards = [];
@@ -69,11 +57,8 @@ class Home extends React.Component {
     //     });
     // }
 
-
-    componentWillMount() {
-             
-        }
-
+  
+        
 
 
 
@@ -132,9 +117,6 @@ class Home extends React.Component {
                         </Col>
                     </Row>
                 </Container>
-                {/* <Router>
-                    <Route exact path={"/home/res_id:" + this.state.id} render={()=> <CardContent resData={this.state.db} citySelectedColorChange={() => this.props.citySelectedColorChange()} />} />        
-                </Router>  */}
             </div>
         );
     }

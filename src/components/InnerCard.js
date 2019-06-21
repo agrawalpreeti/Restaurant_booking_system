@@ -30,15 +30,8 @@ const useStyles = makeStyles(theme => ({
   media: {
     paddingTop: '56.25%', // 16:9
   },
-  expand: {
-    transform: 'rotate(0deg)',
-    marginLeft: 'auto',
-    transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.shortest,
-    }),
-  },
-  expandOpen: {
-    transform: 'rotate(180deg)',
+  title1: {
+    fontSize: 14,
   },
   avatar: {
     backgroundColor: red[500],
@@ -50,41 +43,40 @@ const useStyles = makeStyles(theme => ({
 
 function InnerCard(props) {
   const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
 
-  function handleExpandClick(props) {
-    setExpanded(!expanded);
-  }
 
   return (
     <Card className={classes.card}>
-      <CardHeader
-        title={props.restaurantInfo.name}
-      />
-      <CardContent>
-      <Container>
-  <Row>
-    <Col md={{span: 5}}>
+     <CardContent>
+        <Typography  className={classes.title1}gutterBottom variant="h5" component="h2" title={props.restaurantInfo.name}>
+        </Typography>
+         <Container>
+        <Row>
+        <Col md={{span: 5}}>
         <CardMedia
         className={classes.media}
         image={props.restaurantInfo.thumb}
-        title="Paella dish"
+      
       />
       </Col>
-    <Col md={{ span: 7 }}>
-        <Typography variant="body2" color="textSecondary">
-          <ul type="none">
-            <li>address(pincode, city, state, ...)</li>
-            <li>phone number</li>
-            <li>rating</li>
-            <li>image</li>
-          </ul>
-        </Typography>
-      </Col>
-  </Row>
+    <Col md={{ span: 6 }}>
+        <Typography color="textSecondary">{props.restaurantInfo.location.address}</Typography>
+             <Typography variant="h5" component="h2">   
+              {"₹"}
+              {props.restaurantInfo.average_cost_for_two}
+              {" for 2(approx)"}</Typography>
+
+             <Typography variant="body2" component="p">{props.restaurantInfo.cuisines}</Typography>
+             <Typography variant="body2" component="p">{props.restaurantInfo.phone_numbers}</Typography>
+             <Typography variant="h5" component="h2">
+              {"(" + props.restaurantInfo.user_rating.aggregate_rating + ")"}
+              <div class="rating1">
+                <span>☆</span>
+              </div>
+              </Typography>
+            </Col>
+             </Row>
   </Container>
-      
-        
       </CardContent>
       <CardActions disableSpacing>
         <IconButton aria-label="Add to favorites">
@@ -93,45 +85,8 @@ function InnerCard(props) {
         <IconButton aria-label="Share">
           <ShareIcon />
         </IconButton>
-        <IconButton
-          className={clsx(classes.expand, {
-            [classes.expandOpen]: expanded,
-          })}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="Show more"
-        >
-          <ExpandMoreIcon />
-        </IconButton>
-      </CardActions>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent>
-          <Typography paragraph>Method:</Typography>
-          <Typography paragraph>
-            Heat 1/2 cup of the broth in a pot until simmering, add saffron and set aside for 10
-            minutes.
-          </Typography>
-          <Typography paragraph>
-            Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over medium-high
-            heat. Add chicken, shrimp and chorizo, and cook, stirring occasionally until lightly
-            browned, 6 to 8 minutes. Transfer shrimp to a large plate and set aside, leaving chicken
-            and chorizo in the pan. Add pimentón, bay leaves, garlic, tomatoes, onion, salt and
-            pepper, and cook, stirring often until thickened and fragrant, about 10 minutes. Add
-            saffron broth and remaining 4 1/2 cups chicken broth; bring to a boil.
-          </Typography>
-          <Typography paragraph>
-            Add rice and stir very gently to distribute. Top with artichokes and peppers, and cook
-            without stirring, until most of the liquid is absorbed, 15 to 18 minutes. Reduce heat to
-            medium-low, add reserved shrimp and mussels, tucking them down into the rice, and cook
-            again without stirring, until mussels have opened and rice is just tender, 5 to 7
-            minutes more. (Discard any mussels that don’t open.)
-          </Typography>
-          <Typography>
-            Set aside off of the heat to let rest for 10 minutes, and then serve.
-          </Typography>
-        </CardContent>
-      </Collapse>
-    </Card>
+    </CardActions>
+     </Card>
   );
 }
 
