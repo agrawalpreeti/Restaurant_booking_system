@@ -117,7 +117,7 @@ class Main extends React.Component{
          db : db,
        });
      });
-  //  console.log(this.state.db);
+  console.log(this.state.db);
   });
   // this.cardClick();
   
@@ -142,7 +142,7 @@ class Main extends React.Component{
       db : db
     });
     this.componentWillMount();
-    // console.log(this.state.db)
+     console.log(this.state.db)
   }
 
   cardPrint = () => {
@@ -233,6 +233,14 @@ class Main extends React.Component{
             })}>
             </Route> */}
             <Route exact path={"/home/res_id:" + this.state.db.resid } render={()=> <CardContent citySelectedColorChange={() => this.citySelectedColorChange()} restaurantInfo={this.state.db.restaurantInfo}/>} />        
+            <Route exact path="/home" render={()=><Home citySelectedColorChange={()=>this.citySelectedColorChange()} restaurants={this.state.db.restaurantSearch.restaurants} restId={()=>this.restId()}/>} />
+{/* 
+             <Route exact path="/home" render={()=>
+            this.state.db.cities.map((value)=>{
+              return <CityDropdown city={value} cityNameSelected={this.cityNameSelected(value)}/>
+            })}>
+            </Route>  */}
+            <Route exact path={"/home/card/res_id:" + this.state.db.cityName.id} render={()=> <CardContent cityId={this.state.db.cityName.id} restId={this.props.restId} />} />        
       </Router>     
       );
   }
