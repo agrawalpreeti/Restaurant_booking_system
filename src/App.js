@@ -157,7 +157,6 @@ class Main extends React.Component{
 
   cardClick = (value) =>{
     let url = "https://developers.zomato.com/api/v2.1/";
-    //id calculater
     axios.get(url + "restaurant?res_id=" + value,
     {
       headers:{
