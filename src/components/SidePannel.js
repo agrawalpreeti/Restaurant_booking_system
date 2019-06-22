@@ -9,7 +9,6 @@ import Button from '@material-ui/core/Button'
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import { fontSize } from '@material-ui/system';
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;

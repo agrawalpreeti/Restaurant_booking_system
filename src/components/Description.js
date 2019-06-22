@@ -21,7 +21,7 @@ class Description extends React.Component {
           onSelect={key => this.setState({ key })}
         >
           <Tab eventKey="review" title="Review"> 
-        
+          restaurantInfo={this.props.restaurantInfo.name} style={{position: 'relative'}}
           </Tab>
           <Tab eventKey="profile" title="Profile">
           </Tab>
