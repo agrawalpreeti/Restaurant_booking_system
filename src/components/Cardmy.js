@@ -27,8 +27,11 @@ const useStyles = makeStyles(theme => ({
   img: {
     margin: 'auto',
     display: 'block',
-    maxWidth: '100%',
-    maxHeight: '100%',
+    maxWidth: '120%',
+   // width:'100%',
+    Height: '100%',
+    height:'100%',
+    borderRadius:'5%',
   },
   card: {
     padding: theme.spacing(2),
@@ -80,7 +83,7 @@ function Cardmy(props) {
             </Grid>
             <Grid item>
               <Typography variant="subtitle1">
-              {"(" + props.restaurants[props.index].restaurant.user_rating.aggregate_rating + ")"}
+              {"(" + props.restaurants[props.index].restaurant.user_rating.aggregate_rating + "/5)"}
               <div class="rating1">
                 <span>☆</span>
               </div>
