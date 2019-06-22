@@ -83,7 +83,7 @@ function Cardmy(props) {
             </Grid>
             <Grid item>
               <Typography variant="subtitle1">
-              {"(" + props.restaurants[props.index].restaurant.user_rating.aggregate_rating + ")"}
+              {"(" + props.restaurants[props.index].restaurant.user_rating.aggregate_rating + "/5)"}
               <div class="rating1">
                 <span>☆</span>
               </div>

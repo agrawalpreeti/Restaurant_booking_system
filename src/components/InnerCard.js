@@ -18,6 +18,7 @@ import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import { borderRadius } from '@material-ui/system';
+import Badge from 'react-bootstrap/Badge'
 
 
 
@@ -73,11 +74,9 @@ function InnerCard(props) {
 
              <Typography variant="body2" component="p"> {"Cuisine: "}{props.restaurantInfo.cuisines}</Typography>
              <Typography variant="body2" component="p"> {"Contacts: "}{props.restaurantInfo.phone_numbers}</Typography>
-             <Typography variant="h5" component="h2">
-              {"(" + props.restaurantInfo.user_rating.aggregate_rating + ")"}
-              <div class="rating1">
-                <span>☆</span>
-              </div>
+             <Typography variant="h5" component="h2"><Badge variant="secondary">
+              {"(" + props.restaurantInfo.user_rating.aggregate_rating + "/5)"}
+              </Badge>
               </Typography>
             </Col>
              </Row>
