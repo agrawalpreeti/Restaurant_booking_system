@@ -67,14 +67,23 @@ export default function PaperSheet() {
   const [open, setOpen] = React.useState(false);
   const [modalStyle] = React.useState(getModalStyle);
 
+  const [open1, setOpen1] = React.useState(false);
+  const [modalStyle1] = React.useState(getModalStyle);
+
   const handleOpen = () => {
     setOpen(true);
+  };
+  const handleOpen1 = () => {
+    setOpen1(true);
   };
 
   const handleClose = () => {
     setOpen(false);
   };
   
+  const handleClose1 = () => {
+    setOpen1(false);
+  };
   const classes = useStyles();
   
   return (
@@ -182,7 +191,7 @@ export default function PaperSheet() {
       </Modal>
     </div>
 
-  <Paper className={classes.root}>
+  
         <Typography variant="h5" component="h3">
           Features
         </Typography>
@@ -202,6 +211,60 @@ export default function PaperSheet() {
                  <li> <input type="checkbox" value="AC"/>Parking</li>
                  <li><input type="checkbox" value="AC"/>Card Accepted</li> 
                   </ul>
+          <Button onClick={handleOpen1}>Show More(40)</Button>
+          <Modal
+           aria-labelledby="simple-modal-title"
+           aria-describedby="simple-modal-description"
+           open={open1}
+           onClose={handleClose1}
+           >
+           <div style={modalStyle1} className={classes.paper2}>
+          <Typography variant="h6" id="modal-title">
+          <div className={classes.root1}>
+           <Container>
+             <Row> 
+             <Col sm>
+             <ul type='none' className="sidePannelul" >
+                  <li> <input type="checkbox" value="AC"/>Air Conditioned</li>
+                  <li><input type="checkbox" value="AC"/>Alcohol Free Bar</li>
+                 <li> <input type="checkbox" value="AC"/>Candle Light Dinner</li>
+                 <li><input type="checkbox" value="AC"/>Cards Accepted</li> 
+                 <li> <input type="checkbox" value="AC"/>DJ</li>
+                  <li><input type="checkbox" value="AC"/>Dance Floor</li>
+                 <li> <input type="checkbox" value="AC"/>Full Bar Available</li>
+                 <li><input type="checkbox" value="AC"/>Games</li> 
+                 </ul>
+                 </Col>
+                 <Col sm>
+                 <ul type='none' className="sidePannelul" >
+                 <li> <input type="checkbox" value="AC"/>Home Delivery</li>
+                  <li><input type="checkbox" value="AC"/>Lift</li>
+                 <li> <input type="checkbox" value="AC"/>Live Performance</li>
+                 <li><input type="checkbox" value="AC"/>Outdoor Seating </li> 
+                 <li> <input type="checkbox" value="AC"/>Parking</li>
+                  <li><input type="checkbox" value="AC"/>Poolside</li>
+                 <li> <input type="checkbox" value="AC"/>Private Dining Available</li>
+                 <li><input type="checkbox" value="AC"/>Roof Top</li>
+                  </ul>
+                 </Col>
+                 <Col sm>
+                 <ul type='none' className="sidePannelul" >
+                 <li><input type="checkbox" value="AC"/>Screening</li> 
+                 <li> <input type="checkbox" value="AC"/>Serves Alcohol</li>
+                  <li><input type="checkbox" value="AC"/>Serves Wine</li>
+                 <li> <input type="checkbox" value="AC"/>Smoking Area</li>
+                 <li><input type="checkbox" value="AC"/>Take Away </li> 
+                 <li> <input type="checkbox" value="AC"/>Wallet Accepted</li>
+                  <li><input type="checkbox" value="AC"/>Wifi</li>
+                  </ul>
+             </Col>
+             </Row>
+             </Container>
+             </div>
+             </Typography>
+            
+             </div>
+             </Modal>
       </Paper>
       <Paper className={classes.root}>
         <Typography variant="h5" component="h3">
@@ -215,7 +278,6 @@ export default function PaperSheet() {
           </ul>
       </Paper>
       </Paper>
-</Paper>
     </div>
   );
 }

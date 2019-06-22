@@ -13,16 +13,13 @@ import ButtonToolbar from 'react-bootstrap/ButtonToolbar.js';
 import InputBase from '@material-ui/core/InputBase';
 import axios from 'axios';
 import { Route, BrowserRouter as Router } from 'react-router-dom';
-import CardContent from './CardContent';
-
-
-
 
 
 class Home extends React.Component {
     constructor(props){
         super(props);
     }
+
 
     // cardPrint = () => {
     //     let cards = [];
@@ -55,11 +52,8 @@ class Home extends React.Component {
     //     });
     // }
 
-
-    componentWillMount() {
-             
-        }
-
+  
+        
 
 
 
@@ -118,9 +112,6 @@ class Home extends React.Component {
                         </Col>
                     </Row>
                 </Container>
-                {/* <Router>
-                    <Route exact path={"/home/res_id:" + this.state.id} render={()=> <CardContent resData={this.state.db} citySelectedColorChange={() => this.props.citySelectedColorChange()} />} />        
-                </Router>  */}
             </div>
         );
     }

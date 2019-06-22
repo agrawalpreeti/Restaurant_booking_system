@@ -69,9 +69,7 @@ function Cardmy(props) {
                 <Typography variant="body2" color="textSecondary">
                   {"Cuisine: "}
                   {props.restaurants[props.index].restaurant.cuisines}<br></br>
-                  {"₹"}
-                  {props.restaurants[props.index].restaurant.average_cost_for_two}
-                  {" for 2(approx)"}
+              
                 </Typography>
               </Grid>
               <Grid item>

@@ -17,6 +17,7 @@ import demo from './Pics/demo.jpg';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
+import './Mycss.css';
 
 
 
@@ -29,6 +30,17 @@ const useStyles = makeStyles(theme => ({
   },
   media: {
     paddingTop: '56.25%', // 16:9
+    // width: '50%',
+    // top: '50%'    
+  },
+  title1: {
+    fontSize: 20,
+  },
+  avatar: {
+    backgroundColor: red[500],
+  },
+  buttonShift: {
+    paddingLeft: '10%', // 16:9
   },
   expand: {
     transform: 'rotate(0deg)',
@@ -40,51 +52,76 @@ const useStyles = makeStyles(theme => ({
   expandOpen: {
     transform: 'rotate(180deg)',
   },
-  avatar: {
-    backgroundColor: red[500],
-  },
-  buttonShift: {
-    paddingLeft: '10%', // 16:9
-  }
 }));
 
 function InnerCard(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
-  function handleExpandClick(props) {
+  function handleExpandClick() {
     setExpanded(!expanded);
   }
 
+  function splitName(){
+    let name = props.restaurantInfo.name.split(',');
+    return name[0];
+  }
+
+  function cuisines(){
+    let cuisine = props.restaurantInfo.cuisines.split(',');
+    let name = cuisine.map((value)=>
+    <li>{value}</li>
+    );
+    return name;
+  }
+
+  function phone_numbers(){
+    let number = props.restaurantInfo.phone_numbers.split(',');
+    let num = number.map((value)=>
+    <li>{value}</li>
+    );
+    return num;
+  }
+
+
   return (
     <Card className={classes.card}>
-      <CardHeader
-        title={props.restaurantInfo.name}
-      />
-      <CardContent>
-      <Container>
-  <Row>
-    <Col md={{span: 5}}>
+     <CardContent>
+        {/* <Typography  className={classes.title1} gutterBottom variant="h3" component="h2"> */}
+        <h3 className="bookMargin">
+        {splitName()}
+      </h3>
+        {/* </Typography> */}
+         <Container>
+        <Row>
+        <Col md={{span: 5}}>
         <CardMedia
         className={classes.media}
         image={props.restaurantInfo.thumb}
-        title="Paella dish"
+      
       />
       </Col>
-    <Col md={{ span: 7 }}>
-        <Typography variant="body2" color="textSecondary">
-          <ul type="none">
-            <li>address(pincode, city, state, ...)</li>
-            <li>phone number</li>
-            <li>rating</li>
-            <li>image</li>
-          </ul>
-        </Typography>
-      </Col>
-  </Row>
+    <Col md={{ span: 5 }}>
+        <Typography color="textSecondary">{props.restaurantInfo.location.address}</Typography>
+             <Typography variant="h5" component="h2" style={{color: '#E3CF06'}}>   
+              {"₹"}
+              {props.restaurantInfo.average_cost_for_two}
+              {" for 2(approx)"}
+              </Typography>
+
+        </Col>
+        <Col md={{ span: 1 }}>
+             {/* <Typography variant="h5" component="h2"> */}
+             <h5>
+             {"(" + props.restaurantInfo.user_rating.aggregate_rating + ")"}
+              <span class="rating1">
+                <span>☆</span>
+              </span>
+              </h5>
+              {/* </Typography> */}
+            </Col>
+             </Row>
   </Container>
-      
-        
       </CardContent>
       <CardActions disableSpacing>
         <IconButton aria-label="Add to favorites">
@@ -106,33 +143,19 @@ function InnerCard(props) {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography paragraph>Method:</Typography>
-          <Typography paragraph>
-            Heat 1/2 cup of the broth in a pot until simmering, add saffron and set aside for 10
-            minutes.
-          </Typography>
-          <Typography paragraph>
-            Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet over medium-high
-            heat. Add chicken, shrimp and chorizo, and cook, stirring occasionally until lightly
-            browned, 6 to 8 minutes. Transfer shrimp to a large plate and set aside, leaving chicken
-            and chorizo in the pan. Add pimentón, bay leaves, garlic, tomatoes, onion, salt and
-            pepper, and cook, stirring often until thickened and fragrant, about 10 minutes. Add
-            saffron broth and remaining 4 1/2 cups chicken broth; bring to a boil.
-          </Typography>
-          <Typography paragraph>
-            Add rice and stir very gently to distribute. Top with artichokes and peppers, and cook
-            without stirring, until most of the liquid is absorbed, 15 to 18 minutes. Reduce heat to
-            medium-low, add reserved shrimp and mussels, tucking them down into the rice, and cook
-            again without stirring, until mussels have opened and rice is just tender, 5 to 7
-            minutes more. (Discard any mussels that don’t open.)
-          </Typography>
-          <Typography>
-            Set aside off of the heat to let rest for 10 minutes, and then serve.
-          </Typography>
+          <h5 style={{color: '#E3CF06'}}>Cuisines:</h5>
+          {/* <Typography variant="body2" component="p"> */}
+          <ul>
+          {cuisines()}
+          </ul>
+          {/* </Typography> */}
+          <h5 style={{color: '#E3CF06'}}>Phone Number(s):</h5>
+          <ul>
+          {phone_numbers()}
+        </ul>
         </CardContent>
       </Collapse>
     </Card>
   );
 }
-
 export default InnerCard;
