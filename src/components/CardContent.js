@@ -16,6 +16,12 @@ import axios from 'axios';
 
 
 class MyVerticallyCenteredModal extends React.Component {
+
+  splitName = () =>{
+    let name = this.props.restaurantInfo.name.split(',');
+    return name[0];
+  }
+
     render() {
       return (
         <Modal
@@ -26,7 +32,7 @@ class MyVerticallyCenteredModal extends React.Component {
         >
           <Modal.Header closeButton>
             <Modal.Title id="contained-modal-title-vcenter" className="bookMargin">
-              Book a table at Kake Di Hatti
+              Book a table at {this.splitName()}
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
@@ -139,7 +145,7 @@ class CardContent extends React.Component{
                 <MyNavBar citySelectedColorChange={() => this.props.citySelectedColorChange()}></MyNavBar>
                 <Container>
                     <Row>
-                        <Col md={{span:8, offset:1}}>     
+                        <Col md={{span:9, offset:0}}>     
                             <InnerCard restaurantInfo={this.props.restaurantInfo} style={{position: 'relative'}}></InnerCard>
                             </Col>
                         <Col md={{ span:3, offset:0}}>
@@ -160,6 +166,7 @@ class CardContent extends React.Component{
                               <MyVerticallyCenteredModal
                               show={this.state.modalShow}
                               onHide={modalClose}
+                              restaurantInfo={this.props.restaurantInfo}
                               />
                               </Col>
                               </Row>

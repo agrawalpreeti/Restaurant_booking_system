@@ -108,7 +108,7 @@ export default function PaperSheet() {
               <li><a href="#">Italian</a></li>
               </ul>
        <div>
-      <Button onClick={handleOpen}>Show More(40)</Button>
+      <Button onClick={handleOpen}>Show More(70)</Button>
       <Modal
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
@@ -120,65 +120,98 @@ export default function PaperSheet() {
           <div className={classes.root1}>
            <Container>
              <Row> 
-             <Col sm>
+             <Col span={{sm:3}}>
              <ul type='none' className="sidePannelul" >
-              <li><a href="#">Afghani</a></li>
+              <li><a href="#">Afghan</a></li>
               <li><a href="#">American  </a></li>
+              <li><a href="#">Arabian  </a></li>
               <li><a href="#">Asian</a></li>
+              <li><a href="#">Awadhi  </a></li>
+              <li><a href="#">BBQ  </a></li>
               <li><a href="#">Bakery</a></li>
-              <li><a href="#">Barbecue</a></li>
+              <li><a href="#">Bar Food  </a></li>
+              <li><a href="#">Belgian </a></li>
+              <li><a href="#">Beverages  </a></li>
               <li><a href="#">Biryani</a></li>
               <li><a href="#">Burger</a></li>
+              <li><a href="#">Burmese  </a></li>
+              <li><a href="#">Cafe </a></li>
+              <li><a href="#">Cafe Food </a></li>
               <li><a href="#">Chinese</a></li>
               <li><a href="#">Coffee</a></li>
               <li><a href="#">Continental</a></li>
               <li><a href="#">Desserts</a></li>
           </ul> 
              </Col>
-               <Col sm>
+               <Col span={{sm:3}}>
                <ul type='none' className="sidePannelul" >
             
               <li><a href="#">European</a></li>
+              <li><a href="#">Falafel  </a></li>
               <li><a href="#">Fast Food</a></li>
               <li><a href="#">Finger Food</a></li>
+              <li><a href="#">Fish and Chips  </a></li>
+              <li><a href="#">Frozen Yogurt</a></li>
               <li><a href="#">French</a></li>
               <li><a href="#">Fusion</a></li>
+              <li><a href="#">Goan</a></li>
               <li><a href="#">Gujarati</a></li>
               <li><a href="#">Health Food</a></li>
+              <li><a href="#">Hyderabadi</a></li>
               <li><a href="#">Ice Cream</a></li>
-              <li><a href="#">Indian Cuisine</a></li>
+              <li><a href="#">Indian </a></li>
+              <li><a href="#">Iranian</a></li>
+              <li><a href="#">Isralien</a></li>
               <li><a href="#">Italian</a></li>
-              
               <li><a href="#">Japanese</a></li>
+              <li><a href="#">Juices</a></li>
+         
            </ul>
                </Col>
-               <Col sm> <ul type='none' className="sidePannelul" >
-            
-              <li><a href="#">Juice</a></li>
-              <li><a href="#">Kashmiri</a></li>
-              <li><a href="#">Lebanese</a></li>
-              <li><a href="#">Lucknowi</a></li>
-              <li><a href="#">Mediterranean</a></li>
-              <li><a href="#">Mexican</a></li>
-              <li><a href="#">Middle Eastern</a></li>
-              <li><a href="#">Mithai</a></li>
-              <li><a href="#">Modern Indian</a></li>
-              <li><a href="#">Mughlai</a></li>
-              <li><a href="#">Multi-Cuisine</a></li>
-          </ul></Col>
-          <Col sm>
+               
+          <Col span={{sm:3}}>
             
           <ul type='none' className="sidePannelul" >
-        
-           
-              <li><a href="#">North Indian</a></li>
-              <li><a href="#">Pizza</a></li>
-              <li><a href="#">Rajasthani</a></li>
+          <li><a href="#">Kashmiri</a></li>
+         <li><a href="#">Kebab</a></li>
+          <li><a href="#">Korean</a></li>
+          <li><a href="#">Lebanese</a></li>
+          <li><a href="#">Lucknowi</a></li>
+          <li><a href="#">Maharashtrian</a></li>
+          <li><a href="#">Mediterranean</a></li>
+          <li><a href="#">Mexican</a></li>
+          <li><a href="#">Mithai</a></li>
+          <li><a href="#">Mordern Austalian</a></li>
+          <li><a href="#">Mordern Indian</a></li>
+          <li><a href="#">Momos</a></li>
+          <li><a href="#">Mughlai</a></li>
+          <li><a href="#">Multi Cuisine</a></li>
+          <li><a href="#">North Indian</a></li>
+          <li><a href="#">Paan</a></li>
+          <li><a href="#">Pizza</a></li>
+          <li><a href="#">Portuguese</a></li>
+  
+         
+               </ul>
+               </Col>
+           <Col span={{sm:3}}>
+                 <ul type='none' className="sidePannelul">
+                 <li><a href="#">Rajasthani</a></li>
+                 <li><a href="#">Raw Meats</a></li>
+              <li><a href="#">Roast Chicken</a></li>
+              <li><a href="#">Rolls</a></li>
+              <li><a href="#">Salad</a></li>
+              <li><a href="#">Sandwich</a></li>
+              <li><a href="#">Seafood</a></li>
               <li><a href="#">Shakes</a></li>
+              <li><a href="#">Sindhi</a></li>
               <li><a href="#">South Indian</a></li>
+              <li><a href="#">Spanish</a></li>
               <li><a href="#">Street Food </a></li>
+              <li><a href="#">Sushi</a></li>
               <li><a href="#">Tea</a></li>
               <li><a href="#">Thai</a></li>
+              <li><a href="#">Turkish</a></li>
               <li><a href="#">Waffle</a></li>
                </ul>
           </Col>
@@ -205,8 +238,8 @@ export default function PaperSheet() {
             />
           </div>
           <ul type='none' className="sidePannelul" >   {/*  For loop by api calling */}
-                 <li> <input type="checkbox" value="AC"/>AC</li>
-                  <li><input type="checkbox" value="AC"/>Non AC</li>
+                 <li> <input type="checkbox" value="AC"/>Air Conditioned</li>
+                  <li><input type="checkbox" value="AC"/>Games</li>
                  <li> <input type="checkbox" value="AC"/>Parking</li>
                  <li><input type="checkbox" value="AC"/>Card Accepted</li> 
                   </ul>

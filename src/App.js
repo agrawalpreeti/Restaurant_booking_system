@@ -173,8 +173,7 @@ class Main extends React.Component{
       db.resid = value;
         // <CardContent resData = {res.data}/>
           this.setState({
-              db: db
-          })        
+              db: db })        
     });
 }
    
