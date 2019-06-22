@@ -17,6 +17,7 @@ import demo from './Pics/demo.jpg';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
+import { borderRadius } from '@material-ui/system';
 
 
 
@@ -29,6 +30,9 @@ const useStyles = makeStyles(theme => ({
   },
   media: {
     paddingTop: '56.25%', // 16:9
+    width: '105%',
+    height: '90%',
+    borderRadius:'5%'
   },
   title1: {
     fontSize: 14,
@@ -48,8 +52,8 @@ function InnerCard(props) {
   return (
     <Card className={classes.card}>
      <CardContent>
-        <Typography  className={classes.title1}gutterBottom variant="h5" component="h2" title={props.restaurantInfo.name}>
-        </Typography>
+     <Typography   gutterBottom variant="h5" component="h5">{props.restaurantInfo.name}
+        </Typography><br></br>
          <Container>
         <Row>
         <Col md={{span: 5}}>
@@ -60,14 +64,15 @@ function InnerCard(props) {
       />
       </Col>
     <Col md={{ span: 6 }}>
+    
         <Typography color="textSecondary">{props.restaurantInfo.location.address}</Typography>
-             <Typography variant="h5" component="h2">   
+             <Typography variant="h6" component="h6">   
               {"₹"}
               {props.restaurantInfo.average_cost_for_two}
               {" for 2(approx)"}</Typography>
 
-             <Typography variant="body2" component="p">{props.restaurantInfo.cuisines}</Typography>
-             <Typography variant="body2" component="p">{props.restaurantInfo.phone_numbers}</Typography>
+             <Typography variant="body2" component="p"> {"Cuisine: "}{props.restaurantInfo.cuisines}</Typography>
+             <Typography variant="body2" component="p"> {"Contacts: "}{props.restaurantInfo.phone_numbers}</Typography>
              <Typography variant="h5" component="h2">
               {"(" + props.restaurantInfo.user_rating.aggregate_rating + ")"}
               <div class="rating1">

@@ -27,8 +27,11 @@ const useStyles = makeStyles(theme => ({
   img: {
     margin: 'auto',
     display: 'block',
-    maxWidth: '100%',
-    maxHeight: '100%',
+    maxWidth: '120%',
+   // width:'100%',
+    Height: '100%',
+    height:'100%',
+    borderRadius:'5%',
   },
   card: {
     padding: theme.spacing(2),
