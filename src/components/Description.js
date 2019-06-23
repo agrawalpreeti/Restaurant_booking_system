@@ -3,6 +3,7 @@ import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 import './Mycss.css';
 import { TabPane, TabContainer } from 'react-bootstrap';
+import { fontSize } from '@material-ui/system';
 
 
 
@@ -13,21 +14,39 @@ class Description extends React.Component {
         key: 'home',
       };
     }
-    // reviews = () => {
-    //  let rev=[]; 
-    //  rev= this.props.restaurantInfo.all_reviews.reviews.map((value, index) =>
-    //  <li>{value}</li>
-    //  );
-    //  return rev
-    // }
 
-   phone_numbers = () =>{
-      let number = this.props.restaurantInfo.phone_numbers.split(',');
-      let num = number.map((value)=>
-      <li>{value}</li>
-      );
-      return num;
+    reviews = () => {
+     let rev=[]; 
+     rev = this.props.restaurantInfo.all_reviews.reviews.map((value) =>
+     <li style={{marginTop: '2%'}}>
+        <h4>
+          {value.review.user.name}
+        </h4>
+        <p>
+          {"(" + value.review.review_time_friendly + ")"}
+        </p>
+        <img  class="profile" alt="Profile pic" src={value.review.user.profile_image}></img>
+        <span style={{marginRight: '0%'}} class="rating1">
+          <span>☆</span>
+        </span>
+        <p style={{marginRight: '0%'}}>{"(" + value.review.rating+"/5)"}</p>
+        <em>
+        <p style={(value.review.rating>3) ? {fontSize:'20px', color: 'green'} : ((value.review.rating=3) ? {fontSize:'20px', color: '#C6C000'} : {fontSize:'20px', color: 'red'})}>
+          {value.review.rating_text}</p>
+          {value.review.review_text}
+        </em>
+      </li>
+            );
+     return rev;
     }
+
+  //  phone_numbers = () =>{
+  //     let number = this.props.restaurantInfo.phone_numbers.split(',');
+  //     let num = number.map((value)=>
+  //     <li>{value}</li>
+  //     );
+  //     return num;
+  //   }
   
     render() {
       return (
@@ -36,22 +55,16 @@ class Description extends React.Component {
           activeKey={this.state.key}
           onSelect={key => this.setState({ key })}
         >
-          <Tab eventKey="review" title="Review"> <br></br>
-          <b> {this.props.restaurantInfo.all_reviews.reviews[0].review.user.name}</b><br></br>
-
-          <img  class="profile" alt="Profile pic" src={this.props.restaurantInfo.all_reviews.reviews[0].review.user.profile_image} ></img><br></br>
-          {"Rating : "}
-         {this.props.restaurantInfo.all_reviews.reviews[0].review.rating+"/5"}
-        <strong> {this.props.restaurantInfo.all_reviews.reviews[0].review.rating_text}</strong>
-         <br></br>
-          <i>{this.props.restaurantInfo.all_reviews.reviews[0].review.review_text}</i><br></br>
-           {this.props.restaurantInfo.all_reviews.reviews[0].review.review_time_friendly}
-          
+          <Tab eventKey="review" title="Reviews"> <br></br>
+          <ul>
+            {this.reviews()}
+          </ul>
           </Tab>
-          <Tab eventKey="profile" title="Profile">
+          <Tab eventKey="pictures" title="Pictures">
           </Tab>
-          <Tab eventKey="contact" title="Contact"><br></br>
-          {this.phone_numbers()}
+          <Tab eventKey="menu" title="Menu"><br></br>
+          </Tab>
+          <Tab eventKey="direction" title="Direction"><br></br>
           </Tab>
         </Tabs>
       );

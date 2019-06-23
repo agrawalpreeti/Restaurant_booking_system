@@ -88,11 +88,13 @@ export default function PaperSheet(props) {
     setOpen1(false);
   };
 
+  let flag = false;
+
   function cuisinModel(){
     let parent = [];
     let child = [];
     let len = (props.cuisinPrint()).length;
-    for(let i=3; i<len; i+=10){
+    for(let i=0; i<len; i+=10){
       if((i+10)<=len)
       {
           for(let j=0; j<10; ++j){
@@ -117,6 +119,30 @@ export default function PaperSheet(props) {
     return parent;
   }
 
+//   function searchCuisinChange(event){
+//     console.log(event.target.value);
+//     let i = event.target.value;
+//     if(i.trim() === ""){
+//       flag = false;
+//     }
+//     let arr = [];  
+
+//     if(i.trim() !== "")
+//     {
+//       flag = true;
+//         this.props.cuisines.map((value, index)=>{
+//             let name = value.cuisine.cuisine_name.split(' ');
+//             name.map((val)=>{
+//                 if(val.toUpperCase() === i.toUpperCase()){
+//                     arr.push((props.cuisinPrint())[index]);
+//                 }
+//             });
+//             })
+//     }
+//     return arr;
+//  }
+
+
   const classes = useStyles();
   
   return (
@@ -133,6 +159,7 @@ export default function PaperSheet(props) {
                 root: classes.inputRoot,
                 input: classes.inputInput,
               }}
+              // onChange={(event)=>searchCuisinChange()}
               inputProps={{ 'aria-label': 'Search' }}
             />
           </div>
@@ -154,7 +181,8 @@ export default function PaperSheet(props) {
           <div className={classes.root1}>
            <Container>
              <Row> 
-               {cuisinModel()}
+               {/* {flag ? <ul type='none' className="sidePannelul">{searchCuisinChange()}</ul> : cuisinModel()} */}
+            {cuisinModel()}
             </Row>
              </Container>
        </div>

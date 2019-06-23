@@ -78,7 +78,8 @@ class Main extends React.Component{
       },
       restaurantInfo: {},
       resid: "",
-      cuisines: []
+      cuisines: [],
+      cuisine_selected: ""
     }
   }
 
@@ -200,13 +201,16 @@ cuisinPrint = () =>{
   // this.componentWillMount();
   let cuisin = [];
   cuisin = this.state.db.cuisines.map((value)=>
-    <li><a href="#">{value.cuisine.cuisine_name}</a></li>
+    <li><a href="#" onClick={()=>this.cuisinClick(value.cuisine.cuisine_name)}>{value.cuisine.cuisine_name}</a></li>
   );
   return cuisin;
 }
 
-cuisinClick = () =>{
-
+cuisinClick = (value) =>{
+  this.setState({
+    cuisine_selected: value
+  });
+  // return this.state.cuisine_selected;
 }
    
 
@@ -253,11 +257,10 @@ cuisinClick = () =>{
            <Link to="/signup"></Link>
            <Link to="/home"></Link>
            <Link to="/home/card"></Link> */}
-
             <Route exact path="/" render={()=><ControlledCarousel/>}/>
             <Route path="/login" render={()=><LogIn/>} />
             <Route path="/signup" render={()=><SignUp/>} />
-            <Route exact path="/home" render={()=><Home citySelectedColorChange={()=>this.citySelectedColorChange()} cardPrint={()=>this.cardPrint()} restaurants={this.state.db.restaurantSearch.restaurants} cuisinPrint={()=>this.cuisinPrint()}/>} />
+            <Route exact path="/home" render={()=><Home citySelectedColorChange={()=>this.citySelectedColorChange()} cardPrint={()=>this.cardPrint()} restaurants={this.state.db.restaurantSearch.restaurants} cuisinPrint={()=>this.cuisinPrint()} cuisines={this.state.db.cuisines}/>} cuisine_selected={this.state.db.cuisine_selected} />
 
             {/* <Route exact path="/home" render={()=>
             this.state.db.cities.map((value)=>{

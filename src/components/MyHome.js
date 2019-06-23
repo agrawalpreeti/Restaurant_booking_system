@@ -22,7 +22,8 @@ class Home extends React.Component {
             i: "",
             // cardPrint: this.props.cardPrint(),
             flag: false,
-            search_card : []
+            search_card : [],
+            flag2: false
         }
     }
 
@@ -69,6 +70,36 @@ class Home extends React.Component {
         }
     }
 
+    cuisinSort = () =>{
+        // this.setState({
+        //     search_card: [],
+        // })
+        this.state.flag2 = true;
+        let arr = [];
+            arr.push(
+                <ButtonToolbar>
+                    <Button onClick={()=>this.setState({flag2: false})} variant="primary" style={{borderRadius: '0rem 0.25rem 0.25rem 0rem !important', marginBottom: '1% !important', marginLeft:'2% !important'}}>Refresh</Button>
+                </ButtonToolbar>
+                )
+            this.props.restaurants.map((value, index)=>{
+                let name = value.restaurant.cuisines.split(' ');
+                // name = name.split('-');
+                // let name = name1.split('-');
+                name.map((val)=>{
+                    // let valu = val.split("'");
+                    // valu = valu[0];
+                    if(val.toUpperCase() === this.props.cuisine_selected.toUpperCase()){
+                        // console.log("restaurant found");
+                        arr.push((this.props.cardPrint())[index]);
+                    }
+                });
+                })
+            // console.log(arr);
+            this.setState({
+                search_card: arr,
+            })
+    }
+
     render() {
         return (
             <div>
@@ -77,7 +108,7 @@ class Home extends React.Component {
                 <Container>
                     <Row>
                         <Col md={{ span: 3, offset: 0 }}>
-                            <PaperSheet cuisinPrint={()=>this.props.cuisinPrint()}></PaperSheet>
+                            <PaperSheet cuisinPrint={()=>this.props.cuisinPrint()} cuisines={this.props.cuisines}></PaperSheet>
                         </Col>
                         <Col md={{ span: 9, offset: 0 }} className="templateCard">
                             <Container>
@@ -113,7 +144,7 @@ class Home extends React.Component {
                                         </Dropdown>
                                     </Col>
                                     <Row style={{ marginTop: '2%'}}>
-                                        {this.state.flag ? this.state.search_card : this.props.cardPrint()}
+                                        {this.state.flag ? this.state.search_card : (this.state.flag2 ? this.state.search_card : this.props.cardPrint())}
                                     </Row>
                                 </Row>
                             </Container>
