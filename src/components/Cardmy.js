@@ -30,7 +30,7 @@ const useStyles = makeStyles(theme => ({
     maxWidth: '120%',
    width:'100%',
     // Height: '100%',
-    height:'100%',
+    height:'90%',
     objectFit: 'cover',
     borderRadius:'5%',
   },
