@@ -65,7 +65,7 @@ class Home extends React.Component {
                 <Container>
                     <Row>
                         <Col md={{ span: 3, offset: 0 }}>
-                            <PaperSheet></PaperSheet>
+                            <PaperSheet cuisinPrint={()=>this.props.cuisinPrint()}></PaperSheet>
                         </Col>
                         <Col md={{ span: 9, offset: 0 }} className="templateCard">
                             <Container>

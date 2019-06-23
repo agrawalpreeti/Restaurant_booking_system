@@ -35,8 +35,8 @@ const useStyles = makeStyles(theme => ({
   },
   root1: {
     flexGrow: 1,
-    display:"inline !important",
-    fontSize: "15px",
+    display:"flex !important",
+    fontSize: "13px",
     align: "center",
   },
  
@@ -52,17 +52,20 @@ const useStyles = makeStyles(theme => ({
 
 
   paper2: {
+    alignItems: 'center',
     position: 'absolute',
-    width: 800,
+    display: 'flex',
+    width: '1000px',
+    // height: '200px',
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[5],
     padding: theme.spacing(4),
     outline: 'none',
-    display:"inline !important"
+    // display:"inline !important"
   },
 }));
 
-export default function PaperSheet() {
+export default function PaperSheet(props) {
 
   const [open, setOpen] = React.useState(false);
   const [modalStyle] = React.useState(getModalStyle);
@@ -84,6 +87,36 @@ export default function PaperSheet() {
   const handleClose1 = () => {
     setOpen1(false);
   };
+
+  function cuisinModel(){
+    let parent = [];
+    let child = [];
+    let len = (props.cuisinPrint()).length;
+    for(let i=3; i<len; i+=10){
+      if((i+10)<=len)
+      {
+          for(let j=0; j<10; ++j){
+          child.push(<li style={{whiteSpace: 'nowrap'}}>{(props.cuisinPrint())[i+j]}</li>);
+        }
+      }
+      else
+      {
+          for(let j=0; j<=(len-i); ++j){
+          child.push(<li style={{whiteSpace: 'nowrap'}}>{(props.cuisinPrint())[i+j]}</li>);
+        }
+      }
+        parent.push(
+          <Col sm>
+            <ul type='none' className="sidePannelul">
+              {child}   
+            </ul>
+          </Col> 
+        );
+        child = [];
+    }
+    return parent;
+  }
+
   const classes = useStyles();
   
   return (
@@ -104,12 +137,12 @@ export default function PaperSheet() {
             />
           </div>
           <ul type='none' className="sidePannelul" > 
-              <li><a href="#">Chinese</a></li>
-              <li><a href="#">South Indian</a></li>
-              <li><a href="#">Italian</a></li>
-              </ul>
+              {(props.cuisinPrint())[0]}
+              {(props.cuisinPrint())[1]}
+              {(props.cuisinPrint())[2]}
+          </ul>
        <div>
-      <Button onClick={handleOpen}>Show More(40)</Button>
+      <Button onClick={handleOpen}>{"Show More(" + ((props.cuisinPrint()).length - 3) + ")"}</Button>
       <Modal
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
@@ -121,68 +154,7 @@ export default function PaperSheet() {
           <div className={classes.root1}>
            <Container>
              <Row> 
-             <Col sm>
-             <ul type='none' className="sidePannelul" >
-              <li><a href="#">Afghani</a></li>
-              <li><a href="#">American  </a></li>
-              <li><a href="#">Asian</a></li>
-              <li><a href="#">Bakery</a></li>
-              <li><a href="#">Barbecue</a></li>
-              <li><a href="#">Biryani</a></li>
-              <li><a href="#">Burger</a></li>
-              <li><a href="#">Chinese</a></li>
-              <li><a href="#">Coffee</a></li>
-              <li><a href="#">Continental</a></li>
-              <li><a href="#">Desserts</a></li>
-          </ul> 
-             </Col>
-               <Col sm>
-               <ul type='none' className="sidePannelul" >
-            
-              <li><a href="#">European</a></li>
-              <li><a href="#">Fast Food</a></li>
-              <li><a href="#">Finger Food</a></li>
-              <li><a href="#">French</a></li>
-              <li><a href="#">Fusion</a></li>
-              <li><a href="#">Gujarati</a></li>
-              <li><a href="#">Health Food</a></li>
-              <li><a href="#">Ice Cream</a></li>
-              <li><a href="#">Indian Cuisine</a></li>
-              <li><a href="#">Italian</a></li>
-              
-              <li><a href="#">Japanese</a></li>
-           </ul>
-               </Col>
-               <Col sm> <ul type='none' className="sidePannelul" >
-            
-              <li><a href="#">Juice</a></li>
-              <li><a href="#">Kashmiri</a></li>
-              <li><a href="#">Lebanese</a></li>
-              <li><a href="#">Lucknowi</a></li>
-              <li><a href="#">Mediterranean</a></li>
-              <li><a href="#">Mexican</a></li>
-              <li><a href="#">Middle Eastern</a></li>
-              <li><a href="#">Mithai</a></li>
-              <li><a href="#">Modern Indian</a></li>
-              <li><a href="#">Mughlai</a></li>
-              <li><a href="#">Multi-Cuisine</a></li>
-          </ul></Col>
-          <Col sm>
-            
-          <ul type='none' className="sidePannelul" >
-        
-           
-              <li><a href="#">North Indian</a></li>
-              <li><a href="#">Pizza</a></li>
-              <li><a href="#">Rajasthani</a></li>
-              <li><a href="#">Shakes</a></li>
-              <li><a href="#">South Indian</a></li>
-              <li><a href="#">Street Food </a></li>
-              <li><a href="#">Tea</a></li>
-              <li><a href="#">Thai</a></li>
-              <li><a href="#">Waffle</a></li>
-               </ul>
-          </Col>
+               {cuisinModel()}
             </Row>
              </Container>
        </div>

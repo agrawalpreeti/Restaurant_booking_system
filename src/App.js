@@ -79,7 +79,8 @@ class Main extends React.Component{
                       }]
       },
       restaurantInfo: {},
-      resid: ""
+      resid: "",
+      cuisines: []
     }
   }
 
@@ -126,12 +127,30 @@ class Main extends React.Component{
        this.setState({
          db : db,
        });
-     });
+     })
+    })
+     .then((res)=>{
+      axios.get(url + "cuisines?city_id=" + this.state.db.cityName.id,
+       {
+         headers:{
+           "Accept": "application/json",
+           "user-key": "0c87f14b32add1de8469c4d4cdb376a0 ",
+         }
+       })
+       .then((res)=>{
+         let db = this.state.db;
+         db.cuisines = res.data.cuisines.map((value,index)=>
+           value
+         );
+         this.setState({
+           db : db,
+         });
+       });
   console.log(this.state.db);
   });
   // this.cardClick();
-  
-  }
+
+}
 
   citySelectedColorChange = () =>{
     let dropdownList = [];
@@ -188,6 +207,19 @@ class Main extends React.Component{
     // console.log(this.state.db);
     // console.log(unlisten())
 }
+
+cuisinPrint = () =>{
+  // this.componentWillMount();
+  let cuisin = [];
+  cuisin = this.state.db.cuisines.map((value)=>
+    <li><a href="#">{value.cuisine.cuisine_name}</a></li>
+  );
+  return cuisin;
+}
+
+cuisinClick = () =>{
+
+}
    
 
   // componentDidMount(){
@@ -239,7 +271,7 @@ class Main extends React.Component{
             <Route exact path="/" render={()=><ControlledCarousel/>}/>
             <Route path="/login" render={()=><LogIn/>} />
             <Route path="/signup" render={()=><SignUp/>} />
-            <Route exact path="/home" render={()=><Home citySelectedColorChange={()=>this.citySelectedColorChange()} cardPrint={()=>this.cardPrint()} restaurants={this.state.db.restaurantSearch.restaurants} restId={()=>this.restId()}/>} />
+            <Route exact path="/home" render={()=><Home citySelectedColorChange={()=>this.citySelectedColorChange()} cardPrint={()=>this.cardPrint()} restaurants={this.state.db.restaurantSearch.restaurants} cuisinPrint={()=>this.cuisinPrint()}/>} />
 
             {/* <Route exact path="/home" render={()=>
             this.state.db.cities.map((value)=>{

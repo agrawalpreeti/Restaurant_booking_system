@@ -28,9 +28,10 @@ const useStyles = makeStyles(theme => ({
     margin: 'auto',
     display: 'block',
     maxWidth: '120%',
-   // width:'100%',
-    Height: '100%',
+   width:'100%',
+    // Height: '100%',
     height:'100%',
+    objectFit: 'cover',
     borderRadius:'5%',
   },
   card: {
