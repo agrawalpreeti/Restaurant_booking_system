@@ -26,10 +26,10 @@ class Description extends React.Component {
           {"(" + value.review.review_time_friendly + ")"}
         </p>
         <img  class="profile" alt="Profile pic" src={value.review.user.profile_image}></img>
-        <span style={{marginRight: '0%'}} class="rating1">
+        <span style={{marginLeft: '60%'}}>{"(" + value.review.rating+"/5)"}</span>
+        <span style={{marginLeft: '60%'}} class="rating1">
           <span>☆</span>
         </span>
-        <p style={{marginRight: '0%'}}>{"(" + value.review.rating+"/5)"}</p>
         <em>
         <p style={(value.review.rating>3) ? {fontSize:'20px', color: 'green'} : ((value.review.rating=3) ? {fontSize:'20px', color: '#C6C000'} : {fontSize:'20px', color: 'red'})}>
           {value.review.rating_text}</p>
@@ -38,6 +38,14 @@ class Description extends React.Component {
       </li>
             );
      return rev;
+    }
+
+    photos = () =>{
+      let pics = [];
+      pics = this.props.restaurantInfo.photos.map((value)=>
+        <a href={value.photo.url} target= '_blank'><img style={{width:'100px', height:'100px', objectFit: 'cover'}} src={value.photo.url} alt="restaurant pics"/></a>
+      );
+      return pics;
     }
 
   //  phone_numbers = () =>{
@@ -61,6 +69,7 @@ class Description extends React.Component {
           </ul>
           </Tab>
           <Tab eventKey="pictures" title="Pictures">
+            {this.photos()}
           </Tab>
           <Tab eventKey="menu" title="Menu"><br></br>
           </Tab>
