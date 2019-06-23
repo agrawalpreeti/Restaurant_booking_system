@@ -64,7 +64,7 @@ function Cardmy(props) {
           <Grid item xs={12} sm container>
             <Grid item xs container direction="column" spacing={2}>
               <Grid item xs>
-                <Typography gutterBottom variant="subtitle1">
+                <Typography style={{color: '#002AA3'}} gutterBottom variant="h6">
                   {props.restaurants[props.index].restaurant.name}
                 </Typography>
                 <Typography variant="body2" gutterBottom>
@@ -73,7 +73,6 @@ function Cardmy(props) {
                 <Typography variant="body2" color="textSecondary">
                   {"Cuisine: "}
                   {props.restaurants[props.index].restaurant.cuisines}<br></br>
-              
                 </Typography>
               </Grid>
               <Grid item>
