@@ -71,7 +71,7 @@
 
 .bookMargin{
   font-family: 'Cinzel', serif !important;
-  color: #0222B2;
+  color: black;
 }
 
 /* .description{
@@ -169,6 +169,11 @@ html {
    content: "\2605";
    position: absolute;
    color: yellow;
+}
+
+.profile{
+  width: '30%';
+  height: '30%'
 }
 
 

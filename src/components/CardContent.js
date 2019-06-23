@@ -177,7 +177,7 @@ class CardContent extends React.Component{
                     </Row>
                     <Row>
                     <Col style={{position: 'relative'}} md={{offset:0.1, span:8}}>     
-                        <Description></Description>
+                        <Description restaurantInfo={this.props.restaurantInfo} style={{position: 'relative'}}></Description>
                       </Col>
                     </Row>
                     </Container>

@@ -7,10 +7,8 @@ import CardContent from './components/CardContent';
 import axios from 'axios';
 import {Dropdown} from 'react-bootstrap';
 import Cardmy from './components/Cardmy';
-// import History from 'react-history/BrowserHistory'
-// import history from './../node_modules/history/cjs/history.js';
-import { createBrowserHistory } from 'history';
-const history = createBrowserHistory();
+
+
 
 
 
@@ -87,12 +85,6 @@ class Main extends React.Component{
 
 
   componentWillMount() {
-
-    history.listen((location, action) => {
-      // location is an object like window.location
-      console.log(action, location.pathname, location.state);
-    });
-
     let url = "https://developers.zomato.com/api/v2.1/";
     //id calculater
     axios.get(url + "cities?q=" + this.state.db.cityName.name,
@@ -177,17 +169,16 @@ class Main extends React.Component{
   cardPrint = () => {
     let cards = [];
     cards = this.state.db.restaurantSearch.restaurants.map((value, index) =>
-       <Link to={"/home/res_id:" + value.restaurant.R.res_id} onClick={()=>this.cardClick(value.restaurant.R.res_id)} style={{ textDecoration: 'none', marginBottom: '2%'}}>
-            <Cardmy index={index} restaurants={this.state.db.restaurantSearch.restaurants}></Cardmy>
+        <Link to={"/home/res_id:" + value.restaurant.R.res_id} onClick={()=>this.cardClick(value.restaurant.R.res_id)} style={{ textDecoration: 'none', marginBottom: '2%'}}>
+            <Cardmy index={index} restaurants={this.state.db.restaurantSearch.restaurants} onLoad={()=>this.cardClick(value.restaurant.R.res_id)}></Cardmy>
         </Link>
-    
     );
     return cards;
   }
 
   cardClick = (value) =>{
-    history.push("/home/res_id:" + value);
     let url = "https://developers.zomato.com/api/v2.1/";
+    //id calculater
     axios.get(url + "restaurant?res_id=" + value,
     {
       headers:{
@@ -201,11 +192,8 @@ class Main extends React.Component{
       db.resid = value;
         // <CardContent resData = {res.data}/>
           this.setState({
-              db: db
-          })        
+              db: db })        
     });
-    // console.log(this.state.db);
-    // console.log(unlisten())
 }
 
 cuisinPrint = () =>{
@@ -256,10 +244,8 @@ cuisinClick = () =>{
   //   console.log(value);
   // }
 
-  
-
   render(){
-    // console.log(this.props.restId);
+    console.log(this.props.restId);
     return(
       <Router>
            {/* <Link to="/"></Link>
@@ -286,11 +272,7 @@ cuisinClick = () =>{
               return <CityDropdown city={value} cityNameSelected={this.cityNameSelected(value)}/>
             })}>
             </Route>  */}
-            
-
-
-      </Router>   
-                    
+      </Router>                 
       );
   }
 }
