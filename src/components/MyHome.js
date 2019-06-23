@@ -97,8 +97,13 @@ class Home extends React.Component {
                                     </Dropdown.Toggle>
 
                                             <Dropdown.Menu>
-
-                                                <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                                                
+                                            <Dropdown.Item href="#/action-1">Popularity</Dropdown.Item>
+                                            <Dropdown.Item href="#/action-1">Rating</Dropdown.Item>
+                                            <Dropdown.Item href="#/action-1">Price: Low to High</Dropdown.Item>
+                                            <Dropdown.Item href="#/action-1">Price: High to Low</Dropdown.Item>
+                                                
+                                              
 
                                             </Dropdown.Menu>
                                         </Dropdown>
