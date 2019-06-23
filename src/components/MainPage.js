@@ -211,8 +211,8 @@ class ControlledCarousel extends React.Component {
               <p>{this.state.user.displayName}</p>
               <p>{this.state.user.email}</p>
               <img src={this.state.user.photoURL}></img>
-            <button onClick={()=>{this.State.logOut()}}>Logout</button>
-            </div> : <button onClick={()=>{this.State.googleLogin()}}>Login with Google</button>}
+            <button onClick={()=>{this.logOut()}}>Logout</button>
+            </div> : <button onClick={()=>{this.googleLogin()}}>Login with Google</button>}
           </div>
                    <Button variant="info" onClick={() => this.setState({ modalShow: true, login: true, signup: false })} className="loginAlign">Log in</Button>
                     <Button variant="info" onClick={() => this.setState({ modalShow: true, login: false, signup: true })}>Sign Up</Button>
