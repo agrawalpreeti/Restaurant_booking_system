@@ -223,13 +223,12 @@ details about the restaurants.</li>
             <Carousel.Caption className="centerAlign">
               <SimpleCard />
             </Carousel.Caption>
-            <Carousel.Caption className="centerAlign">
+            <Carousel.Caption className="centerAlign2">
             <footer>
                 <a href="#" className="footerLinkColor">Privacy</a><br></br>
                 <a href="#" className="footerLinkColor">Terms</a><br></br>
                 <a href="#" className="footerLinkColor">Contact</a><br></br><br></br>
                <span>Copyright 2016, Original Trombones</span>
-              
               
               </footer>
             </Carousel.Caption>
