@@ -13,9 +13,12 @@ import Cardmy from './components/Cardmy';
 
 
 
+
+
 class Main extends React.Component{
   constructor(props){
     super(props);
+  
     this.state = {};
     this.state.db = {
       cities: [ "AGARTALA","AGRA","AHMEDABAD","AIZWAL","AJMER","ALLAHABAD","ALLEPPEY","ALIBAUG","ALMORA","ALSISAR","ALWAR",
@@ -247,11 +250,19 @@ cuisinClick = (value) =>{
   // restId = (value)=>{
   //   console.log(value);
   // }
+ 
+  
+
+
+
 
   render(){
     console.log(this.props.restId);
     return(
+
+      
       <Router>
+       
            {/* <Link to="/"></Link>
            <Link to="/login"></Link>
            <Link to="/signup"></Link>

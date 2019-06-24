@@ -206,8 +206,8 @@ export default function PaperSheet(props) {
             />
           </div>
           <ul type='none' className="sidePannelul" >   {/*  For loop by api calling */}
-                 <li> <input type="checkbox" value="AC"/>AC</li>
-                  <li><input type="checkbox" value="AC"/>Non AC</li>
+                 <li> <input type="checkbox" value="AC"/>Air Conditioned</li>
+                  <li><input type="checkbox" value="AC"/>Games</li>
                  <li> <input type="checkbox" value="AC"/>Parking</li>
                  <li><input type="checkbox" value="AC"/>Card Accepted</li> 
                   </ul>

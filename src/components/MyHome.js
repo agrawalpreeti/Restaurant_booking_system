@@ -27,6 +27,10 @@ class Home extends React.Component {
         }
     }
 
+
+
+    
+
     searchInputChange = (e) =>{
         let i = this.state.i;
         i = e.target.value;
@@ -137,8 +141,13 @@ class Home extends React.Component {
                                     </Dropdown.Toggle>
 
                                             <Dropdown.Menu>
-
-                                                <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                                                
+                                            <Dropdown.Item href="#/action-1">Popularity</Dropdown.Item>
+                                            <Dropdown.Item >Rating</Dropdown.Item>
+                                            <Dropdown.Item href="#/action-1">Price: Low to High</Dropdown.Item>
+                                            <Dropdown.Item href="#/action-1">Price: High to Low</Dropdown.Item>
+                                                
+                                              
 
                                             </Dropdown.Menu>
                                         </Dropdown>

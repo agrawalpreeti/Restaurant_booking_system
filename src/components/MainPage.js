@@ -11,10 +11,75 @@ import Modal from 'react-bootstrap/Modal';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
+import * as firebase from "firebase/app";
+import "firebase/auth";
+
+var firebaseConfig = {
+  apiKey: "AIzaSyAqfVHt00DjZMlVPBMQX3Acslzb9q3vlCg",
+  authDomain: "restaurant-tablebooking-ebe85.firebaseapp.com",
+  databaseURL: "https://restaurant-tablebooking-ebe85.firebaseio.com",
+  projectId: "restaurant-tablebooking-ebe85",
+  storageBucket: "",
+  messagingSenderId: "831520366358",
+  appId: "1:831520366358:web:07d011f61bc1cb6d"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
 
 
 
 class MyVerticallyCenteredModal extends React.Component {
+  constructor(props){
+    super(props);
+    this.loginCheck()
+  }
+
+
+  googleLogin(){
+    var provider = new firebase.auth.GoogleAuthProvider();
+   firebase.auth().signInWithPopup(provider).then((result) => {
+      // This gives you a Google Access Token. You can use it to access the Google API.
+      var token = result.credential.accessToken;
+      // The signed-in user info.
+      var user = result.user;
+      this.setState({
+        user:user
+      })
+      console.log(user.displayName,user.email);
+      // ...
+    }).catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      // The email of the user's account used.
+      var email = error.email;
+      // The firebase.auth.AuthCredential type that was used.
+      var credential = error.credential;
+      // ...
+    });
+  }
+
+  loginCheck(){
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({
+          user:user
+        })
+        console.log("logged in",user)
+      } else {
+        console.log("logged out")
+      }
+    });
+  }
+  logOut(){
+    firebase.auth().signOut().then(() => {
+       this.setState({
+         user:""
+       })
+      }).catch(function(error) {
+      // An error happened.
+      });
+  }
 
   login_or_signup = (login, signup) =>{
     if((this.props.login === true) && (this.props.signup === false)){
@@ -140,6 +205,15 @@ class ControlledCarousel extends React.Component {
               alt="First slide"
             /> */}
             <Carousel.Caption className="loginSignupAlign">
+            <div>
+            {this.state.user?
+            <div>
+              <p>{this.state.user.displayName}</p>
+              <p>{this.state.user.email}</p>
+              <img src={this.state.user.photoURL}></img>
+            <button onClick={()=>{this.logOut()}}>Logout</button>
+            </div> : <button onClick={()=>{this.googleLogin()}}>Login with Google</button>}
+          </div>
                    <Button variant="info" onClick={() => this.setState({ modalShow: true, login: true, signup: false })} className="loginAlign">Log in</Button>
                     <Button variant="info" onClick={() => this.setState({ modalShow: true, login: false, signup: true })}>Sign Up</Button>
                   <MyVerticallyCenteredModal

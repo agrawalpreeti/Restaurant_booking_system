@@ -43,7 +43,8 @@ class Description extends React.Component {
     photos = () =>{
       let pics = [];
       pics = this.props.restaurantInfo.photos.map((value)=>
-        <a href={value.photo.url} target= '_blank'><img style={{width:'100px', height:'100px', objectFit: 'cover'}} src={value.photo.url} alt="restaurant pics"/></a>
+        <a href={value.photo.url} target= '_blank'><img style={{width:'200px', height:'200px', objectFit: 'cover', 
+        margin:'20px',border:'solid',borderRadius:'5px'}} src={value.photo.url} alt="restaurant pics"/></a>
       );
       return pics;
     }
