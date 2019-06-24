@@ -22,6 +22,12 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
+var email="someone@example.com";
+var password="password";
+
+//Create User with Email and Password
+
+
 
 class Main extends React.Component{
   constructor(props){
@@ -95,59 +101,64 @@ class Main extends React.Component{
     }
   }
 
-  googleLogin = ()=>{
-    var provider = new firebase.auth.GoogleAuthProvider();
+  signUp = ()=>{
 
-
-    firebase.auth().signInWithPopup(provider).then(function(result) {
-      // This gives you a Google Access Token. You can use it to access the Google API.
-      var token = result.credential.accessToken;
-      // The signed-in user info.
-      var user = result.user;
-      console.log(user.displayName,user.email);
-      // ...
-    }).catch(function(error) {
-      // Handle Errors here.
+    firebase.auth().createUserWithEmailAndPassword(email, password).then(function(result) {
+          console.log(email)
+      }).catch(function(error) {
       var errorCode = error.code;
       var errorMessage = error.message;
-      // The email of the user's account used.
-      var email = error.email;
-      // The firebase.auth.AuthCredential type that was used.
-      var credential = error.credential;
-      // ...
-      console.log(error.message);
+      console.log(errorCode);
+      console.log(errorMessage);
+    });
+
+    
+  }
+
+  logIn = () =>{
+    firebase.auth().signInWithEmailAndPassword(email, password).then(function(result) {
+        console.log(email);
+    }).catch(function(error) {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.log(errorCode);
+        console.log(errorMessage);
+      });
+  }
+
+  getUserInfo = () =>{
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        var displayName = user.displayName;
+        var email = user.email;
+        var emailVerified = user.emailVerified;
+        var photoURL = user.photoURL;
+        var isAnonymous = user.isAnonymous;
+        var uid = user.uid;
+        var providerData = user.providerData;
+      } else {
+        // User is signed out.
+      }
     });
   }
 
   logout = ()=>{
     firebase.auth().signOut().then(function() {
-    // Sign-out successful.
+      console.log('User Logged Out!');
     }).catch(function(error) {
-    // An error happened.
+      console.log(error);
     });
-}
+  }
 
-checkLogin = ()=>{
-  firebase.auth().onAuthStateChanged(function(user) {
- if (user) {
-   console.log("logged in")
-   // User is signed in.
- } else {
-   console.log("NOT logged in")
-   // No user is signed in.
- }
-});
-}
-  // logOut = ()=>{
-  //   firebase.auth().signOut().then(() => {
-  //      this.setState({
-  //        user:""
-  //      })
-  //     }).catch(function(error) {
-  //     // An error happened.
-  //     });
-  // }
-
+  checkLogin = ()=>{
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        console.log("logged in")
+      } else {
+        console.log("NOT logged in")
+      }
+    });
+  }
 
 
   componentWillMount() {
@@ -330,7 +341,7 @@ cuisinClick = (value) =>{
            <Link to="/signup"></Link>
            <Link to="/home"></Link>
            <Link to="/home/card"></Link> */}
-            <Route exact path="/" render={()=><ControlledCarousel googleLogin={()=>this.googleLogin()}/>}/>
+            <Route exact path="/" render={()=><ControlledCarousel signUp={()=>this.signUp()}/>}/>
             <Route path="/login" render={()=><LogIn/>} />
             <Route path="/signup" render={()=><SignUp/>} />
             <Route exact path="/home" render={()=><Home citySelectedColorChange={()=>this.citySelectedColorChange()} cardPrint={()=>this.cardPrint()} restaurants={this.state.db.restaurantSearch.restaurants} cuisinPrint={()=>this.cuisinPrint()} cuisines={this.state.db.cuisines}/>} cuisine_selected={this.state.db.cuisine_selected} />

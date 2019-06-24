@@ -22,7 +22,6 @@ class MyVerticallyCenteredModal extends React.Component {
     // this.loginCheck()
   }
 
-
   
 
   login_or_signup = (login, signup) =>{
@@ -36,7 +35,7 @@ class MyVerticallyCenteredModal extends React.Component {
       >
         
         <Modal.Body>
-          <LogIn></LogIn>
+          <LogIn dontHaveAnAccount={()=>this.props.dontHaveAnAccount()} signUp={()=>this.props.signUp()}></LogIn>
         </Modal.Body>
         <Modal.Footer>
           <Button onClick={this.props.onHide}>Close</Button>
@@ -52,7 +51,7 @@ class MyVerticallyCenteredModal extends React.Component {
         centered
       >  
         <Modal.Body>
-          <SignUp></SignUp>
+          <SignUp signUp={()=>this.props.signUp()} alreadyAnAccount={()=>this.props.alreadyAnAccount()}></SignUp>
         </Modal.Body>
         <Modal.Footer>
           <Button onClick={this.props.onHide}>Close</Button>
@@ -88,6 +87,21 @@ class ControlledCarousel extends React.Component {
         signup : false
       };
     }
+
+
+  alreadyAnAccount = ()=>{
+    this.setState({
+      login: true,
+      signup: false
+    })
+  }
+
+  dontHaveAnAccount = ()=>{
+    this.setState({
+      login: false,
+      signup: true
+    })
+  }
   
     handleSelect(selectedIndex, e) {
       // if(selectedIndex === 2 && e === 'prev'){
@@ -156,7 +170,7 @@ class ControlledCarousel extends React.Component {
               <p>{this.state.user.email}</p>
               <img src={this.state.user.photoURL}></img> */}
             {/* <button onClick={()=>{this.logOut()}}>Logout</button> */}
-            <button onClick={()=>{this.props.googleLogin()}}>Login with Google</button>
+            {/* <button onClick={()=>{this.props.googleLogin()}}>Login with Google</button> */}
                    <Button variant="info" onClick={() => this.setState({ modalShow: true, login: true, signup: false })} className="loginAlign">Log in</Button>
                     <Button variant="info" onClick={() => this.setState({ modalShow: true, login: false, signup: true })}>Sign Up</Button>
                   <MyVerticallyCenteredModal
@@ -164,6 +178,8 @@ class ControlledCarousel extends React.Component {
                     onHide={modalClose}
                     login={this.state.login}
                     signup={this.state.signup}
+                    alreadyAnAccount={()=>this.alreadyAnAccount()}
+                    dontHaveAnAccount={()=>this.dontHaveAnAccount()}
                   />
                   </div>
             </Carousel.Caption>
@@ -185,6 +201,8 @@ class ControlledCarousel extends React.Component {
                     onHide={modalClose}
                     login={this.state.login}
                     signup={this.state.signup}
+                    alreadyAnAccount={()=>this.alreadyAnAccount()}
+                    dontHaveAnAccount={()=>this.dontHaveAnAccount()}
                   />
                   </Col>
                 </Row>
