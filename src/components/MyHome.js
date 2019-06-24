@@ -28,8 +28,20 @@ class Home extends React.Component {
     }
 
 
+    //    onRating = () => {
+    //     this.props.restaurants.map((value, index)=>{
+    //         let rate=[];
+    //          const rate1 = a.user_rating.aggregate_ratingvalue;
+    //          const rate2 = b.user_rating.aggregate_ratingvalue
+    //         rate = value.restaurant.user_rating.aggregate_ratingvalue;
+    //       rate.sort(function(rate1, rate2)
+    //       {return rate1 - rate2});
 
-    
+    //       return rate;
+    //     });
+        
+    //   }
+        
 
     searchInputChange = (e) =>{
         let i = this.state.i;
@@ -145,7 +157,7 @@ class Home extends React.Component {
                                             <Dropdown.Menu>
                                                 
                                             <Dropdown.Item href="#/action-1">Popularity</Dropdown.Item>
-                                            <Dropdown.Item >Rating</Dropdown.Item>
+                                            <Dropdown.Item onClick={()=>this.onRating()}>Rating</Dropdown.Item>
                                             <Dropdown.Item href="#/action-1">Price: Low to High</Dropdown.Item>
                                             <Dropdown.Item href="#/action-1">Price: High to Low</Dropdown.Item>
                                                 
