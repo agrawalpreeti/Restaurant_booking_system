@@ -45,7 +45,7 @@ const useStyles = makeStyles(theme => ({
       }
   }));
 
-  function LogIn() {
+  function LogIn(props) {
     const classes = useStyles();
   
     return (
@@ -91,6 +91,7 @@ const useStyles = makeStyles(theme => ({
               fullwidth="true"
               color="primary"
               className={classes.submit}
+              
             >
               Log in
             </Button>
@@ -101,9 +102,11 @@ const useStyles = makeStyles(theme => ({
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="/signup" variant="body2">
+                {/* <Link href="/signup" variant="body2"> */}
+                <Link href="#" onClick={()=>props.dontHaveAnAccount()}>
                   {"Don't have an account? Sign Up"}
-                </Link>
+                  </Link>
+                {/* </Link> */}
               </Grid>
             </Grid>
           </form>
@@ -117,7 +120,7 @@ const useStyles = makeStyles(theme => ({
 
 
 
- function SignUp() {
+ function SignUp(props) {
   const classes = useStyles();
 
   return (
@@ -191,12 +194,13 @@ const useStyles = makeStyles(theme => ({
             // variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={()=>{this.props.signUp()}}
           >
             Sign Up
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
-              <Link href="/login" variant="body2">
+              <Link  href="#" onClick={()=>props.alreadyAnAccount()} variant="body2">
                 Already have an account? Log in
               </Link>
             </Grid>
