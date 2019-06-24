@@ -106,6 +106,8 @@ class Home extends React.Component {
 
     render() {
         return (
+            
+
             <div>
                 <MyNavBars citySelectedColorChange={() => this.props.citySelectedColorChange()}></MyNavBars>
                 {/* {console.log(this.props.citySelectedColorChange())} */}

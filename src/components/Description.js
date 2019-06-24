@@ -49,13 +49,8 @@ class Description extends React.Component {
       return pics;
     }
 
-  //  phone_numbers = () =>{
-  //     let number = this.props.restaurantInfo.phone_numbers.split(',');
-  //     let num = number.map((value)=>
-  //     <li>{value}</li>
-  //     );
-  //     return num;
-  //   }
+    
+  
   
     render() {
       return (
@@ -73,6 +68,7 @@ class Description extends React.Component {
             {this.photos()}
           </Tab>
           <Tab eventKey="menu" title="Menu"><br></br>
+           
           </Tab>
           <Tab eventKey="direction" title="Direction"><br></br>
           </Tab>
