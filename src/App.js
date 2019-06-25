@@ -1,7 +1,7 @@
 import React from 'react';
 import ControlledCarousel from './components/MainPage.js';
 import {Link, Route, BrowserRouter as Router } from 'react-router-dom';
-import {LogIn, SignUp} from './components/Loginmy.js';
+import {LogIn} from './components/Loginmy.js';
 import Home from './components/MyHome';
 import CardContent from './components/CardContent';
 import axios from 'axios';
@@ -9,6 +9,21 @@ import {Dropdown} from 'react-bootstrap';
 import Cardmy from './components/Cardmy';
 import * as firebase from "firebase/app";
 import "firebase/auth";
+import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
+import Button from 'react-bootstrap/Button.js';
+import Avatar from '@material-ui/core/Avatar';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import TextField from '@material-ui/core/TextField';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+// import Link from '@material-ui/core/Link';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container';
+
+
+
 
 var firebaseConfig = {
   apiKey: "AIzaSyB9iAGwo97YScsQmj-qLQ739K7W4xHljWM",
@@ -22,7 +37,7 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
-var email="someone@example.com";
+var email="vibha.ajm13@gmail.com";
 var password="password";
 
 //Create User with Email and Password
@@ -34,7 +49,16 @@ class Main extends React.Component{
     super(props);
   
     this.state = {};
-    this.state.user=
+    this.state.user={
+      first_name: [],
+      last_name: [],
+      email: [],
+      passward: [],
+      temp_firstname: "",
+      temp_lastname: "",
+      temp_email: "",
+      temp_passward: ""
+    };
     this.state.db = {
       cities: [ "AGARTALA","AGRA","AHMEDABAD","AIZWAL","AJMER","ALLAHABAD","ALLEPPEY","ALIBAUG","ALMORA","ALSISAR","ALWAR",
         "AMBALA","AMLA","AMRITSAR","ANAND",
@@ -101,16 +125,52 @@ class Main extends React.Component{
     }
   }
 
-  signUp = ()=>{
+  mySignUp = ()=>{
 
-    firebase.auth().createUserWithEmailAndPassword(email, password).then(function(result) {
-          console.log(email)
-      }).catch(function(error) {
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      console.log(errorCode);
-      console.log(errorMessage);
+    let i = this.state.user;
+    i.first_name.push(this.state.user.temp_firstname);
+    i.last_name.push(this.state.user.temp_lastname);
+    i.email.push(this.state.user.temp_email);
+    i.passward.push(this.state.user.temp_passward);
+
+    this.setState({
+      user : i
     });
+    console.log(this.state.user)
+
+
+    var actionCodeSettings = {
+      // URL you want to redirect back to. The domain (www.example.com) for this
+      // URL must be whitelisted in the Firebase Console.
+      url: 'http://localhost:3000/home',
+      // This must be true.
+      handleCodeInApp: true,
+    }
+
+    firebase.auth().sendSignInLinkToEmail(email, actionCodeSettings)
+    .then(function(result) {
+      // The link was successfully sent. Inform the user.
+      // Save the email locally so you don't need to ask the user for it again
+      // if they open the link on the same device.
+      window.localStorage.setItem('emailForSignIn', email);
+      console.log("email sent");
+      // console.log(result);
+      firebase.auth().createUserWithEmailAndPassword(email, password).then(function(result) {
+        console.log(result);
+            console.log(email);
+        }).catch(function(error) {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.log(errorCode);
+        console.log(errorMessage);
+      })
+    })
+    .catch(function(error) {
+      // Some error occurred, you can inspect the code: error.code
+      console.log(error);
+    });
+
+    ;
 
     
   }
@@ -150,15 +210,222 @@ class Main extends React.Component{
     });
   }
 
-  checkLogin = ()=>{
-    firebase.auth().onAuthStateChanged(function(user) {
-      if (user) {
-        console.log("logged in")
-      } else {
-        console.log("NOT logged in")
+  // checkLogin = ()=>{
+  //   firebase.auth().onAuthStateChanged(function(user) {
+  //     if (user) {
+  //       console.log("logged in");
+  //       document.addEventListener('DOMContentLoaded', function() {
+  //         // TODO: Implement getParameterByName()
+        
+  //         // Get the action to complete.
+  //         var mode = getParameterByName('mode');
+  //         // Get the one-time code from the query parameter.
+  //         var actionCode = getParameterByName('oobCode');
+  //         // (Optional) Get the continue URL from the query parameter if available.
+  //         var continueUrl = getParameterByName('continueUrl');
+  //         // (Optional) Get the language code if available.
+  //         var lang = getParameterByName('lang') || 'en';
+        
+  //         // Configure the Firebase SDK.
+  //         // This is the minimum configuration required for the API to be used.
+  //         var config = {
+  //           // 'apiKey': <API_KEY> // Copy this key from the web initialization
+  //                               // snippet found in the Firebase console.
+  //         };
+  //         var app = firebase.initializeApp(config);
+  //         var auth = app.auth();
+        
+  //         // Handle the user management action.
+  //         switch (mode) {
+  //           case 'resetPassword':
+  //             // Display reset password handler and UI.
+  //             handleResetPassword(auth, actionCode, continueUrl, lang);
+  //             break;
+  //           case 'recoverEmail':
+  //             // Display email recovery handler and UI.
+  //             handleRecoverEmail(auth, actionCode, lang);
+  //             break;
+  //           case 'verifyEmail':
+  //             // Display email verification handler and UI.
+  //             handleVerifyEmail(auth, actionCode, continueUrl, lang);
+  //             break;
+  //           case 'signIn':
+  //               handleVerifyEmail(auth, actionCode, continueUrl, lang);
+  //           default:
+  //             // Error: invalid mode.
+  //         }
+  //       }, false);
+        
+  //     } else {
+  //       console.log("NOT logged in")
+  //     }
+  //   });
+  // }
+
+  makeStyles = (theme) => ({
+
+    root: {
+      flexGrow: 1,
+    },
+    paper: {
+        marginTop: theme.spacing(8),
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        textAlign: 'center',
+      },
+    button: {
+        margin: theme.spacing(1),
+      },
+      input: {
+        display: 'none',
+      },
+
+      avatar: {
+        margin: theme.spacing(1),
+        backgroundColor: theme.palette.secondary.main,
+
+      },
+      form: {
+        width: '100%', 
+        marginTop: theme.spacing(1),
+      },
+      submit: {
+        margin: theme.spacing(3, 0, 2),
       }
+  });
+
+  signUpFirstName = (e) =>{
+    let name = this.state.user;
+    name.temp_firstname = e.target.value;
+    this.setState({
+      user: name,
+    })
+  }
+
+  signUpLastName = (e) =>{
+    let name = this.state.user;
+    name.temp_lastname = e.target.value;
+    this.setState({
+      user: name,
     });
   }
+
+  signUpEmail = (e) =>{
+    let name = this.state.user;
+    name.temp_email = e.target.value;
+    this.setState({
+      user: name,
+    });
+  }
+
+  signUpPassward = (e) =>{
+    let name = this.state.user;
+    name.temp_passward = e.target.value;
+    this.setState({
+      user: name,
+    });
+  }
+
+  thisSignUp = () =>{
+    const classes = makeStyles();
+  
+    return (
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <div className={classes.paper}>
+          <Avatar className={classes.avatar}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Sign Up
+          </Typography>
+          <form className={classes.form} noValidate>
+            <Grid container spacing={2}>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  autoComplete="fname"
+                  name="firstName"
+                  variant="outlined"
+                  required
+                  fullWidth
+                  id="firstName"
+                  label="First Name"
+                  autoFocus
+                  onChange={this.signUpFirstName}
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  variant="outlined"
+                  required
+                  fullWidth
+                  id="lastName"
+                  label="Last Name"
+                  name="lastName"
+                  autoComplete="lname"
+                  onChange={this.signUpLastName}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  variant="outlined"
+                  required
+                  fullWidth
+                  id="email"
+                  label="Email Address"
+                  name="email"
+                  autoComplete="email"
+                  onChange={this.signUpEmail}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  variant="outlined"
+                  required
+                  fullWidth
+                  name="password"
+                  label="Password"
+                  type="password"
+                  id="password"
+                  autoComplete="current-password"
+                  onChange={this.signUpPassward}
+                />
+              </Grid>
+              {/* <Grid item xs={12}>
+                <FormControlLabel
+                  control={<Checkbox value="allowExtraEmails" color="primary" />}
+                  label="I want to receive inspiration, marketing promotions and updates via email."
+                />
+              </Grid> */}
+            </Grid>
+            {/* {console.log('yes')} */}
+            {/* {props.signUpButton()} */}
+            <Button
+            // type="submit"
+            fullWidth
+            // variant="contained"
+            color="primary"
+            className={classes.submit}
+            onClick={()=>{this.mySignUp()}}
+          >
+            Sign Up
+          </Button>
+            <Grid container justify="flex-end">
+              <Grid item>
+                <Link  href="#"  variant="body2">
+                {/* onClick={()=>props.alreadyAnAccount()} */}
+                  Already have an account? Log in
+                </Link>
+              </Grid>
+            </Grid>
+          </form>
+        </div>
+      </Container>
+    );
+  }
+
+
 
 
   componentWillMount() {
@@ -330,7 +597,7 @@ cuisinClick = (value) =>{
 
 
   render(){
-    console.log(this.props.restId);
+    // console.log(this.props.restId);
     return(
 
       
@@ -341,9 +608,9 @@ cuisinClick = (value) =>{
            <Link to="/signup"></Link>
            <Link to="/home"></Link>
            <Link to="/home/card"></Link> */}
-            <Route exact path="/" render={()=><ControlledCarousel signUp={()=>this.signUp()}/>}/>
-            <Route path="/login" render={()=><LogIn/>} />
-            <Route path="/signup" render={()=><SignUp/>} />
+            <Route exact path="/" render={()=><ControlledCarousel thisSignUp={()=>this.thisSignUp()}/>}/>
+            {/* <Route path="/login" render={()=><LogIn mySignUp={()=>this.mySignUp()}/>} />
+            <Route path="/signup" render={()=><SignUp mySignUp={()=>this.mySignUp()}/>} /> */}
             <Route exact path="/home" render={()=><Home citySelectedColorChange={()=>this.citySelectedColorChange()} cardPrint={()=>this.cardPrint()} restaurants={this.state.db.restaurantSearch.restaurants} cuisinPrint={()=>this.cuisinPrint()} cuisines={this.state.db.cuisines}/>} cuisine_selected={this.state.db.cuisine_selected} />
 
             {/* <Route exact path="/home" render={()=>
