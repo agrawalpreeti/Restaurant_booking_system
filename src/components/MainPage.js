@@ -1,7 +1,7 @@
 import React from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import SimpleCard from './SimpleCard.js';
-import { LogIn, SignUp} from './Loginmy.js';
+import { LogIn} from './Loginmy.js';
 import Button from 'react-bootstrap/Button.js';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar.js';
 import './Mycss.css';
@@ -22,7 +22,20 @@ class MyVerticallyCenteredModal extends React.Component {
     // this.loginCheck()
   }
 
-  
+  // signUpButton = () =>{
+  //   return (
+  //     <Button
+  //           type="submit"
+  //           fullWidth
+  //           // variant="contained"
+  //           color="primary"
+  //           // className={classes.submit}
+  //           onClick={()=>{console.log("signupbutton"); return this.props.mySignUp()}}
+  //         >
+  //           Sign Up
+  //         </Button>
+  //   );
+  // }
 
   login_or_signup = (login, signup) =>{
     if((this.props.login === true) && (this.props.signup === false)){
@@ -35,7 +48,7 @@ class MyVerticallyCenteredModal extends React.Component {
       >
         
         <Modal.Body>
-          <LogIn dontHaveAnAccount={()=>this.props.dontHaveAnAccount()} signUp={()=>this.props.signUp()}></LogIn>
+          <LogIn dontHaveAnAccount={()=>this.props.dontHaveAnAccount()} ></LogIn>
         </Modal.Body>
         <Modal.Footer>
           <Button onClick={this.props.onHide}>Close</Button>
@@ -51,7 +64,19 @@ class MyVerticallyCenteredModal extends React.Component {
         centered
       >  
         <Modal.Body>
-          <SignUp signUp={()=>this.props.signUp()} alreadyAnAccount={()=>this.props.alreadyAnAccount()}></SignUp>
+          {/* <button onClick={()=>this.props.mySignUp()}></button> */}
+          {/* <SignUp signUpButton={()=>this.signUpButton()} alreadyAnAccount={()=>this.props.alreadyAnAccount()}></SignUp> */}
+          {/* <Button
+            type="submit"
+            fullWidth
+            // variant="contained"
+            color="primary"
+            // className={classes.submit}
+            onClick={()=>{console.log("signupbutton"); return this.props.mySignUp()}}
+          >
+            Sign Up
+          </Button> */}
+          {this.props.thisSignUp()}
         </Modal.Body>
         <Modal.Footer>
           <Button onClick={this.props.onHide}>Close</Button>
@@ -157,31 +182,21 @@ class ControlledCarousel extends React.Component {
         
         
           <Carousel.Item>
-            {/* <img
-              className="d-block main_page"
-              src={front_page1}
-              alt="First slide"
-            /> */}
             <Carousel.Caption className="loginSignupAlign">
             <div>
-            {/* {this.state.user? */}
-            {/* <div> */}
-              {/* <p>{this.state.user.displayName}</p>
-              <p>{this.state.user.email}</p>
-              <img src={this.state.user.photoURL}></img> */}
-            {/* <button onClick={()=>{this.logOut()}}>Logout</button> */}
-            {/* <button onClick={()=>{this.props.googleLogin()}}>Login with Google</button> */}
-                   <Button variant="info" onClick={() => this.setState({ modalShow: true, login: true, signup: false })} className="loginAlign">Log in</Button>
-                    <Button variant="info" onClick={() => this.setState({ modalShow: true, login: false, signup: true })}>Sign Up</Button>
-                  <MyVerticallyCenteredModal
-                    show={this.state.modalShow}
-                    onHide={modalClose}
-                    login={this.state.login}
-                    signup={this.state.signup}
-                    alreadyAnAccount={()=>this.alreadyAnAccount()}
-                    dontHaveAnAccount={()=>this.dontHaveAnAccount()}
-                  />
-                  </div>
+              {/* <button onClick={()=>this.props.mySignUp()}>button</button> */}
+              <Button variant="info" onClick={() => this.setState({ modalShow: true, login: true, signup: false })} className="loginAlign">Log in</Button>
+              <Button variant="info" onClick={() => this.setState({ modalShow: true, login: false, signup: true })}>Sign Up</Button>
+                <MyVerticallyCenteredModal
+                  show={this.state.modalShow}
+                  onHide={modalClose}
+                  login={this.state.login}
+                  signup={this.state.signup}
+                  alreadyAnAccount={()=>this.alreadyAnAccount()}
+                  dontHaveAnAccount={()=>this.dontHaveAnAccount()}
+                  thisSignUp={()=>this.props.thisSignUp()}
+                />
+            </div>
             </Carousel.Caption>
             <Carousel.Caption className="centerAlign">
              <h2>Plan Your Meal</h2>
@@ -203,6 +218,7 @@ class ControlledCarousel extends React.Component {
                     signup={this.state.signup}
                     alreadyAnAccount={()=>this.alreadyAnAccount()}
                     dontHaveAnAccount={()=>this.dontHaveAnAccount()}
+                    thisSignUp={()=>this.props.thisSignUp()}
                   />
                   </Col>
                 </Row>

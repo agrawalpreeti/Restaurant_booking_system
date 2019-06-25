@@ -112,6 +112,7 @@ class Home extends React.Component {
                 <Container>
                     <Row>
                         <Col md={{ span: 3, offset: 0 }}>
+                            {/* <button onClick={()=>this.props.checkLogin()}></button> */}
                             <PaperSheet cuisinPrint={()=>this.props.cuisinPrint()} cuisines={this.props.cuisines}></PaperSheet>
                         </Col>
                         <Col md={{ span: 9, offset: 0 }} className="templateCard">
