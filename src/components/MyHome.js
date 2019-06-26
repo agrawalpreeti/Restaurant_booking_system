@@ -33,7 +33,7 @@ class Home extends React.Component {
     //         let rate=[];
     //          const rate1 = a.user_rating.aggregate_ratingvalue;
     //          const rate2 = b.user_rating.aggregate_ratingvalue
-    //         rate = value.restaurant.user_rating.aggregate_ratingvalue;
+    //         rate = value.restaurant.user_rating.aggregate_rating;
     //       rate.sort(function(rate1, rate2)
     //       {return rate1 - rate2});
 
@@ -126,7 +126,6 @@ class Home extends React.Component {
                 <Container>
                     <Row>
                         <Col md={{ span: 3, offset: 0 }}>
-                            {/* <button onClick={()=>this.props.checkLogin()}></button> */}
                             <PaperSheet cuisinPrint={()=>this.props.cuisinPrint()} cuisines={this.props.cuisines}></PaperSheet>
                         </Col>
                         <Col md={{ span: 9, offset: 0 }} className="templateCard">
