@@ -4,7 +4,8 @@ import Tab from 'react-bootstrap/Tab';
 import './Mycss.css';
 import { TabPane, TabContainer } from 'react-bootstrap';
 import { fontSize } from '@material-ui/system';
-
+import MyMap from './map'
+import {Link, Route, BrowserRouter as Router } from 'react-router-dom';
 
 
 class Description extends React.Component {
@@ -72,9 +73,12 @@ class Description extends React.Component {
           <Tab eventKey="pictures" title="Pictures">
             {this.photos()}
           </Tab>
-          <Tab eventKey="menu" title="Menu"><br></br>
+          <Tab eventKey="menu" title="Menu" onSelect={<a href={this.props.restaurantInfo.menu_url} target="_blank"></a>}><br></br>
+          For menu <a href={this.props.restaurantInfo.menu_url} target="_blank">
+ click here.</a>
           </Tab>
-          <Tab eventKey="direction" title="Direction"><br></br>
+          <Tab eventKey="direction" title="Direction" style={{ height: '100px', width: '750px' }}><br></br>
+          <MyMap latitude={this.props.restaurantInfo.location.latitude} longitude={this.props.restaurantInfo.location.longitude}></MyMap>
           </Tab>
         </Tabs>
       );

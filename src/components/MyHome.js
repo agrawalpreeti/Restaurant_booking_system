@@ -104,6 +104,29 @@ class Home extends React.Component {
             })
     }
 
+    componentWillMount(){
+        let url;
+        //  = "#".slice(0,25);
+        // console.log(url)
+       // url="#".slice(0,25)
+    // axios.get("/").then((res)=>{
+        // console.log(res.data);
+        console.log(window.location.href);
+        if(window.location.href !== "http://localhost:3000/home")
+            this.props.userConfirmed(this.props.i);
+    // }).catch(function(error) {
+                // console.log(url)
+
+        // console.log(error)
+        //     var errorCode = error.code;
+        //     var errorMessage = error.message;
+        //     console.log(errorCode);
+        //     console.log(errorMessage);
+        //   
+    // });;
+
+    }
+
     render() {
         return (
             <div>
