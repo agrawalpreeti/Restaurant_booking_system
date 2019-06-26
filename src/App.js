@@ -18,6 +18,7 @@ import TextField from '@material-ui/core/TextField';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
+// import GoogleMapReact from 'google-map-react';
 
 
 
@@ -34,8 +35,8 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
-var email="vibha.ajm13@gmail.com";
-var password="password";
+// var email="vibha.ajm13@gmail.com";
+// var password="password";
 
 //Create User with Email and Password
 
@@ -47,14 +48,21 @@ class Main extends React.Component{
   
     this.state = {};
     this.state.user={
-      first_name: [],
-      last_name: [],
-      email: [],
-      passward: [],
+      users: [
+        {
+          first_name: "",
+          last_name: "",
+          email: "",
+          passward: "",
+        }
+      ],
+      i:
+        {
       temp_firstname: "",
       temp_lastname: "",
       temp_email: "",
       temp_passward: ""
+        }
     };
     this.state.db = {
       cities: [ "AGARTALA","AGRA","AHMEDABAD","AIZWAL","AJMER","ALLAHABAD","ALLEPPEY","ALIBAUG","ALMORA","ALSISAR","ALWAR",
@@ -122,19 +130,36 @@ class Main extends React.Component{
     }
   }
 
-  mySignUp = ()=>{
+  userConfirmed = (i)=>{
+    console.log("yes")
+    let k = this.state.user;
+    k.users.push(i);
+    // i.last_name.push(this.state.user.temp_lastname);
+    // i.email.push(this.state.user.temp_email);
+    // i.passward.push(this.state.user.temp_passward);
 
-    let i = this.state.user;
-    i.first_name.push(this.state.user.temp_firstname);
-    i.last_name.push(this.state.user.temp_lastname);
-    i.email.push(this.state.user.temp_email);
-    i.passward.push(this.state.user.temp_passward);
-
+    // this.state.user.users;
+    // let k = this.state.user;
+    // k.users.push(i);
     this.setState({
-      user : i
+      user : k
     });
-    console.log(this.state.user)
+    console.log(this.state.user);
 
+
+    // firebase.auth().createUserWithEmailAndPassword(email, password).then(function(result) {
+    //   console.log(result);
+    //       console.log(email);
+    //   }).catch(function(error) {
+    //   var errorCode = error.code;
+    //   var errorMessage = error.message;
+    //   console.log(errorCode);
+    //   console.log(errorMessage);
+    // })
+  }
+
+  mySignUp = ()=>{
+// console.log(this.state.user);
 
     var actionCodeSettings = {
       // URL you want to redirect back to. The domain (www.example.com) for this
@@ -144,6 +169,10 @@ class Main extends React.Component{
       handleCodeInApp: true,
     }
 
+let email = this.state.user.i.temp_email;
+console.log(this.state.user.i)
+
+
     firebase.auth().sendSignInLinkToEmail(email, actionCodeSettings)
     .then(function(result) {
       // The link was successfully sent. Inform the user.
@@ -152,15 +181,7 @@ class Main extends React.Component{
       window.localStorage.setItem('emailForSignIn', email);
       console.log("email sent");
       // console.log(result);
-      firebase.auth().createUserWithEmailAndPassword(email, password).then(function(result) {
-        console.log(result);
-            console.log(email);
-        }).catch(function(error) {
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        console.log(errorCode);
-        console.log(errorMessage);
-      })
+      
     })
     .catch(function(error) {
       // Some error occurred, you can inspect the code: error.code
@@ -173,14 +194,14 @@ class Main extends React.Component{
   }
 
   logIn = () =>{
-    firebase.auth().signInWithEmailAndPassword(email, password).then(function(result) {
-        console.log(email);
-    }).catch(function(error) {
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        console.log(errorCode);
-        console.log(errorMessage);
-      });
+    // firebase.auth().signInWithEmailAndPassword(email, password).then(function(result) {
+    //     console.log(email);
+    // }).catch(function(error) {
+    //     var errorCode = error.code;
+    //     var errorMessage = error.message;
+    //     console.log(errorCode);
+    //     console.log(errorMessage);
+    //   });
   }
 
   getUserInfo = () =>{
@@ -294,7 +315,7 @@ class Main extends React.Component{
 
   signUpFirstName = (e) =>{
     let name = this.state.user;
-    name.temp_firstname = e.target.value;
+    name.i.temp_firstname = e.target.value;
     this.setState({
       user: name,
     })
@@ -302,7 +323,7 @@ class Main extends React.Component{
 
   signUpLastName = (e) =>{
     let name = this.state.user;
-    name.temp_lastname = e.target.value;
+    name.i.temp_lastname = e.target.value;
     this.setState({
       user: name,
     });
@@ -310,7 +331,7 @@ class Main extends React.Component{
 
   signUpEmail = (e) =>{
     let name = this.state.user;
-    name.temp_email = e.target.value;
+    name.i.temp_email = e.target.value;
     this.setState({
       user: name,
     });
@@ -318,7 +339,7 @@ class Main extends React.Component{
 
   signUpPassward = (e) =>{
     let name = this.state.user;
-    name.temp_passward = e.target.value;
+    name.i.temp_passward = e.target.value;
     this.setState({
       user: name,
     });
@@ -422,7 +443,22 @@ class Main extends React.Component{
     );
   }
 
+// componentDidMount(){
+//   axios.get("#").then((res)=>{
+//     console.log(res.data);
+//     this.userConfirmed();
+// });
+// }
 
+// initMap = () => {
+//   // The location of Uluru
+//   var uluru = {lat: -25.344, lng: 131.036};
+//   // The map, centered at Uluru
+//   var map = new google.maps.Map(
+//       document.getElementById('map'), {zoom: 4, center: uluru});
+//   // The marker, positioned at Uluru
+//   var marker = new google.maps.Marker({position: uluru, map: map});
+// }
 
 
   componentWillMount() {
@@ -531,6 +567,10 @@ class Main extends React.Component{
       let db = this.state.db;
       db.restaurantInfo = res.data;
       db.resid = value;
+      db.center = {center: {
+        lat: 59.95,
+        lng: 30.33
+      }}
         // <CardContent resData = {res.data}/>
           this.setState({
               db: db })        
@@ -608,7 +648,7 @@ cuisinClick = (value) =>{
             <Route exact path="/" render={()=><ControlledCarousel thisSignUp={()=>this.thisSignUp()}/>}/>
             {/* <Route path="/login" render={()=><LogIn mySignUp={()=>this.mySignUp()}/>} />
             <Route path="/signup" render={()=><SignUp mySignUp={()=>this.mySignUp()}/>} /> */}
-            <Route exact path="/home" render={()=><Home citySelectedColorChange={()=>this.citySelectedColorChange()} cardPrint={()=>this.cardPrint()} restaurants={this.state.db.restaurantSearch.restaurants} cuisinPrint={()=>this.cuisinPrint()} cuisines={this.state.db.cuisines}/>} cuisine_selected={this.state.db.cuisine_selected} />
+            <Route exact path="/home" render={()=><Home i={this.state.user.i} userConfirmed={()=>this.userConfirmed(this.state.user.i)} citySelectedColorChange={()=>this.citySelectedColorChange()} cardPrint={()=>this.cardPrint()} restaurants={this.state.db.restaurantSearch.restaurants} cuisinPrint={()=>this.cuisinPrint()} cuisines={this.state.db.cuisines}/>} cuisine_selected={this.state.db.cuisine_selected} />
 
             {/* <Route exact path="/home" render={()=>
             this.state.db.cities.map((value)=>{
