@@ -51,14 +51,7 @@ class Main extends React.Component{
   
     this.state = {};
     this.state.user={
-      users: [
-        {
-          first_name: "",
-          last_name: "",
-          email: "",
-          passward: "",
-        }
-      ],
+      users: [],
       i:
         {
       temp_firstname: "",
@@ -133,6 +126,22 @@ class Main extends React.Component{
     }
   }
 
+  userAddedTemporarily = () =>{
+    console.log("temporarily");
+    let k = this.state.user.i;
+    // k.users.push(this.state.user.i);
+
+    axios.post('http://localhost:8080/task',k)
+      .then((res)=>{
+        //do something with response
+        console.log(res.data);
+      });
+
+    this.setState({
+      user : k
+    });
+  }
+
   userConfirmed = (i)=>{
     console.log("yes")
     let k = this.state.user;
@@ -144,6 +153,11 @@ class Main extends React.Component{
     // this.state.user.users;
     // let k = this.state.user;
     // k.users.push(i);
+    // axios.post('http://localhost:8080/task',k)
+    //   .then((res)=>{
+    //     //do something with response
+    //     console.log(res.data);
+    //   });
     this.setState({
       user : k
     });
@@ -173,7 +187,9 @@ class Main extends React.Component{
     }
 
 let email = this.state.user.i.temp_email;
-console.log(this.state.user.i)
+console.log(this.state.user.i);
+this.userAddedTemporarily();
+
 
 
     firebase.auth().sendSignInLinkToEmail(email, actionCodeSettings)
@@ -407,7 +423,7 @@ console.log(this.state.user.i)
                   fullWidth
                   name="password"
                   label="Password"
-                  type="password"
+                  type="passward"
                   id="password"
                   autoComplete="current-password"
                   onChange={this.signUpPassward}
