@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import './Mycss.css';
+
+
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -14,8 +15,9 @@ function DashBoard(props) {
     const classes = useStyles();
   
     return (
-        <div>user</div>
+        <div  LikedCardPrint={()=>this.props.LikedCardPrint()} >
+        </div>
     );
-      }
+ }
 
 export default DashBoard;     
