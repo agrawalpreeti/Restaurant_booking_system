@@ -105,14 +105,16 @@ class Home extends React.Component {
     }
 
     componentWillMount(){
-        let url;
+        let url = window.location.href;
         //  = "#".slice(0,25);
         // console.log(url)
        // url="#".slice(0,25)
     // axios.get("/").then((res)=>{
         // console.log(res.data);
+        let url_parsed = url.split('&');
+        url = url_parsed[url_parsed.length - 2];
         console.log(window.location.href);
-        if(window.location.href !== "http://localhost:3000/home")
+        if(url === "mode=signIn")
             this.props.userConfirmed(this.props.i);
     // }).catch(function(error) {
                 // console.log(url)
