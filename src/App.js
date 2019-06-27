@@ -14,11 +14,9 @@ import Button from 'react-bootstrap/Button.js';
 import Avatar from '@material-ui/core/Avatar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-// import Link from '@material-ui/core/Link';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-// import GoogleMapReact from 'google-map-react';
 
 
 
@@ -656,11 +654,7 @@ cuisinClick = (value) =>{
       
       <Router>
        
-           {/* <Link to="/"></Link>
-           <Link to="/login"></Link>
-           <Link to="/signup"></Link>
-           <Link to="/home"></Link>
-           <Link to="/home/card"></Link> */}
+        
             <Route exact path="/" render={()=><ControlledCarousel thisSignUp={()=>this.thisSignUp()}/>}/>
             {/* <Route path="/login" render={()=><LogIn mySignUp={()=>this.mySignUp()}/>} />
             <Route path="/signup" render={()=><SignUp mySignUp={()=>this.mySignUp()}/>} /> */}

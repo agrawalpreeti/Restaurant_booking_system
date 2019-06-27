@@ -68,14 +68,13 @@ class Description extends React.Component {
           <Tab eventKey="pictures" title="Pictures">
             {this.photos()}
           </Tab>
-<<<<<<< HEAD
-          <Tab eventKey="menu" title="Menu"><br></br>
-           
-=======
+
+          
+      
           <Tab eventKey="menu" title="Menu" onSelect={<a href={this.props.restaurantInfo.menu_url} target="_blank"></a>}><br></br>
           For menu <a href={this.props.restaurantInfo.menu_url} target="_blank">
  click here.</a>
->>>>>>> 893277608bafeba433d423f40dd9038c822bacf1
+
           </Tab>
           <Tab eventKey="direction" title="Direction" style={{ height: '100px', width: '750px' }}><br></br>
           <MyMap latitude={this.props.restaurantInfo.location.latitude} longitude={this.props.restaurantInfo.location.longitude}></MyMap>

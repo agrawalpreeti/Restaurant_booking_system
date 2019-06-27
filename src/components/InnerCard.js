@@ -84,8 +84,9 @@ function InnerCard(props) {
     );
     return num;
   }
-
-
+  
+  
+  
   return (
     <Card className={classes.card}>
      <CardContent>
@@ -126,10 +127,9 @@ function InnerCard(props) {
   </Container>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="Add to favorites">
+        <IconButton 
+        aria-label="Add to favorites">
           <FavoriteIcon />
-        </IconButton>
-        <IconButton aria-label="Share">
           <ShareIcon />
         </IconButton>
         <IconButton
