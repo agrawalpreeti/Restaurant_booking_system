@@ -622,9 +622,9 @@ class Main extends React.Component{
   if (window.performance) {
     if (performance.navigation.type == 1) {
       this.cardClick(window.location.href.split(":")[3]);
-      alert( window.location.href.split(":")[3]);
+      // alert( window.location.href.split(":")[3]);
     } else {
-      alert( "This page is not reloaded");
+      // alert( "This page is not reloaded");
     }
   }
 
