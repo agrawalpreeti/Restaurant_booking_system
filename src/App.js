@@ -18,6 +18,12 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 
+import { thisExpression } from '@babel/types';
+// import GoogleMapReact from 'google-map-react';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+
+
+
 
 
 
@@ -52,7 +58,8 @@ class Main extends React.Component{
       temp_firstname: "",
       temp_lastname: "",
       temp_email: "",
-      temp_passward: ""
+      temp_passward: "",
+      temp_date: ""
         }
     };
     this.state.db = {
@@ -110,11 +117,15 @@ class Main extends React.Component{
                              location: {address: ""},
                              user_rating: {aggregate_rating: ""},
                              R: {res_id: ""},
-                             featured_image: ""
+                             featured_image: "",
                             }
                       }]
       },
-      restaurantInfo: {},
+      restaurantInfo: {
+        flag: false,
+      },
+      fav: <FavoriteIcon onClick={()=>this.heartClick()} style={{backgroundColor:'green'}}/>,
+      
       resid: "",
       cuisines: [],
       cuisine_selected: ""
@@ -126,7 +137,7 @@ class Main extends React.Component{
     let k = this.state.user.i;
     // k.users.push(this.state.user.i);
 
-    axios.post('http://localhost:8080/task',k)
+    axios.post('http://localhost:8080/temporary',k)
       .then((res)=>{
         //do something with response
         console.log(res.data);
@@ -138,9 +149,11 @@ class Main extends React.Component{
   }
 
   userConfirmed = (i)=>{
-    console.log("yes")
-    let k = this.state.user;
-    k.users.push(i);
+    console.log("permanent");
+    // let k = this.state.user;
+    // k.users.push(i);
+
+
     // i.last_name.push(this.state.user.temp_lastname);
     // i.email.push(this.state.user.temp_email);
     // i.passward.push(this.state.user.temp_passward);
@@ -148,31 +161,43 @@ class Main extends React.Component{
     // this.state.user.users;
     // let k = this.state.user;
     // k.users.push(i);
-    // axios.post('http://localhost:8080/task',k)
-    //   .then((res)=>{
-    //     //do something with response
-    //     console.log(res.data);
-    //   });
-    this.setState({
-      user : k
+
+    axios.get('http://localhost:8080/temporary')
+    .then((resp)=>{
+      //do something with response
+      console.log(resp.data);
+      if(resp.data.length !== 0)
+
+      {//TODO:
+      //for more than 1 user access at same time resp.data[0] fails
+      axios.post('http://localhost:8080/permanent',resp.data[0])
+      .then((res)=>{
+        //do something with response
+        console.log(res.data);
+        
+        axios.delete('http://localhost:8080/temporary/'+resp.data[0]._id)
+        .then((res)=>{
+          //do something with response
+        })
+      });}
+    // }).catch((error)=>{
+    //   console.log(error)
     });
-    console.log(this.state.user);
+
+    
+    // this.setState({
+    //   user : k
+    // });
+   // console.log(this.state.user);
 
 
-    // firebase.auth().createUserWithEmailAndPassword(email, password).then(function(result) {
-    //   console.log(result);
-    //       console.log(email);
-    //   }).catch(function(error) {
-    //   var errorCode = error.code;
-    //   var errorMessage = error.message;
-    //   console.log(errorCode);
-    //   console.log(errorMessage);
-    // })
+    
   }
 
   mySignUp = ()=>{
 // console.log(this.state.user);
 
+    if(this.state.user.i.temp_passward.length >= 6){
     var actionCodeSettings = {
       // URL you want to redirect back to. The domain (www.example.com) for this
       // URL must be whitelisted in the Firebase Console.
@@ -181,13 +206,15 @@ class Main extends React.Component{
       handleCodeInApp: true,
     }
 
-let email = this.state.user.i.temp_email;
-console.log(this.state.user.i);
-this.userAddedTemporarily();
+    let email = this.state.user.i.temp_email;
+    console.log(this.state.user.i);
+    this.userAddedTemporarily();
 
-
-
-    firebase.auth().sendSignInLinkToEmail(email, actionCodeSettings)
+   
+    firebase.auth().createUserWithEmailAndPassword(email, this.state.user.i.temp_passward).then(function(result) {
+      console.log(result);
+          // console.log(res.data.temp_email);
+          firebase.auth().sendSignInLinkToEmail(email, actionCodeSettings)
     .then(function(result) {
       // The link was successfully sent. Inform the user.
       // Save the email locally so you don't need to ask the user for it again
@@ -200,11 +227,19 @@ this.userAddedTemporarily();
     .catch(function(error) {
       // Some error occurred, you can inspect the code: error.code
       console.log(error);
+      // if(error)
     });
-
-    ;
-
-    
+      }).catch(function(error) {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      console.log(errorCode);
+      console.log(errorMessage);
+      window.alert(error);
+    });
+  }
+  else{
+    window.alert("Length of passward should be greater than 6");
+  }
   }
 
   logIn = () =>{
@@ -417,8 +452,8 @@ this.userAddedTemporarily();
                   required
                   fullWidth
                   name="password"
-                  label="Password"
-                  type="passward"
+                  label="Password (minimum 6 characters)"
+                  type="Passward"
                   id="password"
                   autoComplete="current-password"
                   onChange={this.signUpPassward}
@@ -531,7 +566,7 @@ this.userAddedTemporarily();
        });
   console.log(this.state.db);
   });
-  // this.cardClick();
+  this.cardClick(this.state.db.resid);
 
 }
 
@@ -568,6 +603,7 @@ this.userAddedTemporarily();
   }
 
   cardClick = (value) =>{
+    
     let url = "https://developers.zomato.com/api/v2.1/";
     //id calculater
     axios.get(url + "restaurant?res_id=" + value,
@@ -584,11 +620,29 @@ this.userAddedTemporarily();
       db.center = {center: {
         lat: 59.95,
         lng: 30.33
-      }}
+      }};
+      // db.fav = <FavoriteIcon onClick={()=>this.heartClick()} style={this.state.db.restaurantInfo.flag ? {backgroundColor:'red'} : {backgroundColor:'green'}}/>
+
         // <CardContent resData = {res.data}/>
           this.setState({
               db: db })        
     });
+}
+
+heartClick = () =>{
+  let db = this.state.db;
+    db.restaurantInfo.flag = !(this.state.db.restaurantInfo.flag);
+    db.fav = <FavoriteIcon onClick={()=>this.heartClick()} style={this.state.db.restaurantInfo.flag ? {backgroundColor:'red'} : {backgroundColor:'green'}}/>
+    this.setState({
+      db : db
+    });
+    console.log(this.state.db)
+    // if(db.restaurantSearch.restaurants[index].restaurant.flag === true){
+    //   return {backgroundColor:'red'};
+    // }
+    // else{
+    //   return {backgroundColor: 'white'};
+    // };
 }
 
 cuisinPrint = () =>{
@@ -665,7 +719,7 @@ cuisinClick = (value) =>{
               return <CityDropdown city={value} cityNameSelected={this.cityNameSelected(value)}/>
             })}>
             </Route> */}
-            <Route exact path={"/home/res_id:" + this.state.db.resid } render={()=> <CardContent citySelectedColorChange={() => this.citySelectedColorChange()} restaurantInfo={this.state.db.restaurantInfo}/>} />        
+            <Route exact path={"/home/res_id:" + this.state.db.resid } render={()=> <CardContent cardClick={()=>this.cardClick()} fav={this.state.db.fav} citySelectedColorChange={() => this.citySelectedColorChange()} restaurantInfo={this.state.db.restaurantInfo}/>} />        
             {/* <Route exact path="/home" render={()=><Home citySelectedColorChange={()=>this.citySelectedColorChange()} restaurants={this.state.db.restaurantSearch.restaurants} restId={()=>this.restId()}/>} /> */}
 {/* 
              <Route exact path="/home" render={()=>
