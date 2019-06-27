@@ -212,25 +212,28 @@ class Main extends React.Component{
     console.log(this.state.user.i);
     this.userAddedTemporarily();
 
-   
-    firebase.auth().createUserWithEmailAndPassword(email, this.state.user.i.temp_passward).then(function(result) {
+   let p = this.state.user;
+   let k = new Date();
+   p.i.temp_date = k.getTime();
+   window.alert("We have sent a confirmation mail. Click on the link given in the mail");
+   firebase.auth().createUserWithEmailAndPassword(email, this.state.user.i.temp_passward).then(function(result) {
       console.log(result);
           // console.log(res.data.temp_email);
-          firebase.auth().sendSignInLinkToEmail(email, actionCodeSettings)
-    .then(function(result) {
-      // The link was successfully sent. Inform the user.
-      // Save the email locally so you don't need to ask the user for it again
-      // if they open the link on the same device.
-      window.localStorage.setItem('emailForSignIn', email);
-      console.log("email sent");
-      // console.log(result);
-      
-    })
-    .catch(function(error) {
-      // Some error occurred, you can inspect the code: error.code
-      console.log(error);
-      // if(error)
-    });
+        firebase.auth().sendSignInLinkToEmail(email, actionCodeSettings)
+        .then(function(result) {
+          // The link was successfully sent. Inform the user.
+          // Save the email locally so you don't need to ask the user for it again
+          // if they open the link on the same device.
+          window.localStorage.setItem('emailForSignIn', email);
+          console.log("email sent");
+          // console.log(result);
+          
+        })
+        .catch(function(error) {
+          // Some error occurred, you can inspect the code: error.code
+          console.log(error);
+          // if(error)
+        });
       }).catch(function(error) {
       var errorCode = error.code;
       var errorMessage = error.message;
