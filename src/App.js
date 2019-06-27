@@ -663,7 +663,6 @@ class Main extends React.Component{
   }
 
   cardClick = (value) =>{
-    
     let url = "https://developers.zomato.com/api/v2.1/";
     //id calculater
     axios.get(url + "restaurant?res_id=" + value,
@@ -685,7 +684,25 @@ class Main extends React.Component{
 
         // <CardContent resData = {res.data}/>
           this.setState({
-              db: db })        
+              db: db }) 
+
+          let obj = {
+            resid: value,
+            id: this.state.db.cityName.id,
+            tables_available: 10, //TODO: will be set by the admin
+          }
+      axios.get('http://localhost:8080/available/' + value)
+      .then((resp)=>{
+        //do something with response
+        console.log(resp.data);
+        if(resp.data.length === 0)
+          axios.post('http://localhost:8080/available',obj)
+          .then((res)=>{
+            //do something with response
+            console.log(res.data);
+          });
+    });
+           
     });
 }
 
