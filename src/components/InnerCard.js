@@ -65,7 +65,7 @@ function InnerCard(props) {
   }
 
   function splitName(){
-    console.log(props.restaurantInfo)
+    // console.log(props.restaurantInfo)
     let name = props.restaurantInfo.name.split(',');
     return name[0];
   }

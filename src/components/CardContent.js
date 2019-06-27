@@ -17,9 +17,30 @@ import axios from 'axios';
 
 class MyVerticallyCenteredModal extends React.Component {
 
+  constructor(props){
+    super(props);
+    this.state={}
+    this.state.table={
+      available: 0
+    }
+  }
+
   splitName = () =>{
     let name = this.props.restaurantInfo.name.split(',');
     return name[0];
+  }
+
+  componentWillMount(){
+    axios.get('http://localhost:8080/available/' + window.location.href.split(":")[3])
+      .then((resp)=>{
+        //do something with response
+        console.log(resp.data[0].tables_available);
+        let table = this.state.table;
+        table.available = resp.data[0].tables_available;
+        this.setState({
+          table: table
+        })
+      });
   }
 
     render() {
@@ -43,12 +64,17 @@ class MyVerticallyCenteredModal extends React.Component {
                 </Col>
                 <Col>
                   {/* <input type="input"></input> */}
+                  {/* {console.log(this.totalSeatsAvalilable())} */}
+
                   <TextField
                     id="outlined-number"
                     label="Available"
                     // value={values.age}
                     // onChange={handleChange('age')}
-                    type="number"
+                    min={this.state.table.available}
+                    max={this.state.table.available}
+                    value={this.state.table.available}
+                    // type="number"
                     className="textField"
                     InputLabelProps={{
                       shrink: true,

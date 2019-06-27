@@ -1,6 +1,7 @@
 import React from 'react';
 import ControlledCarousel from './components/MainPage.js';
 import {Link, Route, BrowserRouter as Router } from 'react-router-dom';
+import {LogIn} from './components/Loginmy.js';
 import Home from './components/MyHome';
 import CardContent from './components/CardContent';
 import axios from 'axios';
@@ -14,14 +15,15 @@ import Button from 'react-bootstrap/Button.js';
 import Avatar from '@material-ui/core/Avatar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+// import Link from '@material-ui/core/Link';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-
 import { thisExpression } from '@babel/types';
 // import GoogleMapReact from 'google-map-react';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-
 
 
 
@@ -542,6 +544,22 @@ class Main extends React.Component{
     );
   }
 
+// componentDidMount(){
+//   axios.get("#").then((res)=>{
+//     console.log(res.data);
+//     this.userConfirmed();
+// });
+// }
+
+// initMap = () => {
+//   // The location of Uluru
+//   var uluru = {lat: -25.344, lng: 131.036};
+//   // The map, centered at Uluru
+//   var map = new google.maps.Map(
+//       document.getElementById('map'), {zoom: 4, center: uluru});
+//   // The marker, positioned at Uluru
+//   var marker = new google.maps.Marker({position: uluru, map: map});
+// }
 
 
   componentWillMount() {
@@ -551,7 +569,8 @@ class Main extends React.Component{
     {
       headers:{
         "Accept": "application/json",
-        "user-key": "0c87f14b32add1de8469c4d4cdb376a0 ",
+        // "user-key": "0c87f14b32add1de8469c4d4cdb376a0 ",
+        "user-key": "807b1a5bea43c47e9977489a0c4c84b4",
       }
     })
     .then((res)=>{
@@ -568,7 +587,8 @@ class Main extends React.Component{
      {
        headers:{
          "Accept": "application/json",
-         "user-key": "0c87f14b32add1de8469c4d4cdb376a0 ",
+        //  "user-key": "0c87f14b32add1de8469c4d4cdb376a0 ",
+        "user-key": "807b1a5bea43c47e9977489a0c4c84b4",
        }
      })
      .then((res)=>{
@@ -586,7 +606,9 @@ class Main extends React.Component{
        {
          headers:{
            "Accept": "application/json",
-           "user-key": "0c87f14b32add1de8469c4d4cdb376a0 ",
+          //  "user-key": "0c87f14b32add1de8469c4d4cdb376a0 ",
+          "user-key": "807b1a5bea43c47e9977489a0c4c84b4",
+
          }
        })
        .then((res)=>{
@@ -651,7 +673,9 @@ class Main extends React.Component{
     {
       headers:{
         "Accept": "application/json",
-        "user-key": "0c87f14b32add1de8469c4d4cdb376a0 ",
+        // "user-key": "0c87f14b32add1de8469c4d4cdb376a0 ",
+        "user-key": "807b1a5bea43c47e9977489a0c4c84b4",
+
       }
     })
     .then((res)=>{
@@ -662,7 +686,9 @@ class Main extends React.Component{
         lat: res.data.location.latitude,
         lng: res.data.location.longitude,
       }};
+      // db.fav = <FavoriteIcon onClick={()=>this.heartClick()} style={this.state.db.restaurantInfo.flag ? {backgroundColor:'red'} : {backgroundColor:'green'}}/>
 
+        // <CardContent resData = {res.data}/>
           this.setState({
               db: db }) 
 
@@ -676,11 +702,13 @@ class Main extends React.Component{
         //do something with response
         console.log(resp.data);
         if(resp.data.length === 0)
-          axios.post('http://localhost:8080/available',obj)
+          {
+            axios.post('http://localhost:8080/available',obj)
           .then((res)=>{
             //do something with response
             console.log(res.data);
           });
+        }
     });
            
     });
@@ -689,12 +717,17 @@ class Main extends React.Component{
 heartClick = () =>{
   let db = this.state.db;
     db.restaurantInfo.flag = !(this.state.db.restaurantInfo.flag);
-    db.fav = <FavoriteIcon onClick={()=>this.heartClick()} style={this.state.db.restaurantInfo.flag ? { color:'red'} : { color:'grey'}}/>
+    db.fav = <FavoriteIcon onClick={()=>this.heartClick()} style={this.state.db.restaurantInfo.flag ? {color:'red'} : {color:'grey'}}/>
     this.setState({
       db : db
     });
     console.log(this.state.db)
-    
+    // if(db.restaurantSearch.restaurants[index].restaurant.flag === true){
+    //   return {backgroundColor:'red'};
+    // }
+    // else{
+    //   return {backgroundColor: 'white'};
+    // };
 }
 
 cuisinPrint = () =>{
@@ -710,29 +743,65 @@ cuisinClick = (value) =>{
   this.setState({
     cuisine_selected: value
   });
+  // return this.state.cuisine_selected;
 }
    
 
+  // componentDidMount(){
+  //   let url = "https://developers.zomato.com/api/v2.1/";
+
+  //   axios.get(url + this.state.db.restaurantSearch.url1 + this.state.db.cityName.id +
+  //      this.state.db.restaurantSearch.url2 + this.state.db.cityName.name + this.state.db.restaurantSearch.url3,
+  //     {
+  //       headers:{
+  //         "Accept": "application/json",
+  //         "user-key": "0c87f14b32add1de8469c4d4cdb376a0 ",
+  //       }
+  //     })
+  //     .then((res)=>{
+  //       let db = this.state.db;
+  //       db.restaurantSearch.restaurants = res.data.restaurants.map((value,index)=>
+  //         value
+  //       );
+  //       this.setState({
+  //         db : db,
+  //       });
+  //     });
+  //   console.log(this.state.db);
+  // }
+
+  // cityIdCalculate = (name) =>{
+  //   console.log(name);
+  //   this.setState({
+  //     cityNameSelected: name
+  //   })
+  // }
+
+  // restId = (value)=>{
+  //   console.log(value);
+  // }
  
+  
 
 
 
 
   render(){
+    // console.log(this.props.restId);
     return(
 
       
       <Router>
        
-        
+           {/* <Link to="/"></Link>
+           <Link to="/login"></Link>
+           <Link to="/signup"></Link>
+           <Link to="/home"></Link>
+           <Link to="/home/card"></Link> */}
             <Route exact path="/" render={()=><ControlledCarousel thisSignUp={()=>this.thisSignUp()}/>}/>
+            {/* <Route path="/login" render={()=><LogIn mySignUp={()=>this.mySignUp()}/>} />
             <Route path="/signup" render={()=><SignUp mySignUp={()=>this.mySignUp()}/>} /> */}
             <Route exact path="/home" render={()=><Home i={this.state.user.i} userConfirmed={()=>this.userConfirmed(this.state.user.i)} citySelectedColorChange={()=>this.citySelectedColorChange()} cardPrint={()=>this.cardPrint()} restaurants={this.state.db.restaurantSearch.restaurants} cuisinPrint={()=>this.cuisinPrint()} cuisines={this.state.db.cuisines}/>} cuisine_selected={this.state.db.cuisine_selected} />
-<<<<<<< HEAD
-            <Route exact path={"/home/res_id:" + this.state.db.resid } render={()=> <CardContent cardClick={()=>this.cardClick()} fav={this.state.db.fav} citySelectedColorChange={() => this.citySelectedColorChange()} restaurantInfo={this.state.db.restaurantInfo}/>} /> 
-            {/* <Route exact path="/home/user" render{()=>}*/}
-          
-=======
 
             {/* <Route exact path="/home" render={()=>
             this.state.db.cities.map((value)=>{
@@ -747,7 +816,6 @@ cuisinClick = (value) =>{
               return <CityDropdown city={value} cityNameSelected={this.cityNameSelected(value)}/>
             })}>
             </Route>  */}
->>>>>>> c43a6642ce5ef5b5ae4590f5775ac4c4f4758bf6
       </Router>                 
       );
   }
@@ -761,3 +829,6 @@ export default Main;
 
 
 //807b1a5bea43c47e9977489a0c4c84b4
+
+// url + this.state.db.restaurantSearch.url1 + this.state.db.cityName.id +
+// this.state.db.restaurantSearch.url2 + this.state.db.cityName.name + this.state.db.restaurantSearch.url3
