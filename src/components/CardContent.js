@@ -114,9 +114,12 @@ class CardContent extends React.Component{
             content: {}
           }
         }
+        
     }
 
     componentWillMount() {
+      
+      
       // let url = "https://developers.zomato.com/api/v2.1/";
       // //id calculater
       // axios.get(url + this.state.db.restaurantContent.url 

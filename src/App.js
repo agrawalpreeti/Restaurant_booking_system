@@ -61,7 +61,8 @@ class Main extends React.Component{
       temp_lastname: "",
       temp_email: "",
       temp_passward: "",
-      temp_date: ""
+      temp_date: "",
+      initial_date: ""
         }
     };
     this.state.db = {
@@ -132,6 +133,14 @@ class Main extends React.Component{
       cuisines: [],
       cuisine_selected: ""
     }
+    // if (window.performance) {
+    //   if (performance.navigation.type == 1) {
+    //     this.cardClick();
+    //     alert( "This page is reloaded" );
+    //   } else {
+    //     alert( "This page is not reloaded");
+    //   }
+    // }
   }
 
   userAddedTemporarily = () =>{
@@ -149,6 +158,39 @@ class Main extends React.Component{
       user : k
     });
   }
+
+  // componentDidMount() {
+  //   this.timerID = setInterval(
+  //     () => this.tick(),
+  //     1000
+  //   );
+  // }
+
+  // tick = () =>{
+  //   let p = this.state.user;
+  //   let k = new Date();
+  //   p.i.temp_date = k.getTime();
+  //   this.setState({
+  //     user: p
+  //   })
+  // }
+//8.64e+7
+//   componentWillUnmount() {
+//     if(this.state.user.temp_date >= (this.state.user.initial_date + 1)){
+      
+//       var user = firebase.auth().currentUser;
+
+//       user.delete().then(function() {
+//         // User deleted.
+//       }).catch(function(error) {
+//         // An error happened.
+//         console.log(error)
+//       });
+// console.log("user deleted")
+
+//       clearInterval(this.timerID);
+//     }
+//   }
 
   userConfirmed = (i)=>{
     console.log("permanent");
@@ -190,10 +232,7 @@ class Main extends React.Component{
     // this.setState({
     //   user : k
     // });
-   // console.log(this.state.user);
-
-
-    
+   // console.log(this.state.user);    
   }
 
   mySignUp = ()=>{
@@ -210,12 +249,19 @@ class Main extends React.Component{
 
     let email = this.state.user.i.temp_email;
     console.log(this.state.user.i);
-    this.userAddedTemporarily();
 
    let p = this.state.user;
    let k = new Date();
-   p.i.temp_date = k.getTime();
-   window.alert("We have sent a confirmation mail. Click on the link given in the mail");
+   p.i.initial_date = k.getTime();
+   this.setState({
+     user: p
+   })
+  //  this.timerID = setInterval(
+  //   () => this.tick(),
+  //   1000
+  // );
+
+   this.userAddedTemporarily();
    firebase.auth().createUserWithEmailAndPassword(email, this.state.user.i.temp_passward).then(function(result) {
       console.log(result);
           // console.log(res.data.temp_email);
@@ -225,6 +271,7 @@ class Main extends React.Component{
           // Save the email locally so you don't need to ask the user for it again
           // if they open the link on the same device.
           window.localStorage.setItem('emailForSignIn', email);
+          window.alert("We have sent a confirmation mail. Click on the link given in the mail. The link will expire after 24 hours.");
           console.log("email sent");
           // console.log(result);
           
@@ -571,7 +618,15 @@ class Main extends React.Component{
        });
   console.log(this.state.db);
   });
-  this.cardClick(this.state.db.resid);
+  // this.cardClick(this.state.db.resid);
+  if (window.performance) {
+    if (performance.navigation.type == 1) {
+      this.cardClick(window.location.href.split(":")[3]);
+      alert( window.location.href.split(":")[3]);
+    } else {
+      alert( "This page is not reloaded");
+    }
+  }
 
 }
 
@@ -601,7 +656,7 @@ class Main extends React.Component{
     let cards = [];
     cards = this.state.db.restaurantSearch.restaurants.map((value, index) =>
         <Link to={"/home/res_id:" + value.restaurant.R.res_id} onClick={()=>this.cardClick(value.restaurant.R.res_id)} style={{ textDecoration: 'none', marginBottom: '2%'}}>
-            <Cardmy index={index} restaurants={this.state.db.restaurantSearch.restaurants} onLoad={()=>this.cardClick(value.restaurant.R.res_id)}></Cardmy>
+            <Cardmy index={index} restaurants={this.state.db.restaurantSearch.restaurants} ></Cardmy>
         </Link>
     );
     return cards;
@@ -623,8 +678,8 @@ class Main extends React.Component{
       db.restaurantInfo = res.data;
       db.resid = value;
       db.center = {center: {
-        lat: 59.95,
-        lng: 30.33
+        lat: res.data.location.latitude,
+        lng: res.data.location.longitude,
       }};
       // db.fav = <FavoriteIcon onClick={()=>this.heartClick()} style={this.state.db.restaurantInfo.flag ? {backgroundColor:'red'} : {backgroundColor:'green'}}/>
 
@@ -728,7 +783,7 @@ cuisinClick = (value) =>{
               return <CityDropdown city={value} cityNameSelected={this.cityNameSelected(value)}/>
             })}>
             </Route> */}
-            <Route exact path={"/home/res_id:" + this.state.db.resid } render={()=> <CardContent cardClick={()=>this.cardClick()} fav={this.state.db.fav} citySelectedColorChange={() => this.citySelectedColorChange()} restaurantInfo={this.state.db.restaurantInfo}/>} />        
+            <Route exact path={"/home/res_id:" + this.state.db.resid } render={()=> <CardContent fav={this.state.db.fav} citySelectedColorChange={() => this.citySelectedColorChange()} restaurantInfo={this.state.db.restaurantInfo}/>} />        
             {/* <Route exact path="/home" render={()=><Home citySelectedColorChange={()=>this.citySelectedColorChange()} restaurants={this.state.db.restaurantSearch.restaurants} restId={()=>this.restId()}/>} /> */}
 {/* 
              <Route exact path="/home" render={()=>
