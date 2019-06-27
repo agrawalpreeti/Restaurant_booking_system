@@ -128,12 +128,10 @@ function InnerCard(props) {
       </CardContent>
       <CardActions disableSpacing>
 
-        <IconButton 
-        aria-label="Add to favorites">
-          <FavoriteIcon />
+      
         <IconButton aria-label="Add to favorites">
           {props.fav}
-          {/* <FavoriteIcon /> */}
+        
         </IconButton>
         <IconButton aria-label="Share">
 

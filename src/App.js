@@ -124,7 +124,7 @@ class Main extends React.Component{
       restaurantInfo: {
         flag: false,
       },
-      fav: <FavoriteIcon onClick={()=>this.heartClick()} style={{backgroundColor:'green'}}/>,
+      fav: <FavoriteIcon onClick={()=>this.heartClick()} style={{color:'grey'}}/>,
       
       resid: "",
       cuisines: [],
@@ -495,22 +495,6 @@ class Main extends React.Component{
     );
   }
 
-// componentDidMount(){
-//   axios.get("#").then((res)=>{
-//     console.log(res.data);
-//     this.userConfirmed();
-// });
-// }
-
-// initMap = () => {
-//   // The location of Uluru
-//   var uluru = {lat: -25.344, lng: 131.036};
-//   // The map, centered at Uluru
-//   var map = new google.maps.Map(
-//       document.getElementById('map'), {zoom: 4, center: uluru});
-//   // The marker, positioned at Uluru
-//   var marker = new google.maps.Marker({position: uluru, map: map});
-// }
 
 
   componentWillMount() {
@@ -624,9 +608,7 @@ class Main extends React.Component{
         lat: 59.95,
         lng: 30.33
       }};
-      // db.fav = <FavoriteIcon onClick={()=>this.heartClick()} style={this.state.db.restaurantInfo.flag ? {backgroundColor:'red'} : {backgroundColor:'green'}}/>
 
-        // <CardContent resData = {res.data}/>
           this.setState({
               db: db })        
     });
@@ -635,17 +617,12 @@ class Main extends React.Component{
 heartClick = () =>{
   let db = this.state.db;
     db.restaurantInfo.flag = !(this.state.db.restaurantInfo.flag);
-    db.fav = <FavoriteIcon onClick={()=>this.heartClick()} style={this.state.db.restaurantInfo.flag ? {backgroundColor:'red'} : {backgroundColor:'green'}}/>
+    db.fav = <FavoriteIcon onClick={()=>this.heartClick()} style={this.state.db.restaurantInfo.flag ? { color:'red'} : { color:'grey'}}/>
     this.setState({
       db : db
     });
     console.log(this.state.db)
-    // if(db.restaurantSearch.restaurants[index].restaurant.flag === true){
-    //   return {backgroundColor:'red'};
-    // }
-    // else{
-    //   return {backgroundColor: 'white'};
-    // };
+    
 }
 
 cuisinPrint = () =>{
@@ -661,51 +638,15 @@ cuisinClick = (value) =>{
   this.setState({
     cuisine_selected: value
   });
-  // return this.state.cuisine_selected;
 }
    
 
-  // componentDidMount(){
-  //   let url = "https://developers.zomato.com/api/v2.1/";
-
-  //   axios.get(url + this.state.db.restaurantSearch.url1 + this.state.db.cityName.id +
-  //      this.state.db.restaurantSearch.url2 + this.state.db.cityName.name + this.state.db.restaurantSearch.url3,
-  //     {
-  //       headers:{
-  //         "Accept": "application/json",
-  //         "user-key": "0c87f14b32add1de8469c4d4cdb376a0 ",
-  //       }
-  //     })
-  //     .then((res)=>{
-  //       let db = this.state.db;
-  //       db.restaurantSearch.restaurants = res.data.restaurants.map((value,index)=>
-  //         value
-  //       );
-  //       this.setState({
-  //         db : db,
-  //       });
-  //     });
-  //   console.log(this.state.db);
-  // }
-
-  // cityIdCalculate = (name) =>{
-  //   console.log(name);
-  //   this.setState({
-  //     cityNameSelected: name
-  //   })
-  // }
-
-  // restId = (value)=>{
-  //   console.log(value);
-  // }
  
-  
 
 
 
 
   render(){
-    // console.log(this.props.restId);
     return(
 
       
@@ -713,23 +654,11 @@ cuisinClick = (value) =>{
        
         
             <Route exact path="/" render={()=><ControlledCarousel thisSignUp={()=>this.thisSignUp()}/>}/>
-            {/* <Route path="/login" render={()=><LogIn mySignUp={()=>this.mySignUp()}/>} />
             <Route path="/signup" render={()=><SignUp mySignUp={()=>this.mySignUp()}/>} /> */}
             <Route exact path="/home" render={()=><Home i={this.state.user.i} userConfirmed={()=>this.userConfirmed(this.state.user.i)} citySelectedColorChange={()=>this.citySelectedColorChange()} cardPrint={()=>this.cardPrint()} restaurants={this.state.db.restaurantSearch.restaurants} cuisinPrint={()=>this.cuisinPrint()} cuisines={this.state.db.cuisines}/>} cuisine_selected={this.state.db.cuisine_selected} />
-
-            {/* <Route exact path="/home" render={()=>
-            this.state.db.cities.map((value)=>{
-              return <CityDropdown city={value} cityNameSelected={this.cityNameSelected(value)}/>
-            })}>
-            </Route> */}
-            <Route exact path={"/home/res_id:" + this.state.db.resid } render={()=> <CardContent cardClick={()=>this.cardClick()} fav={this.state.db.fav} citySelectedColorChange={() => this.citySelectedColorChange()} restaurantInfo={this.state.db.restaurantInfo}/>} />        
-            {/* <Route exact path="/home" render={()=><Home citySelectedColorChange={()=>this.citySelectedColorChange()} restaurants={this.state.db.restaurantSearch.restaurants} restId={()=>this.restId()}/>} /> */}
-{/* 
-             <Route exact path="/home" render={()=>
-            this.state.db.cities.map((value)=>{
-              return <CityDropdown city={value} cityNameSelected={this.cityNameSelected(value)}/>
-            })}>
-            </Route>  */}
+            <Route exact path={"/home/res_id:" + this.state.db.resid } render={()=> <CardContent cardClick={()=>this.cardClick()} fav={this.state.db.fav} citySelectedColorChange={() => this.citySelectedColorChange()} restaurantInfo={this.state.db.restaurantInfo}/>} /> 
+            {/* <Route exact path="/home/user" render{()=>}*/}
+          
       </Router>                 
       );
   }
@@ -743,6 +672,3 @@ export default Main;
 
 
 //807b1a5bea43c47e9977489a0c4c84b4
-
-// url + this.state.db.restaurantSearch.url1 + this.state.db.cityName.id +
-// this.state.db.restaurantSearch.url2 + this.state.db.cityName.name + this.state.db.restaurantSearch.url3
