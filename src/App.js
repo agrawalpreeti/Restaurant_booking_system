@@ -1,7 +1,7 @@
 import React from 'react';
 import ControlledCarousel from './components/MainPage.js';
 import {Link, Route, BrowserRouter as Router } from 'react-router-dom';
-import {LogIn} from './components/Loginmy.js';
+// import {LogIn} from './components/Loginmy.js';
 import Home from './components/MyHome';
 import CardContent from './components/CardContent';
 import axios from 'axios';
@@ -63,6 +63,13 @@ class Main extends React.Component{
       temp_passward: "",
       temp_date: "",
       initial_date: ""
+        },
+
+      l:
+        {
+      temp_email: "",
+      temp_passward: "",
+      is_login: false
         }
     };
     this.state.db = {
@@ -214,19 +221,31 @@ class Main extends React.Component{
 
       {//TODO:
       //for more than 1 user access at same time resp.data[0] fails
-      axios.post('http://localhost:8080/permanent',resp.data[0])
-      .then((res)=>{
-        //do something with response
-        console.log(res.data);
-        
-        axios.delete('http://localhost:8080/temporary/'+resp.data[0]._id)
-        .then((res)=>{
-          //do something with response
+      axios.get('http://localhost:8080/permanent/' + resp.data[0].temp_email)
+      .then((respo)=>{
+        //do something with resp
+        if(respo.data.length === 0)
+          axios.post('http://localhost:8080/permanent',resp.data[0])
+          .then((res)=>{
+            //do something with response
+            console.log(res.data);
+            
+            axios.delete('http://localhost:8080/temporary/'+resp.data[0]._id)
+            .then((res)=>{
+              //do something with response
+            })
+          });
+          else{
+            axios.delete('http://localhost:8080/temporary/'+resp.data[0]._id)
+            .then((res)=>{
+              //do something with response
+            })
+          }
         })
-      });}
+        
     // }).catch((error)=>{
     //   console.log(error)
-    });
+    }});
 
     
     // this.setState({
@@ -294,15 +313,48 @@ class Main extends React.Component{
   }
   }
 
-  logIn = () =>{
-    // firebase.auth().signInWithEmailAndPassword(email, password).then(function(result) {
-    //     console.log(email);
-    // }).catch(function(error) {
-    //     var errorCode = error.code;
-    //     var errorMessage = error.message;
-    //     console.log(errorCode);
-    //     console.log(errorMessage);
-    //   });
+  myLogIn = () =>{
+    axios.get('http://localhost:8080/permanent/' + this.state.user.l.temp_email)
+    .then((resp)=>{
+      //do something with response
+      console.log(this.state.user.l.temp_email)
+      console.log(resp.data);
+      if(resp.data.length !== 0)
+      {//TODO:
+      //for more than 1 user access at same time resp.data[0] fails
+      axios.get('http://localhost:8080/login/' + resp.data[0].temp_email)
+      .then((res)=>{
+        //do something with response
+        console.log(this.state.user.l.temp_email)
+        console.log(res.data);
+        if(res.data.length === 0){
+          let obj = {
+            temp_email: this.state.user.l.temp_email,
+            temp_passward: this.state.user.l.temp_passward,
+            is_login: true
+          }
+          axios.post('http://localhost:8080/login',obj)
+          .then((respo)=>{
+            //do something with response
+            console.log(respo.data);
+            let user = this.state.user;
+            user.l.temp_email = this.state.user.l.temp_email;
+            user.l.is_login = true;
+            this.setState({
+              user: user,
+            })
+          });
+        }
+         
+        else{
+          alert("Already logged in.")
+        }
+      });
+    }
+    else{
+      alert("SignUp first before logging in.")
+    }
+  })
   }
 
   getUserInfo = () =>{
@@ -381,38 +433,38 @@ class Main extends React.Component{
   //   });
   // }
 
-  makeStyles = (theme) => ({
+  // makeStyles = (theme) => ({
 
-    root: {
-      flexGrow: 1,
-    },
-    paper: {
-        marginTop: theme.spacing(8),
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        textAlign: 'center',
-      },
-    button: {
-        margin: theme.spacing(1),
-      },
-      input: {
-        display: 'none',
-      },
+  //   root: {
+  //     flexGrow: 1,
+  //   },
+  //   paper: {
+  //       marginTop: theme.spacing(8),
+  //       display: 'flex',
+  //       flexDirection: 'column',
+  //       alignItems: 'center',
+  //       textAlign: 'center',
+  //     },
+  //   button: {
+  //       margin: theme.spacing(1),
+  //     },
+  //     input: {
+  //       display: 'none',
+  //     },
 
-      avatar: {
-        margin: theme.spacing(1),
-        backgroundColor: theme.palette.secondary.main,
+  //     avatar: {
+  //       margin: theme.spacing(1),
+  //       backgroundColor: theme.palette.secondary.main,
 
-      },
-      form: {
-        width: '100%', 
-        marginTop: theme.spacing(1),
-      },
-      submit: {
-        margin: theme.spacing(3, 0, 2),
-      }
-  });
+  //     },
+  //     form: {
+  //       width: '100%', 
+  //       marginTop: theme.spacing(1),
+  //     },
+  //     submit: {
+  //       margin: theme.spacing(3, 0, 2),
+  //     }
+  // });
 
   signUpFirstName = (e) =>{
     let name = this.state.user;
@@ -447,19 +499,19 @@ class Main extends React.Component{
   }
 
   thisSignUp = () =>{
-    const classes = makeStyles();
+    // const classes = makeStyles();
   
     return (
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="xs" className="roots">
         <CssBaseline />
-        <div className={classes.paper}>
-          <Avatar className={classes.avatar}>
+        <div className="papers">
+          <Avatar className="avatars">
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
             Sign Up
           </Typography>
-          <form className={classes.form} noValidate>
+          <form className="forms" noValidate>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -472,6 +524,7 @@ class Main extends React.Component{
                   label="First Name"
                   autoFocus
                   onChange={this.signUpFirstName}
+                  className="inputs"
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -484,6 +537,7 @@ class Main extends React.Component{
                   name="lastName"
                   autoComplete="lname"
                   onChange={this.signUpLastName}
+                  className="inputs"
                 />
               </Grid>
               <Grid item xs={12}>
@@ -496,6 +550,7 @@ class Main extends React.Component{
                   name="email"
                   autoComplete="email"
                   onChange={this.signUpEmail}
+                  className="inputs"
                 />
               </Grid>
               <Grid item xs={12}>
@@ -505,10 +560,12 @@ class Main extends React.Component{
                   fullWidth
                   name="password"
                   label="Password (minimum 6 characters)"
-                  type="Passward"
+                  type="password"
                   id="password"
                   autoComplete="current-password"
                   onChange={this.signUpPassward}
+                  className="inputs"
+                  style={{marginBottom: '10%'}}
                 />
               </Grid>
               {/* <Grid item xs={12}>
@@ -522,15 +579,14 @@ class Main extends React.Component{
             {/* {props.signUpButton()} */}
             <Button
             // type="submit"
-            fullWidth
-            // variant="contained"
+            // style
             color="primary"
-            className={classes.submit}
+            className="submits"
             onClick={()=>{this.mySignUp()}}
           >
             Sign Up
           </Button>
-            <Grid container justify="flex-end">
+            <Grid container justify="flex-end" style={{marginTop: '10%'}}>
               <Grid item>
                 <Link  href="#"  variant="body2">
                 {/* onClick={()=>props.alreadyAnAccount()} */}
@@ -543,6 +599,100 @@ class Main extends React.Component{
       </Container>
     );
   }
+
+  logInEmail = (e) =>{
+    let name = this.state.user;
+    name.l.temp_email = e.target.value;
+    this.setState({
+      user: name,
+    });
+  }
+
+  logInPassward = (e) =>{
+    let name = this.state.user;
+    name.l.temp_passward = e.target.value;
+    this.setState({
+      user: name,
+    });
+  }
+
+
+
+  thisLogIn = () =>{
+  
+    return (
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <div className="papers">
+          <Avatar className="avatars">
+            <LockOutlinedIcon />
+          </Avatar>
+
+          <Typography component="h1" variant="h5">
+            Log in
+          </Typography>
+          <form className="forms" noValidate>
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              label="Email Address"
+              name="email"
+              autoComplete="email"
+              autoFocus
+              onChange={this.logInEmail}
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+              onChange={this.logInPassward}
+            />
+            <FormControlLabel
+              control={<Checkbox value="remember" color="primary"/>}
+              label="Remember me"
+            />
+            <Button
+              // type="submit"
+              fullwidth="true"
+              color="primary"
+              className="submits"
+              onClick={()=>{this.myLogIn()}}
+              >
+              Log in
+            </Button>
+            <Grid container>
+              <Grid item xs>
+                <Link href="/" variant="body2">
+                  Forgot password?
+                </Link>
+              </Grid>
+              <Grid item>
+                {/* <Link href="/signup" variant="body2"> */}
+                <Link href="#">
+                  {"Don't have an account? Sign Up"}
+                  </Link>
+                {/* </Link> */}
+              </Grid>
+            </Grid>
+          </form>
+        </div>
+      
+      </Container>
+    );
+  }
+
+
+
+
 
 // componentDidMount(){
 //   axios.get("#").then((res)=>{
@@ -667,6 +817,42 @@ class Main extends React.Component{
   }
 
   cardClick = (value) =>{
+
+    let obj = {
+      resid: value,
+      id: this.state.db.cityName.id,
+      tables_available: 40, //TODO: will be set by the admin
+    }
+
+    axios.get('http://localhost:8080/available/' + value)
+      .then((res)=>{
+        //do something with response
+        axios.get('http://localhost:8080/available/' + obj.id)
+      .then((resp)=>{
+        console.log(resp.data);
+        if(resp.data.length === 0)
+          {
+            axios.get('http://localhost:8080/booking/' + value)
+            .then((respo)=>{
+              console.log(respo.data)
+              if(respo.data.length !== 0)
+              {
+                obj = {
+                resid: value,
+                id: this.state.db.cityName.id,
+                tables_available: 40-respo.data.tables_booked, //TODO: will be set by the admin
+              }
+            }
+              axios.post('http://localhost:8080/available',obj)
+              .then((res)=>{
+                //do something with response
+                console.log(res.data);
+              });
+          });
+        }
+      });
+        
+      });
     let url = "https://developers.zomato.com/api/v2.1/";
     //id calculater
     axios.get(url + "restaurant?res_id=" + value,
@@ -692,24 +878,24 @@ class Main extends React.Component{
           this.setState({
               db: db }) 
 
-          let obj = {
-            resid: value,
-            id: this.state.db.cityName.id,
-            tables_available: 10, //TODO: will be set by the admin
-          }
-      axios.get('http://localhost:8080/available/' + value)
-      .then((resp)=>{
-        //do something with response
-        console.log(resp.data);
-        if(resp.data.length === 0)
-          {
-            axios.post('http://localhost:8080/available',obj)
-          .then((res)=>{
-            //do something with response
-            console.log(res.data);
-          });
-        }
-    });
+          // let obj = {
+          //   resid: value,
+          //   id: this.state.db.cityName.id,
+          //   tables_available: 10, //TODO: will be set by the admin
+          // }
+      // axios.get('http://localhost:8080/available/' + value)
+      // .then((resp)=>{
+      //   //do something with response
+      //   console.log(resp.data);
+      //   if(resp.data.length === 0)
+      //     {
+      //       axios.post('http://localhost:8080/available',obj)
+      //     .then((res)=>{
+      //       //do something with response
+      //       console.log(res.data);
+      //     });
+    //     }
+    // });
            
     });
 }
@@ -798,7 +984,7 @@ cuisinClick = (value) =>{
            <Link to="/signup"></Link>
            <Link to="/home"></Link>
            <Link to="/home/card"></Link> */}
-            <Route exact path="/" render={()=><ControlledCarousel thisSignUp={()=>this.thisSignUp()}/>}/>
+            <Route exact path="/" render={()=><ControlledCarousel thisSignUp={()=>this.thisSignUp()} thisLogIn={()=>this.thisLogIn()}/>}/>
             {/* <Route path="/login" render={()=><LogIn mySignUp={()=>this.mySignUp()}/>} />
             <Route path="/signup" render={()=><SignUp mySignUp={()=>this.mySignUp()}/>} /> */}
             <Route exact path="/home" render={()=><Home i={this.state.user.i} userConfirmed={()=>this.userConfirmed(this.state.user.i)} citySelectedColorChange={()=>this.citySelectedColorChange()} cardPrint={()=>this.cardPrint()} restaurants={this.state.db.restaurantSearch.restaurants} cuisinPrint={()=>this.cuisinPrint()} cuisines={this.state.db.cuisines}/>} cuisine_selected={this.state.db.cuisine_selected} />
@@ -808,7 +994,7 @@ cuisinClick = (value) =>{
               return <CityDropdown city={value} cityNameSelected={this.cityNameSelected(value)}/>
             })}>
             </Route> */}
-            <Route exact path={"/home/res_id:" + this.state.db.resid } render={()=> <CardContent fav={this.state.db.fav} citySelectedColorChange={() => this.citySelectedColorChange()} restaurantInfo={this.state.db.restaurantInfo}/>} />        
+            <Route exact path={"/home/res_id:" + this.state.db.resid} render={()=> <CardContent temp_email={this.state.user.l.temp_email} fav={this.state.db.fav} citySelectedColorChange={() => this.citySelectedColorChange()} restaurantInfo={this.state.db.restaurantInfo}/>} />        
             {/* <Route exact path="/home" render={()=><Home citySelectedColorChange={()=>this.citySelectedColorChange()} restaurants={this.state.db.restaurantSearch.restaurants} restId={()=>this.restId()}/>} /> */}
 {/* 
              <Route exact path="/home" render={()=>

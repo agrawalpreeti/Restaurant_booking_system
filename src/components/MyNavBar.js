@@ -153,8 +153,8 @@ function MyNavBars(props) {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={handleMenuClose}>Dash Board</MenuItem>
+      
     </Menu>
   );
 

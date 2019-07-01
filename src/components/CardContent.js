@@ -23,11 +23,50 @@ class MyVerticallyCenteredModal extends React.Component {
     this.state.table={
       available: 0
     }
+    this.state.user={
+      email: ""
+    }
   }
 
   splitName = () =>{
     let name = this.props.restaurantInfo.name.split(',');
     return name[0];
+  }
+
+  isLogin = () =>{
+    console.log(this.state.user.email)
+    if(this.state.user.email === ""){
+      alert("Please enter Email id");
+    }
+    else{
+      axios.get('http://localhost:8080/login/' + this.state.user.email)
+        .then((resp)=>{
+          //do something with response
+          if(resp.data[0].is_login){
+            console.log(resp.data[0]);
+            let obj = {
+              temp_email: this.state.user.email,
+              tables_booked: parseInt(this.state.user.booked_tables),
+              resid: this.state.table.resid,
+              id: this.state.table.id
+            }
+            console.log(obj)
+            axios.post('http://localhost:8080/booking', obj)
+            .then((resp)=>{
+
+            });
+
+          }
+
+          // else{
+          //   alert("Login First!!!")
+          // }
+          
+        }).catch((error)=>{
+          alert("Login First!!!")
+          console.log(error)
+        });
+      }
   }
 
   componentWillMount(){
@@ -37,10 +76,29 @@ class MyVerticallyCenteredModal extends React.Component {
         console.log(resp.data[0].tables_available);
         let table = this.state.table;
         table.available = resp.data[0].tables_available;
+        table.resid = resp.data[0].resid;
+        table.id = resp.data[0].id;
         this.setState({
           table: table
         })
+        console.log(this.state.table)
       });
+  }
+
+  getEmail = (e) =>{
+    let user = this.state.user;
+    user.email = e.target.value;
+    this.setState({
+      user: user
+    })
+  }
+
+  fetchTables = (e) =>{
+    let user = this.state.user;
+    user.booked_tables = e.target.value;
+    this.setState({
+      user: user
+    })
   }
 
     render() {
@@ -96,6 +154,9 @@ class MyVerticallyCenteredModal extends React.Component {
                     // className={clsx(classes.textField, classes.dense)}
                     // value={values.age}
                     // onChange={handleChange('age')}
+                    min="0"
+                    max={this.state.table.tables_available}
+                    onChange={this.fetchTables}
                     type="number"
                     className="textField"
                     InputLabelProps={{
@@ -113,8 +174,37 @@ class MyVerticallyCenteredModal extends React.Component {
                 </Col> */}
               </Row>
               <Row>
+                <Col md={{span:6}}>
+                  <h5>Enter Email ID: </h5>
+                </Col>
+                <Col>
+                  {/* <input type="number" name="quantity" min="1" max="5"></input> */}
+                  <TextField
+                    id="outlined-dense-multiline"
+                    label="Required"
+                    // className={clsx(classes.textField, classes.dense)}
+                    // value={values.age}
+                    // onChange={handleChange('age')}
+                    // type="number"
+                    className="textField"
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                    margin="normal"
+                    variant="outlined"
+                    onChange={this.getEmail}
+                  />
+                </Col>
+                {/* <Col>
+                  <Button variant="outline-success">+</Button>
+                </Col>
+                <Col>
+                  <Button variant="outline-danger">-</Button>
+                </Col> */}
+              </Row>
+              <Row>
                 <Col md={{span: 5, offset:3}}>
-                  <Button type="submit" variant="success" size="md" block>Confirm</Button>
+                  <Button onClick={()=>this.isLogin()} variant="success" size="md" block>Confirm</Button>
                 </Col>
               </Row>
             </Container>
@@ -199,6 +289,7 @@ class CardContent extends React.Component{
                               show={this.state.modalShow}
                               onHide={modalClose}
                               restaurantInfo={this.props.restaurantInfo}
+                              temp_email={this.props.temp_email}
                               />
                               </Col>
                               </Row>

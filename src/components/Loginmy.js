@@ -45,76 +45,76 @@ const useStyles = makeStyles(theme => ({
       }
   }));
 
-  function LogIn(props) {
-    const classes = useStyles();
+  // function LogIn(props) {
+  //   const classes = useStyles();
   
-    return (
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <div className={classes.paper}>
-          <Avatar className={classes.avatar}>
-            <LockOutlinedIcon />
-          </Avatar>
+  //   return (
+  //     <Container component="main" maxWidth="xs">
+  //       <CssBaseline />
+  //       <div className={classes.paper}>
+  //         <Avatar className={classes.avatar}>
+  //           <LockOutlinedIcon />
+  //         </Avatar>
 
-          <Typography component="h1" variant="h5">
-            Log in
-          </Typography>
-          <form className={classes.form} noValidate>
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
-              autoFocus
-            />
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-            />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary"/>}
-              label="Remember me"
-            />
-            <Button
-              type="submit"
-              fullwidth="true"
-              color="primary"
-              className={classes.submit}
+  //         <Typography component="h1" variant="h5">
+  //           Log in
+  //         </Typography>
+  //         <form className={classes.form} noValidate>
+  //           <TextField
+  //             variant="outlined"
+  //             margin="normal"
+  //             required
+  //             fullWidth
+  //             id="email"
+  //             label="Email Address"
+  //             name="email"
+  //             autoComplete="email"
+  //             autoFocus
+  //           />
+  //           <TextField
+  //             variant="outlined"
+  //             margin="normal"
+  //             required
+  //             fullWidth
+  //             name="password"
+  //             label="Password"
+  //             type="password"
+  //             id="password"
+  //             autoComplete="current-password"
+  //           />
+  //           <FormControlLabel
+  //             control={<Checkbox value="remember" color="primary"/>}
+  //             label="Remember me"
+  //           />
+  //           <Button
+  //             type="submit"
+  //             fullwidth="true"
+  //             color="primary"
+  //             className={classes.submit}
               
-            >
-              Log in
-            </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link href="/" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
-              <Grid item>
-                {/* <Link href="/signup" variant="body2"> */}
-                <Link href="#" onClick={()=>props.dontHaveAnAccount()}>
-                  {"Don't have an account? Sign Up"}
-                  </Link>
-                {/* </Link> */}
-              </Grid>
-            </Grid>
-          </form>
-        </div>
+  //           >
+  //             Log in
+  //           </Button>
+  //           <Grid container>
+  //             <Grid item xs>
+  //               <Link href="/" variant="body2">
+  //                 Forgot password?
+  //               </Link>
+  //             </Grid>
+  //             <Grid item>
+  //               {/* <Link href="/signup" variant="body2"> */}
+  //               <Link href="#" onClick={()=>props.dontHaveAnAccount()}>
+  //                 {"Don't have an account? Sign Up"}
+  //                 </Link>
+  //               {/* </Link> */}
+  //             </Grid>
+  //           </Grid>
+  //         </form>
+  //       </div>
       
-      </Container>
-    );
-  }
+  //     </Container>
+  //   );
+  // }
 
 
 
@@ -211,4 +211,4 @@ const useStyles = makeStyles(theme => ({
 
 
 
- export  { LogIn};
+//  export  { LogIn};

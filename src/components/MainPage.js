@@ -1,7 +1,7 @@
 import React from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import SimpleCard from './SimpleCard.js';
-import { LogIn} from './Loginmy.js';
+// import { LogIn} from './Loginmy.js';
 import Button from 'react-bootstrap/Button.js';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar.js';
 import './Mycss.css';
@@ -48,7 +48,7 @@ class MyVerticallyCenteredModal extends React.Component {
       >
         
         <Modal.Body>
-          <LogIn dontHaveAnAccount={()=>this.props.dontHaveAnAccount()} ></LogIn>
+          {this.props.thisLogIn()}
         </Modal.Body>
         <Modal.Footer>
           <Button onClick={this.props.onHide}>Close</Button>
@@ -195,6 +195,7 @@ class ControlledCarousel extends React.Component {
                   alreadyAnAccount={()=>this.alreadyAnAccount()}
                   dontHaveAnAccount={()=>this.dontHaveAnAccount()}
                   thisSignUp={()=>this.props.thisSignUp()}
+                  thisLogIn={()=>this.props.thisLogIn()}
                 />
             </div>
             </Carousel.Caption>
@@ -219,6 +220,8 @@ class ControlledCarousel extends React.Component {
                     alreadyAnAccount={()=>this.alreadyAnAccount()}
                     dontHaveAnAccount={()=>this.dontHaveAnAccount()}
                     thisSignUp={()=>this.props.thisSignUp()}
+                    thisLogIn={()=>this.props.thisLogIn()}
+
                   />
                   </Col>
                 </Row>
